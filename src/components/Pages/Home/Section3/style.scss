@@ -1,0 +1,22 @@
+@use 'src/styles/vars';
+
+#section3 {
+  margin-top: 8rem;
+  margin-bottom: 5rem;
+  
+}
+
+.carrousel {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+  align-items: baseline;
+}
+
+
+
+// .customStyle {
+//   background-color: vars.$colorPrimary;
+//   color: white;
+// }

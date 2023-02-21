@@ -1,0 +1,72 @@
+@use 'src/styles/vars';
+
+img {
+  // height: 500px;
+}
+
+
+#section1 {
+  // background-color: rgb(242, 242, 242);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: left;
+  align-items: center;
+  padding: 2rem 0;
+  margin: 7rem 0;
+}
+
+.section1--flex_left {
+  width: 45%;
+  margin-right: 4rem;
+}
+
+
+.section1--flex_left h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 4.5rem;
+  z-index: 7;
+
+}
+
+.section1--flex_left p {
+  font-size: 2.5rem;
+  font-weight: 500; 
+}
+
+.section1--flex_left primary {
+  font-size: 2.5rem;
+  font-weight: 700; 
+}
+
+.relative {
+  
+position: relative;
+  z-index: 1;
+// color: vars.$colorPrimary;
+}
+
+.absolute {
+  position: absolute;
+  fill: vars.$colorPrimary;
+  top: 22rem;
+  left: 7rem;
+  opacity: 100%;
+  max-width: 45%;
+  z-index: 0;
+}
+
+
+.section1--flex_right {
+  width: 50%;
+}
+
+.section1--flex_right img {
+  border-radius: 2rem;
+}
+
+.button_test {
+  background-color: red;
+  color: black;
+}

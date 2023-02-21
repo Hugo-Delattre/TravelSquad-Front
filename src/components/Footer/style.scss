@@ -1,0 +1,36 @@
+.footer--nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+  align-items: center;
+  // background-color: rgb(201, 201, 201);
+  
+}
+
+.footer--title__slogan {
+  display: flex;
+  // padding-top: 3%;
+  animation: myAnim 1s ease 0s 1 normal forwards;
+  flex-direction: column;
+  text-align: left;
+}
+
+.footer--title {
+// display: flex;
+// padding-right: 60%;
+
+}
+
+.footer--slogan {
+  // display: flex;
+
+}
+
+.footer--list {
+display: flex;
+flex-direction: column;
+text-align: end;
+
+
+}

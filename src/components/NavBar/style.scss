@@ -1,0 +1,67 @@
+
+#header--nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: myAnim 1s ease 0s 1 normal forwards;
+    margin-top: 11px;
+}
+
+.nav--list{
+    display: flex;
+    padding: 10px;
+  
+}
+ul{
+    display: flex;
+    list-style-type: none;
+   
+}
+ul li {
+    padding: 10px;
+    align-items: center;
+    font-size: 18px;
+}
+
+.ui.button, .ui.buttons .button{
+    font-size: 15px;
+   
+}
+//animation
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+		transform: rotateX(-100deg);
+		transform-origin: top;
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotateX(0deg);
+		transform-origin: top;
+	}
+}
+
+a {
+    display: inline;
+    position: relative;
+    text-decoration: none;
+   
+}
+
+a:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -4px;
+    width: 0%;
+    left: 0px;
+    height: 2px;
+    transition: 0.25s cubic-bezier(0.72,-0.01, 0.19, 0.92);
+    background: RGB(65, 131, 196);
+}
+
+
+  a:hover:after {
+    width: 100%;
+  }
