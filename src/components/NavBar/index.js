@@ -11,7 +11,7 @@ const NavBar = () => {
         <h1 className='nav__title'>TravelSquad</h1>
         </div>
         <div className="nav--list">
-        <ul >
+        <ul className='list' >
            <li><a href="*">Découvrir les destinations</a></li>
           <li><a href="*">Créer un groupe</a></li> 
         </ul>

@@ -12,6 +12,10 @@
     padding: 10px;
   
 }
+
+.list{
+    animation: myAnim 1s ease 0s 1 normal forwards;
+}
 ul{
     display: flex;
     list-style-type: none;
@@ -49,7 +53,7 @@ a {
    
 }
 
-a:after {
+.list li a:after {
     content: '';
     display: block;
     position: absolute;
@@ -62,6 +66,6 @@ a:after {
 }
 
 
-  a:hover:after {
+  .list li a:hover:after {
     width: 100%;
   }

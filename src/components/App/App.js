@@ -13,6 +13,7 @@ const App = () => {
   return (
     <div className="App">
       <NavBar />
+      <Divider />
       <Home />
       {/* <Divider /> */}
       <Section2 />
