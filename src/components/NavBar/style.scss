@@ -3,7 +3,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    animation: myAnim 1s ease 0s 1 normal forwards;
     margin-top: 11px;
 }
 
@@ -13,9 +12,7 @@
   
 }
 
-.list{
-    animation: myAnim 1s ease 0s 1 normal forwards;
-}
+
 ul{
     display: flex;
     list-style-type: none;
@@ -32,28 +29,16 @@ ul li {
    
 }
 //animation
-@keyframes myAnim {
-	0% {
-		opacity: 0;
-		transform: rotateX(-100deg);
-		transform-origin: top;
-	}
 
-	100% {
-		opacity: 1;
-		transform: rotateX(0deg);
-		transform-origin: top;
-	}
-}
 
-a {
+.animation--underline {
     display: inline;
     position: relative;
     text-decoration: none;
    
 }
 
-.list li a:after {
+ .animation--underline:after {
     content: '';
     display: block;
     position: absolute;
@@ -66,6 +51,6 @@ a {
 }
 
 
-  .list li a:hover:after {
+  .animation--underline:hover:after {
     width: 100%;
   }

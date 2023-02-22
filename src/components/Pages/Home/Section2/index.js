@@ -2,7 +2,7 @@ import React from 'react'
 import './style.scss'
 const Section2 = () => {
   return (
-    <section id="section2">
+    <section id="home--section2">
       <div className="container">
         <div className="block">
           <img

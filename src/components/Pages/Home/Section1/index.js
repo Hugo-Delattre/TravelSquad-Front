@@ -5,7 +5,7 @@ import { Button } from "semantic-ui-react";
 
 const Section1 = () => {
   return (
-    <section id="section1">
+    <section id="home--section1">
       <div className="section1--flex_left">
         <h1>
           Ne 

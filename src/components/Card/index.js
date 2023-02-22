@@ -4,7 +4,7 @@ import { Card, Icon, Image } from "semantic-ui-react";
 const CardExampleCard = () => (
   <Card>
     <Image
-      src="https://i.kym-cdn.com/photos/images/facebook/002/121/966/c23.png"
+      src="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg"
       wrapped
       ui={false}
     />
@@ -25,5 +25,18 @@ const CardExampleCard = () => (
     </Card.Content>
   </Card>
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default CardExampleCard;

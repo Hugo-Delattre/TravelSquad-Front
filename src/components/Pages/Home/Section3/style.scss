@@ -1,6 +1,6 @@
 @use 'src/styles/vars';
 
-#section3 {
+#home--section3 {
   margin-top: 8rem;
   margin-bottom: 5rem;
   
@@ -13,10 +13,6 @@
   gap: 2rem;
   align-items: baseline;
 }
-
-
-
-// .customStyle {
-//   background-color: vars.$colorPrimary;
-//   color: white;
-// }
+.ui.blue.button a{
+  color: white;
+}
