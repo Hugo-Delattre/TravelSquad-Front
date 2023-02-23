@@ -42,7 +42,7 @@ ul li {
     content: '';
     display: block;
     position: absolute;
-    bottom: -4px;
+    bottom: -5px;
     width: 0%;
     left: 0px;
     height: 2px;
@@ -54,3 +54,4 @@ ul li {
   .animation--underline:hover:after {
     width: 100%;
   }
+ 

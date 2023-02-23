@@ -13,14 +13,16 @@ const NavBar = () => {
         </div>
         <div className="nav--list">
           <ul className="list">
-            <li>
-              <NavLink className="animation--underline" to="/countries">
+            <li >
+              <NavLink  to="/countries">
                 Découvrir les pays
               </NavLink>
             </li>
-            <li>
-              <a> Créer un groupe</a>
+            <NavLink to="/create-group">        
+            <li >
+              Créer un groupe
             </li>
+            </NavLink>
           </ul>
         </div>
         <div className="log--btn">

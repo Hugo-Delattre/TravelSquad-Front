@@ -1,7 +1,11 @@
 import './App.scss';
-import {Routes, Route, Link, NavLink} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Countries from '../Pages/Countries';
 import Home from '../Pages/Home';
+import Groups from '../Pages/Groups';
+import Group from '../Pages/Group';
+import CreateGroup from '../Pages/CreateGroup';
+
 
 
 const App = () => {
@@ -10,6 +14,9 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/countries' element={<Countries/>}/>
+        <Route path='/countries/groups' element={<Groups/>}/>
+        <Route path='/countries/group' element={<Group/>}/>
+        <Route path='/create-group' element={<CreateGroup/>}/>
       </Routes>
 
       

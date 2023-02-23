@@ -1,0 +1,133 @@
+@use "src/styles/vars";
+
+#section--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#border--main {
+  
+  box-shadow: 0px 15px 20px rgba(119, 119, 119, 0.4);
+
+  padding: 8%;
+}
+
+#title--container {
+  margin-top: 50px;
+}
+
+.main--title {
+  margin-top: 1.2rem;
+  border: solid 2px rgb(255, 255, 255);
+  width: 400px;
+  padding: 1%;
+  align-self: center;
+}
+
+#details--container {
+  display: flex;
+  align-self: center;
+  width: 100%;
+  justify-content: space-between;
+  padding: 19px;
+}
+#details--container p {
+  align-self: center;
+  font-size: 17px;
+  line-height: 66px;
+}
+
+.details-part-left p {
+  padding: 8px;
+  align-self: center;
+  text-align: left;
+}
+.details-part-right p {
+  padding: 8px;
+  text-align: right;
+  align-self: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+  text-align: left;
+}
+#desc--container {
+  margin-top: 27px;
+  display: flex;
+}
+.desc--voyage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+h2,
+textarea {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+textarea {
+  padding: 10px;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #999;
+}
+.membres--container {
+  display: inline-block;
+  flex-direction: column;
+  margin-top: 50px;
+  align-self: center;
+  width: 100%;
+}
+.membre {
+  border: solid 2px #d6d6d6;
+  padding: 15px;
+  display: flex;
+  border-radius: 12px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  gap: 10%;
+}
+.membres--left {
+  display: flex;
+  gap: 10%;
+  margin-bottom: 21px;
+}
+
+.membres--right {
+  display: flex;
+  gap: 10%;
+}
+
+.membre--name {
+  font-size: 17px;
+  margin: 8px;
+}
+.membres--title {
+  text-align: left;
+  width: 202px;
+  margin-bottom: 17px;
+}
+
+.btn--register {
+//   margin-top: 70px;
+//   width: 30%;
+border: solid  1px #d6d6d6;
+  margin-bottom: 80px;
+//   align-self: center;
+//   border-radius: 12px;
+  padding: 30px;
+  background-color: vars.$colorPrimary;
+//   box-shadow: 0px 15px 20px rgba(119, 119, 119, 0.4);
+  box-shadow: 0px 15px 20px rgba(119, 119, 119, 0.4);
+}
+.btn--register h3 {
+  color: white;
+}
+.btn--register:hover {
+  background-color: vars.$colorPrimaryHover;
+}

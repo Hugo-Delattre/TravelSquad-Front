@@ -10,11 +10,9 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-   
       <Section1 />
       <Section2 />
       <Section3 />
- 
       <Footer />
     </div>
   );
