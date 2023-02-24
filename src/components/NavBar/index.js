@@ -18,16 +18,25 @@ const NavBar = () => {
                 Découvrir les pays
               </NavLink>
             </li>
+            <li>
+              <NavLink  to="/countries/groups">
+                  Rejoindre une escouade
+                </NavLink>
+            </li>
             <NavLink to="/create-group">        
             <li >
-              Créer un groupe
+              Créer une escouade
             </li>
             </NavLink>
           </ul>
         </div>
         <div className="log--btn">
+          <NavLink to="/signup">
           <Button primary>Sign up</Button>
+          </NavLink>
+          <NavLink to="/login">
           <Button>Log-in</Button>
+          </NavLink>
         </div>
       </nav>
       <Divider />

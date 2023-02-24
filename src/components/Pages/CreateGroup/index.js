@@ -58,71 +58,89 @@ const CreateGroup = () => {
         { key: "al", value: "al", text: "Langue X" },
         { key: "al", value: "al", text: "(sans préférence)" },
       ];
+      const GenderOptions = [
+        { key: "al", value: "al", text: "Mixte" },
+        { key: "af", value: "af", text: "♂" },
+        { key: "ax", value: "ax", text: "♀️" },
+      ];
 
 return (
-  <div>
+  <>
     <NavBar />
 
-    <section id="CreateGroup--section1">
-      <div>
-        <h1> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h1>
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </div>
-
-      <Form className="CreateGroup--Title">
-        <Form.Field required>
-          <Input placeholder="Titre/intitulé" />
-        </Form.Field>
-      </Form>
-
-      <Form>
-        <Form.Group widths="equal">
-          <Form.Input
-            fluid
-            id="form-subcomponent-shorthand-input-E-mail"
-            placeholder="E-mail"
-          />
-          <Form.Input
-            fluid
-            id="form-subcomponent-shorthand-input-last-name"
-            placeholder="Nombre de place de voyageurs"
-          />
-        </Form.Group>
-      </Form>
-
-      <Select placeholder="Tranche D'age" options={CreateGroupeAgeOptions} />
-      <Select placeholder="Pays" options={CreateGroupePaysOptions} />
-      <Select placeholder="Ville" options={CreateGroupeCityOptions} />
-      <Select placeholder="Thème" options={CreateGroupeThemeOptions} />
-      <Select placeholder="Langue du groupe" options={CreateGroupeLangue} />
-    </section>
-
-    <section>
-      <label className="Create-Group--greyText" for="date²-input">
-        Sélectionnez une date de départ et d'arrivée :
-      </label>
-      <input type="date" id="date-input" name="date" />
-
-      {/* <label for="date²-input"></label> */}
-      <input type="date" id="date-input" name="date" />
-    </section>
-
-    <section>
-      <label className="Create-Group--greyText" for="date²-input">
-        Décrivez votre voyage, activités prévues, ambiance, etc :
-      </label>
-      <textarea
-        placeholder="ddddd"
-        id="story"
-        name="story"
-        rows="5"
-        cols="33"
-      ></textarea>
-    </section>
-    <Button primary>Créer le groupe</Button>
+    <div className='createGroup--pageContainer'>
+    
+        <div>
+          <h1>Paré(e) à former votre propre groupe ?</h1>
+          <p>Renseignez les champs de façon à être contacté(e) par les utilisateurs qui correspondent le mieux à vos critères.</p>
+        </div>
+      <section id="CreateGroup--section1">
+      
+       
+      <h2>
+          Informations principales concernant le voyage :
+        </h2>
+        <Form className="CreateGroup--Title">
+          <Form.Field required>
+            <Input placeholder="Intitulé du voyage" />
+          </Form.Field>
+        </Form>
+        <Form>
+          <Form.Group widths="equal">
+            <Form.Input
+              fluid
+              id="form-subcomponent-shorthand-input-E-mail"
+              placeholder="Email à laquelle les intéressés peuvent contacter"
+            />
+            <Form.Input
+              fluid
+              id="form-subcomponent-shorthand-input-last-name"
+              placeholder="Nombre de place de voyageurs"
+            />
+        {/* <Select placeholder="Pays" options={CreateGroupePaysOptions} /> */}
+        <Select placeholder="Destination" options={CreateGroupeCityOptions} />
+          </Form.Group>
+        <textarea
+          placeholder="Décrivez votre voyage, idées d'activité, ambiance, etc :"
+          id="story"
+          name="story"
+          rows="5"
+          cols="33"
+        ></textarea>
+        </Form>
+      
+      
+      
+      <h2>
+          Vos critères concernant vos partenaires de voyage :
+        </h2>
+        <Select placeholder="Tranche d'âge" options={CreateGroupeAgeOptions} />
+        <Select placeholder="Thème/Profil" options={CreateGroupeThemeOptions} />
+        <Select placeholder="Langue du groupe" options={CreateGroupeLangue} />
+        <Select placeholder="Genre des membres du groupe" options={GenderOptions} />
+      
+      <section id="CreateGroup--section2">
+        {/* <label for="date²-input">
+          Sélectionnez une date de départ et d'arrivée :
+        </label> */}
+        <h2>
+          Sélectionnez votre date prévue de départ et d'arrivée :
+        </h2>
+        <input type="date" id="date-input" name="date" />
+        {/* <label for="date²-input"></label> */}
+        <input type="date" id="date-input" name="date" />
+      </section>
+      
+      </section>
+      <button className="btn--createGroup">
+          <h3>CRÉER LE GROUPE</h3>
+        </button>
+      {/* <Button primary>CRÉER LE GROUPE</Button> */}
+    </div>
+      
 
     <Footer />
-  </div>
+  </>
 );
 }
 

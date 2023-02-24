@@ -33,9 +33,14 @@ return (
                <a href="">Créer un groupe</a>
              </NavLink> 
 
+<NavLink className="animation--underline" to="/profile"> 
                <a href="">Mon Profil</a>
+                </NavLink> 
+
+               <NavLink className="animation--underline" to="/team"> 
                <a href="">Equipe & Contact</a>
-               
+               </NavLink>
+
            </div>
          
          </footer>

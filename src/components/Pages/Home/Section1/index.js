@@ -36,6 +36,7 @@ const Section1 = () => {
           alt="Groupe d'amis profitant de leur voyage"
         />
       </div>
+     
     </section>
   );
 };

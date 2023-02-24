@@ -3,8 +3,12 @@ import { Card, Icon, Image } from "semantic-ui-react";
 import "./style.scss";
 
 const GroupCard = ({ item }) => {
-  console.log(item.title);
+  // console.log(item.title);
+  
+  
+  
   return (
+    <div className="groupCard--hoverEffect">
     <Card>
       <Image
         src="https://cdn.getyourguide.com/img/location/5ffeb392eb81e.jpeg/68.jpg"
@@ -32,6 +36,7 @@ const GroupCard = ({ item }) => {
         </div>
       </Card.Content>
     </Card>
+    </div>
   );
 };
 

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Select, Button, Image } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 import NavBar from "../../NavBar";
 import Footer from "../../Footer";
@@ -7,7 +9,7 @@ import GroupCard from "../../GroupCard";
 
 import "./style.scss";
 
-import { Select, Button, Image } from "semantic-ui-react";
+
 
 const Groups = () => {
   
@@ -49,6 +51,7 @@ const Groups = () => {
     { key: "al", value: "al", text: "Espagnol" },
   ];
 
+  
    useEffect(() => {
      axios
        .get("https://jsonplaceholder.typicode.com/posts")
@@ -83,17 +86,15 @@ const Groups = () => {
         <Button primary>Valider</Button>
       </section>
 
-      <section id="groups--section3-groups">
-        {/* <GroupCard /> */}
-        {/* <GroupCard /> */}
-        {data.map(item => <GroupCard key={item.id} item={item}/>)}
-        {/* <GroupCard /> */}
-        {/* <GroupCard /> */}
-        {/* <GroupCard /> */}
-        {/* <GroupCard /> */}
-        {/* <GroupCard /> */}
-        {/* <GroupCard /> */}
-        {/* <GroupCard /> */}
+      <section id="groups--section3-groups" className="GroupCard">
+      
+        {data.map(item => 
+        <Link to="/countries/group">
+        <GroupCard  key={item.id} item={item}/>
+        </Link>
+        )
+        }
+       
       </section>
       <Footer />
     </div>

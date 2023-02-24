@@ -9,8 +9,43 @@ import CardExampleCard from '../../Card'
 import "./style.scss";
 
 
+
+
+
+
+
+
+
+
+// import React from 'react'
+
+// const Buttton = (props) => {
+//   return (
+//     <button>{props.title}</button>
+//   )
+// }
+
+// export default Buttton
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const Countries = () => {
   return (
+    
+    
 
 <div>   
     <NavBar />
