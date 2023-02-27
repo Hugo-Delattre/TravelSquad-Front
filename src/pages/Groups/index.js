@@ -3,9 +3,9 @@ import axios from "axios";
 import { Select, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-import NavBar from "../../NavBar";
-import Footer from "../../Footer";
-import GroupCard from "../../GroupCard";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
+import GroupCard from "../../components/GroupCard";
 
 import "./style.scss";
 

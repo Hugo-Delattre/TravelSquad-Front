@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./style.scss";
 import { Button } from "semantic-ui-react";
-import CardExampleCard from "../../../Card";
+import CountryCard from "../../../components/Card";
 
 const Section3 = () => {
   return (
@@ -15,9 +15,9 @@ const Section3 = () => {
             partenaires de voyage.
           </p>
           <div className="carrousel">
-            <CardExampleCard />
-            <CardExampleCard />
-            <CardExampleCard />
+            <CountryCard />
+            <CountryCard />
+            <CountryCard />
           </div>
           <Button color="blue" className="customStyle">
             <NavLink to="/countries">Afficher toutes les destinations</NavLink>

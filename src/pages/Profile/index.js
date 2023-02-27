@@ -1,8 +1,8 @@
 import React from "react";
 import { Divider } from "semantic-ui-react";
 
-import NavBar from "../../NavBar";
-import Footer from "../../Footer";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 
 import ProfileSection1 from "./Section1";
 

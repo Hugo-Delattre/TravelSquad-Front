@@ -1,15 +1,16 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 
-import Countries from "../Pages/Countries";
-import Home from "../Pages/Home";
-import Groups from "../Pages/Groups";
-import Group from "../Pages/Group";
-import CreateGroup from "../Pages/CreateGroup";
-import Login from "../Pages/Login";
-import Signup from "../Pages/Signup";
-import Profile from "../Pages/Profile";
-import Team from "../Pages/Team";
+import Countries from "../../pages/Countries";
+import Home from "../../pages/Home";
+import Groups from "../../pages/Groups";
+import Group from "../../pages/Group";
+import CreateGroup from "../../pages/CreateGroup";
+import Login from "../../pages/Login";
+import SignUp from "../../pages/SignUp";
+import Profile from "../../pages/Profile";
+import Team from "../../pages/Team";
+import React from "react";
 
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/team" element={<Team />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );

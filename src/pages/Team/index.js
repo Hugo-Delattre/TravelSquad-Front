@@ -1,8 +1,8 @@
 import React from "react";
 
-import NavBar from "../../NavBar";
-import Footer from "../../Footer";
-import TeamCard from "../../TeamCard";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
+import TeamCard from "../../components/TeamCard";
 
 import { Card, Feed } from "semantic-ui-react";
 

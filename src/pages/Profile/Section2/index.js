@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileGroupCard from "../../../ProfileGroupCard";
+import ProfileGroupCard from "../../../components/ProfileGroupCard";
 
 const ProfileSection2 = () => {
   return (

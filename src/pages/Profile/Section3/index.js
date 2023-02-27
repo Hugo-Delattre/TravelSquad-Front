@@ -1,5 +1,5 @@
 import React from "react";
-import ExperiencesCard from "../../../ExperienceCard";
+import ExperiencesCard from "../../../components/ExperienceCard";
 
 const ProfileSection3 = () => {
   return (
