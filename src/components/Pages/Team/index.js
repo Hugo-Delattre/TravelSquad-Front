@@ -1,147 +1,155 @@
-import React from 'react'
+import React from "react";
 
-import NavBar from '../../NavBar'
+import NavBar from "../../NavBar";
 import Footer from "../../Footer";
+import TeamCard from "../../TeamCard";
 
-import { Placeholder, Card, Feed } from 'semantic-ui-react'
+import { Card, Feed } from "semantic-ui-react";
 
-import './style.scss'
+import "./style.scss";
 
- const Team = () => {
+const Team = () => {
+  const teamInfo = {
+    julianInfo: {
+      name: "Julian",
+      lastName: "Squedin",
+      role: "Scrum Master / Dev-Back",
+    },
+    badreInfo: {
+      name: "Badre",
+      lastName: "Abouanane",
+      role: "Référent-Git / Dev-Front",
+    },
+    ilhamInfo: {
+      name: "Ilham",
+      lastName: "Bennecib",
+      role: "Lead-Dev-Back",
+    },
+    hugoInfo: {
+      name: "Hugo",
+      lastName: "Delattre",
+      role: "Lead-Dev-Front / Product Owner",
+    },
+    mathisInfo: {
+      name: "Mathis",
+      lastName: "Guitton",
+      role: "Référent-technologique / Dev-Front",
+    },
+  };
 
-return (
-<div>   
+  return (
+    <div>
+      <NavBar />
 
-<NavBar />
+      <div className="Team--Title">
+        <h1>L'équipe derrière TravelSquad</h1>
+        <p>
+          Nous sommes une équipe de 5 développeurs qui avons conçu et réalisé
+          TravelSquad dans le cadre de notre projet de fin de formation au sein
+          de l'école O'clock.
+          <br />
+          Vous pouvez nous contacter par mail ou LinkedIn via les liens
+          ci-dessous.
+        </p>
+      </div>
 
-<div className='Team--Title'>
-  <h1>Les Power Rangers</h1>
-  <p>"Go, go Power Rangers!"</p>
-</div>
+      <div className="Team--Info">
+        <Card className="Team--Info-flex-2">
+          <Card.Content>
+            <Feed>
+              <Feed.Event>
+                <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
+                <Feed.Content>
+                  <Feed.Date content="" />
 
+                  <Feed.Summary>Abouanane Badre</Feed.Summary>
 
-<div className='Team--Info'>
+                  <Feed.Summary>Réferent-Git / Dev-Front</Feed.Summary>
 
-<Card>
-    <Card.Content>
-      <Card.Header> Le Gang </Card.Header>
-    </Card.Content>
-    <Card.Content>
-      <Feed>
-        <Feed.Event>
-          <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
-          <Feed.Content>
-            <Feed.Date content='' />
-           
-            <Feed.Summary>
-              Abouanane Badre 
-            </Feed.Summary>
+                  <Feed.Summary>
+                    Linkedin : <a> badre-abouanane </a>
+                  </Feed.Summary>
+                </Feed.Content>
+              </Feed.Event>
 
-            <Feed.Summary>
-            Réferent-Git / Dev-Front  
-            </Feed.Summary>
+              <Feed.Event>
+                <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
+                <Feed.Content>
+                  <Feed.Date content="" />
 
-            <Feed.Summary>
-            Linkedin : <a> badre-abouanane  </a> 
-            </Feed.Summary>
+                  <Feed.Summary>Delattre Hugo</Feed.Summary>
 
-          </Feed.Content>
-        </Feed.Event>
+                  <Feed.Summary>
+                    Lead-Dev-Front / Product-Owner / Dev-Front
+                  </Feed.Summary>
 
-        <Feed.Event>
-          <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
-          <Feed.Content>
-          <Feed.Date content='' />
-           
-           <Feed.Summary>
-             Delattre Hugo
-           </Feed.Summary>
+                  <Feed.Summary>
+                    Linkedin : <a> hugo delattre </a>
+                  </Feed.Summary>
+                </Feed.Content>
+              </Feed.Event>
 
-           <Feed.Summary>
-            Lead-Dev-Front / Product-Owner / Dev-Front  
-           </Feed.Summary>
+              <Feed.Event>
+                <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
+                <Feed.Content>
+                  <Feed.Date content="" />
 
-           <Feed.Summary>
-           Linkedin : <a> hugo delattre  </a> 
-           </Feed.Summary>
+                  <Feed.Summary>Squedin Julian</Feed.Summary>
 
-          </Feed.Content>
-        </Feed.Event>
+                  <Feed.Summary>Scrum-Master / Dev-Back</Feed.Summary>
 
-         <Feed.Event>
-          <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
-          <Feed.Content>
-            <Feed.Date content='' />
-           
-            <Feed.Summary>
-               Squedin Julian 
-            </Feed.Summary>
+                  <Feed.Summary>
+                    E-mail : <a> XXX </a>
+                  </Feed.Summary>
+                </Feed.Content>
+              </Feed.Event>
 
-            <Feed.Summary>
-             Crum-Master / Dev-Back 
-            </Feed.Summary>
+              <Feed.Event>
+                <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
+                <Feed.Content>
+                  <Feed.Date content="" />
 
-            <Feed.Summary>
-            E-mail : <a> XXX </a> 
-            </Feed.Summary>
+                  <Feed.Summary>Bennecib Ilham</Feed.Summary>
 
-          </Feed.Content>
-        </Feed.Event>
+                  <Feed.Summary>Lead-Dev-Back / Dev-Back</Feed.Summary>
 
-<Feed.Event>
-          <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
-          <Feed.Content>
-            <Feed.Date content='' />
-           
-            <Feed.Summary>
-               Bennecib Ilham
-            </Feed.Summary>
+                  <Feed.Summary>
+                    E-mail : <a> XXX </a>
+                  </Feed.Summary>
+                </Feed.Content>
+              </Feed.Event>
 
-            <Feed.Summary>
-            Lead-Dev-Back / Dev-Back 
-            </Feed.Summary>
+              <Feed.Event>
+                <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
+                <Feed.Content>
+                  <Feed.Date content="" />
 
-            <Feed.Summary>
-            E-mail : <a> XXX </a> 
-            </Feed.Summary>
-            
-          </Feed.Content>
-        </Feed.Event>
+                  <Feed.Summary>Guitton Mathis</Feed.Summary>
 
-        <Feed.Event>
-          <Feed.Label image="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg" />
-          <Feed.Content>
-            <Feed.Date content='' />
-           
-            <Feed.Summary>
-               Guitton Mathis 
-            </Feed.Summary>
+                  <Feed.Summary>
+                    Réferent-technologique / Dev-Front
+                  </Feed.Summary>
 
-            <Feed.Summary>
-            Réferent-technologique / Dev-Front  
-            </Feed.Summary>
+                  <Feed.Summary>
+                    E-mail : <a>mathis.guitton01@hotmail.com</a>
+                  </Feed.Summary>
+                </Feed.Content>
+              </Feed.Event>
+            </Feed>
+          </Card.Content>
+        </Card>
 
-            <Feed.Summary>
-            E-mail : <a>mathis.guitton01@hotmail.com</a> 
-            </Feed.Summary>
-            
-          </Feed.Content>
-        </Feed.Event>
+        <div className="Team--Info-flex">
+          <TeamCard teamInfo={teamInfo.badreInfo} />
+          <TeamCard teamInfo={teamInfo.julianInfo} />
+          <TeamCard teamInfo={teamInfo.ilhamInfo} />
+          <TeamCard teamInfo={teamInfo.hugoInfo} />
+          <TeamCard teamInfo={teamInfo.mathisInfo} />
+        </div>
+      </div>
 
-      </Feed>
-    </Card.Content>
-  </Card>
-
-  </div>
-
-
-
-
-
-
-  <Footer />
-</div>  
-
-    )
-}
-export default Team
+      <Footer />
+    </div>
+  );
+};
+export default Team;

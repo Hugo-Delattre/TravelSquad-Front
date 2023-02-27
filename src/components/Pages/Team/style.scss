@@ -1,23 +1,32 @@
+@use "src/styles/vars";
 
 .Team--Title {
+  margin-top: 3rem;
+  margin-bottom: 3%;
 
-margin-top: 3rem;
-margin-bottom: 3%;
-
+  h1 {
+    font-family: vars.$fontHeadersTiempos;
+  }
 }
 
-
-
-
-
 .Team--Info {
+  // margin-left: 38rem;
+  padding-top: 1%;
+  margin-bottom: 3%;
 
-    // display: flex;
-margin-left: 38rem;
-padding-top: 1%;
-margin-bottom: 3%;
+  .Team--Info-flex {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    // padding: 3rem;
 
-
-
-
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 6px;
+    // box-shadow:
+    //    0 0px 30px rgba(0, 0, 0, 0.086);
+  }
+  
+  .Team--Info-flex-2 {
+    margin: 3rem auto;
+  }
 }

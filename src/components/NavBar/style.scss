@@ -1,57 +1,39 @@
+@use "src/styles/vars";
+@import "src/fonts/fonts.scss";
 
-#header--nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 11px;
+#header--nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 11px;
+
+  //  font-family: vars.$fontHeadersMontserrat;
+
+  h1 {
+    // font-family: vars.$fontHeadersTiempos;
+    font-family: vars.$fontHeadersMontserrat;
+  }
 }
 
-.nav--list{
-    display: flex;
-    padding: 10px;
+.nav--list {
+  display: flex;
+  padding: 10px;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
   
-}
-
-
-ul{
-    display: flex;
-    list-style-type: none;
-   
-}
-ul li {
+  li {
     padding: 10px;
     align-items: center;
     font-size: 18px;
-}
 
-.ui.button, .ui.buttons .button{
-    font-size: 15px;
-   
-}
-//animation
-
-
-.animation--underline {
-    display: inline;
-    position: relative;
-    text-decoration: none;
-   
-}
-
- .animation--underline:after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: -5px;
-    width: 0%;
-    left: 0px;
-    height: 2px;
-    transition: 0.25s cubic-bezier(0.72,-0.01, 0.19, 0.92);
-    background: RGB(65, 131, 196);
-}
-
-
-  .animation--underline:hover:after {
-    width: 100%;
   }
- 
+}
+
+.ui.button,
+.ui.buttons .button {
+  font-size: 15px;
+}
+

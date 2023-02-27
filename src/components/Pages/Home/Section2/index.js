@@ -1,5 +1,6 @@
-import React from 'react'
-import './style.scss'
+import React from "react";
+import "./style.scss";
+
 const Section2 = () => {
   return (
     <section id="home--section2">
@@ -10,7 +11,7 @@ const Section2 = () => {
             alt=""
           />
           <div className="block--title">
-            <h2>Se faire des amis du monde entier tout en voyageant</h2>
+            <h2>Faites-vous des amis du monde entier<br />tout en voyageant</h2>
             <p>
               Voyager est une expérience passionnante, mais qui peut se révéler
               solitaire si vos proches ne sont pas disponibles pour en profiter
@@ -26,7 +27,7 @@ const Section2 = () => {
 
         <div className="block">
           <div className="block--title">
-            <h2>Profiter de la richesse culturelle de chacun</h2>
+            <h2>Profitez de la richesse culturelle de chacun</h2>
             <p>
               Voyager est l'un des meilleurs moyens de découvrir de nouvelles
               cultures, de goûter des plats locaux, de visiter des sites
@@ -41,7 +42,6 @@ const Section2 = () => {
               ville de résidence.
             </p>
           </div>
-
           <img
             src="https://images.unsplash.com/photo-1444210971048-6130cf0c46cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80"
             alt=""
@@ -67,17 +67,12 @@ const Section2 = () => {
               communiquer entre eux par chat et par appel vocal afin de
               s'assurer qu'ils sont sur la même longueur d'onde tant au niveau
               de la personnalité que des envies de voyage.
-              {/* <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-              reiciendis soluta facere asperiores provident, <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-              reiciendis soluta facere asperiores provident, */}
             </p>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Section2;

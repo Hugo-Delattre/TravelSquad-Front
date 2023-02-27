@@ -1,0 +1,26 @@
+ .profile--section3-groupBlock {
+    border-radius: 10px;
+    margin: 2rem 7rem;
+    padding: 3rem;
+    box-shadow: 0px 8px 20px rgba(160, 160, 160, 0.3);
+
+    p {
+      margin: 0;
+    }
+
+    .profile--section3-groupBlock-flexbox {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      
+      &-avatar {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+    }
+  }
+  
+  h1 {
+    margin-top: 3rem;
+  }

@@ -1,126 +1,132 @@
 @use "src/styles/vars";
 
+#log--container {
+  display: flex;
+  margin-top: 150px;
+}
 
-#log--container{
-    display: flex;
-    margin-top: 150px;
-    
-    }
+#left--side {
+  height: 600px;
+  width: 900px;
+  background-size: cover;
+  background-position: center;
+  background-image: url("https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80");
+  border-radius: 13px 0px 0px 13px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
-    #left--side{
-        height: 600px;
-        width: 900px;
-        background-size: cover;
-        background-position: center;
-        background-image: url('https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80');
-        border-radius: 13px 0px 0px 13px;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    }
-    #left--side h1{
-        color: white;
-    }
-    #left--side p{
-        color: white;
-    }
-    .left--logo--side{
-        padding: 50px;
+  h1 {
     color: white;
-    }
-    .left--logo--side h1{
-        text-align: left;
-        padding: 20px;
+    font-family: vars.$fontHeadersMontserrat
+  }
+  p {
+    color: white;
+    font-family: vars.$fontHeadersMontserrat;
+  }
+}
 
-    }
-    .content--welcome--left{
-        margin-top: 10%;
-        margin: auto;
-        
-    }
-    
-    
-    .right--side{
-        display: flex;
-        background-color: white;
-        height: 600px;
-        width: 700px;
-        align-items: center;
-        flex-direction: column;
-        border-radius: 0px 13px 13px 0px;
-        justify-content: center;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    }
-    .user.circle.big.icon{
-        font-size: 70px;
-        margin-bottom: 25px;
-       
-    }
-    i.icon.user.circle:before {
-        content: "\f2bd";
-    }
-    
-    .right--content{
-        margin-bottom: 80px;
-    }
-    .right--content h1{
-        margin-bottom: 80px;
-    }
-    
-    .register--redirect{
-        text-align: right;
-        font-size: 0.8rem;
-    }
+.left--logo--side {
+  
+  padding: 50px;
+  color: white;
+
+  h1 {
+    transform: scale(1);
+    text-align: left;
+    padding: 20px;
+  }
+
  
-    .redirect--login{
-    
-        text-align: right;
-        font-size: 14px;
-    }
-    .log--submit{
-        transition: transform .2s;  
-        margin-top: 50px;
-        border-radius: 8px;
-          border: none;
-          color: gray;
-          padding: 13px 29px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          background-color: RGB(222, 222, 223)y;
-        }
-        .log--submit:hover{
-            transform: scale(0.9);
-            background-color:rgb(216, 216, 216) ;
-        }
-        .redirect--login{
-            text-align: right;
-            transition: transform .2s; 
-        }
-        .redirect--login:hover{
-            color: red;
-            
-        }
+}
 
-        
-       
-        .tata:hover {
-            -webkit-animation:spin 0.8s linear infinite;
-            -moz-animation:spin 0.8s linear infinite;
-            animation:spin 0.8s linear infinite;
-        }
-        @-moz-keyframes spin {
-            100% {
-                -moz-transform: rotate(360deg);
-            }
-        }
-        @-webkit-keyframes spin {
-            100% {
-                -webkit-transform: rotate(360deg);
-            }
-        }
-        @keyframes spin {
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform:rotate(360deg);
-            }
-        }
+
+.content--welcome--left {
+  margin-top: 10%;
+  margin: auto;
+}
+
+.right--side {
+  display: flex;
+  background-color: white;
+  height: 600px;
+  width: 700px;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0px 13px 13px 0px;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.user.circle.big.icon {
+  cursor: pointer;
+  font-size: 70px;
+  margin-bottom: 25px;
+}
+i.icon.user.circle:before {
+  content: "\f2bd";
+}
+
+.redirect--login{
+  text-align: right;
+  font-size: 13px;
+
+  &:hover{
+    color: vars.$colorPrimaryHover;
+  }
+}
+
+.right--content {
+  margin-bottom: 80px;
+
+  h1{
+    margin-bottom: 80px;
+    font-family: vars.$fontHeadersTiempos;
+  }
+}
+
+
+
+.log--submit {
+  transition: transform 0.2s;
+  margin-top: 50px;
+  border-radius: 8px;
+  border: none;
+  color: gray;
+  padding: 13px 29px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: RGB(222, 222, 223) ;
+
+
+  &:hover{
+    transform: scale(0.9);
+    background-color: rgb(216, 216, 216);
+  }
+}
+
+
+.tata:hover {
+  -webkit-animation: spin 0.8s linear infinite;
+  -moz-animation: spin 0.8s linear infinite;
+  animation: spin 0.8s linear infinite;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

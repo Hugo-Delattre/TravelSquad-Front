@@ -1,37 +1,39 @@
-// @use "reset";
-@use "vars";
+@use "src/styles/vars";
+@import "src/fonts/fonts.scss";
 
 * {
   box-sizing: border-box;
   text-decoration: none;
-  
 }
 
 html {
-  // margin: 0 20rem;
   margin: 0 14.7%;
   font-size: 62.5%;
   background-color: vars.$colorBackground;
-  // border: 1px solid black;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-weight: 400;
   color: vars.$colorSecondary;
   font-size: 1.6rem;
 }
 
 p {
+  // font-family: vars.$fontParagraph;
   color: vars.$colorSecondary;
+  font-size: 15px;
+  line-height: 24px;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Montserrat", sans-serif;
+  // font-family: "Montserrat", sans-serif;
+  font-family: vars.$fontHeadersTiempos, sans-serif;
   font-weight: 600;
   color: vars.$colorSecondary;
+  // letter-spacing: 0px;
 }
 
 img {
@@ -39,6 +41,5 @@ img {
 }
 
 // @media (max-width: 500px) {
-
 
 // }

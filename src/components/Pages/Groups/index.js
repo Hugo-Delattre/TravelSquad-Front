@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Select, Button, Image } from "semantic-ui-react";
+import { Select, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 import NavBar from "../../NavBar";
@@ -72,7 +72,7 @@ const Groups = () => {
       <NavBar />
       <section id="groups--section1">
         <div className="groups--title">
-          <h1>Liste des groupes</h1>
+          <h1>Liste des escouades - France</h1>
         </div>
       </section>
       <p>

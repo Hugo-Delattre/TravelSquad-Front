@@ -71,7 +71,7 @@ return (
     <div className='createGroup--pageContainer'>
     
         <div>
-          <h1>Paré(e) à former votre propre groupe ?</h1>
+          <h1>Envie de former votre propre équipe ?</h1>
           <p>Renseignez les champs de façon à être contacté(e) par les utilisateurs qui correspondent le mieux à vos critères.</p>
         </div>
       <section id="CreateGroup--section1">

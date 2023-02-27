@@ -1,3 +1,5 @@
+@use "src/styles/vars";
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -10,6 +12,7 @@
 }
 
 
+
 .title--countries {
 
   display: flex;
@@ -20,5 +23,6 @@
   margin-top: 3rem;
   margin-bottom: 3rem;
 
+  h1 { font-family: vars.$fontHeadersTiempos;}
 }
 
