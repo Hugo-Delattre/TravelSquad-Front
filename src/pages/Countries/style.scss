@@ -1,20 +1,6 @@
 @use "src/styles/vars";
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  align-items: baseline;
-  margin-bottom: 4rem;
-  
-  
-  
-}
-
-
-
 .title--countries {
-
   display: flex;
   // padding-top: 3%;
   animation: myAnim 1s ease 0s 1 normal forwards;
@@ -22,7 +8,18 @@
   text-align: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
-
   h1 { font-family: vars.$fontHeadersTiempos;}
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: baseline;
+  grid-row-gap: 4rem;
+  grid-column-gap: 2%;
+  margin-bottom: 5rem;
+}
+
+
 

@@ -19,13 +19,13 @@
 
 #groups--section3-groups {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-items: center;
+  align-items: baseline;
   grid-row-gap: 4rem;
   grid-column-gap: 2%;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: baseline;
   margin-top: 5rem;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
 }
 
 // .groupCard {

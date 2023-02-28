@@ -57,7 +57,7 @@ const Groups = () => {
        .get("https://jsonplaceholder.typicode.com/posts")
        .then((response) => {
          setData(response.data);
-         console.log(response.data);
+        //  console.log(response.data);
        })
        .catch((error) => {
          console.log(error);
@@ -90,7 +90,9 @@ const Groups = () => {
       
         {data.map(item => 
         <Link to="/countries/group">
-        <GroupCard  key={item.id} item={item}/>
+        <GroupCard 
+        // key={item.id} 
+        item={item}/>
         </Link>
         )
         }

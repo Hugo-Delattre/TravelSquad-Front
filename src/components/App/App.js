@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 
@@ -10,7 +11,6 @@ import Login from "../../pages/Login";
 import SignUp from "../../pages/SignUp";
 import Profile from "../../pages/Profile";
 import Team from "../../pages/Team";
-import React from "react";
 
 const App = () => {
   return (

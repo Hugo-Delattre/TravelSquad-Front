@@ -4,8 +4,6 @@ import { Image } from "semantic-ui-react";
 import "./style.scss";
 
 const TeamCard = ({teamInfo}) => {
-  
-  console.log(teamInfo);
 
   return (
     <div className="teamCard">
