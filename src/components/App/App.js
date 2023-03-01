@@ -1,7 +1,6 @@
-import React from "react";
 import "./App.scss";
 import { Routes, Route, Link } from "react-router-dom";
-
+import React, { useState } from 'react'
 
 
 import Countries from "../../pages/Countries";
@@ -16,14 +15,25 @@ import Team from "../../pages/Team";
 
 const App = () => {
   
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const test = "si on a ce message en console le props drilling marche";
+  
+
+
+  
+  
   return (
     
     <div className="App">
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/">
+          <Home isLoggedIn={isLoggedIn}/>
+        </Route>  */}
+        <Route path="/" element={<Home test={test}/>} />
         <Route path="/countries" element={<Countries />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/countries/groups" element={<Groups />} />
         <Route path="/countries/group" element={<Group />} />
         <Route path="/create-group" element={<CreateGroup />} />

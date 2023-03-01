@@ -9,7 +9,7 @@ import GroupCard from "../../components/GroupCard";
 import "./style.scss";
 
 import axios from "axios";
-// import axiosInstance from "../../api/instanceAxios";
+// import axiosInstance from "../../api/axiosInstance";
 
 const axiosInstance = axios.create({
   baseURL: "https://travelsquadb.up.railway.app/"

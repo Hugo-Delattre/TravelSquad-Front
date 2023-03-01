@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // créer un compte, se connecter, se déconnecter
 
-export const userSlice= createSlice({
+export const authSlice= createSlice({
 
     name:"user",
     initialState:{
@@ -20,13 +20,15 @@ export const userSlice= createSlice({
         logout: (state) => {
 
         },
+        
+        register: (state, action) => {}
 }
 })
-export const { login, logout } = userSlice.actions;
+export const { login, logout } = authSlice.actions;
 
 export const selectUser =(state)=>state.user.user;
 
-export default userSlice.reducer;
+export default authSlice.reducer;
 
 
 

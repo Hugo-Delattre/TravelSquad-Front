@@ -1,18 +1,20 @@
 import React from "react";
 import { Form, Icon } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
-import { login } from "../../store/reducers/userSlice";
 import  { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import "semantic-ui-css/semantic.min.css";
 import "./style.scss";
 
-import { selectUser } from "../../store/reducers/userSlice";
+import { login } from "../../store/reducers/authSlice";
+import { selectUser } from "../../store/reducers/authSlice";
 import { Link } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 
 
-const Login = () => {
+const Login = ({test}) => {
+  
+  
   
   const user = useSelector(selectUser);  
 
@@ -22,6 +24,7 @@ const Login = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     
     const handleSubmit = (e) => {
+      console.log(test);
       e.preventDefault();
       console.log("email", email, "password", password);  
       setIsLoggedIn(true);
