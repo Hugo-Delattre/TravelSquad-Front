@@ -1,13 +1,42 @@
 import React from "react";
 import { Form, Icon } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
-
+import { login } from "../../store/reducers/userSlice";
+import  { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import "semantic-ui-css/semantic.min.css";
 import "./style.scss";
 
+import { selectUser } from "../../store/reducers/userSlice";
+import { Link } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+
+
 const Login = () => {
+  
+  const user = useSelector(selectUser);  
+
+  const dispatch = useDispatch();
+    const [email,setEmail]= useState("");
+    const [password,setPassword]= useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log("email", email, "password", password);  
+      setIsLoggedIn(true);
+      dispatch(login({
+        email:email,
+        password:password,
+        // isLoggedIn:true,
+      }))
+    }
+
   return (
+
     <div id="log--container">
+      {/* {user ? <Link to="/"/> : <p>caca</p>} */}
+      {isLoggedIn ?  <Navigate replace to={"/"} /> : <p>Mot de passe incorrect</p>}
       <div id="left--side">
         <div className="left--logo--side">
         <NavLink to="/">
@@ -30,12 +59,12 @@ const Login = () => {
           <h1>Connexion au compte </h1>
 
           <Icon name="user circle" className="tata" size="big" />
-          <Form>
+          <Form onSubmit={(e)=>handleSubmit(e)}>
             <Form.Field>
-              <input type="email" placeholder="Email" required />
+              <input type="email" value={email} placeholder="Email" onChange={(e)=> setEmail(e.target.value)} required />
             </Form.Field>
             <Form.Field>
-              <input type="password" placeholder="Mot de passe" required />
+              <input type="password"  value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mot de passe" required />
             </Form.Field>
 
             <NavLink to="/signup">

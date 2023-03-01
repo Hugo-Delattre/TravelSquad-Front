@@ -12,7 +12,7 @@ import axios from "axios";
 // import axiosInstance from "../../api/instanceAxios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://travelsquad.up.railway.app/"
+  baseURL: "https://travelsquadb.up.railway.app/"
 })
 
 const Countries = () => {
@@ -53,7 +53,7 @@ const Countries = () => {
         <div className="grid">
        
            
-             {countriesData.map(country => 
+        {countriesData.map(country => 
         <Link to="/countries/groups">
         <CountryCard 
         // key={}

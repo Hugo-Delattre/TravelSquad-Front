@@ -3,12 +3,15 @@ import React from "react";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import TeamCard from "../../components/TeamCard";
-
 import { Card, Feed } from "semantic-ui-react";
 
 import "./style.scss";
 
 const Team = () => {
+
+
+
+
   const teamInfo = {
     julianInfo: {
       name: "Julian",

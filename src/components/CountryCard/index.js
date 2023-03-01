@@ -9,6 +9,12 @@ const CountryCard = ({countryData}) => {
   };
   
   
+
+
+
+  console.log(countryData);
+  
+  
   return (
   <div className="groupCard--hoverEffect">
     <Card>
@@ -20,17 +26,14 @@ const CountryCard = ({countryData}) => {
       />
       <Card.Content>
         <Card.Header>{capitalizeFirstLetter(countryName)}
-        {/* countryData.name.toUpperCase().charAt(0).slice(1) */}
         </Card.Header>
         <Card.Meta>
-          {/* <span className="date">Joined in 2015</span> */}
         </Card.Meta>
-        <Card.Description>
-          De Tokyo, ville futuriste et trépidante, aux temples ancestraux de Kyoto
-          en passant par les plages de sable blanc d'Okinawa, chaque région offre
-          des paysages, des saveurs et des expériences uniques qui ne demandent
-          qu'à être découverts.
+        
+        <Card.Description>{countryData.description}
+          
         </Card.Description>
+        
       </Card.Content>
       <Card.Content extra>
        <a href="*">

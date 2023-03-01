@@ -5,9 +5,13 @@ import Section2 from "./Section2";
 import Section3 from "./Section3";
 import Footer from "../../components/Footer";
 
+
 const Home = () => {
+  
   return (
+
     <div>
+
       <NavBar />
       <Section1 />
       <Section2 />

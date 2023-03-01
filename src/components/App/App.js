@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.scss";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
+
+
 
 import Countries from "../../pages/Countries";
 import Home from "../../pages/Home";
@@ -13,8 +15,11 @@ import Profile from "../../pages/Profile";
 import Team from "../../pages/Team";
 
 const App = () => {
+  
   return (
+    
     <div className="App">
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/countries" element={<Countries />} />
@@ -26,8 +31,9 @@ const App = () => {
         <Route path="/team" element={<Team />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-      </Routes>
+      </Routes> : 
     </div>
+  
   );
 };
 
