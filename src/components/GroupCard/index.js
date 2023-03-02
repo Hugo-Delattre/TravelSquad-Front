@@ -1,8 +1,34 @@
+// import React, { useEffect, useState } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
-
 import "./style.scss";
 
+import axios from "axios";
+// import axiosInstance from "../../api/axiosInstance";
+
+// const axiosInstance = axios.create({
+//   baseURL: "https://travelsquadb.up.railway.app/",
+// });
+
 const GroupCard = ({ item }) => {
+
+  // const [countriesData, setCountriesData] = useState([]);
+
+  // useEffect(() => {
+  //   axiosInstance
+  //     .get("/countries/:countryName")
+  //     .then((response) => {
+  //       setCountriesData(response.data);
+  //        console.log("countriesData", countriesData);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
+
+
+
+
+
 
   return (
     <div className="groupCard--hoverEffect">

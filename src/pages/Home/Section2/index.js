@@ -11,7 +11,11 @@ const Section2 = () => {
             alt=""
           />
           <div className="block--title">
-            <h2>Faites-vous des amis du monde entier<br />tout en voyageant</h2>
+            <h2>
+              Faites-vous des amis du monde entier
+              <br />
+              tout en voyageant
+            </h2>
             <p>
               Voyager est une expérience passionnante, mais qui peut se révéler
               solitaire si vos proches ne sont pas disponibles pour en profiter

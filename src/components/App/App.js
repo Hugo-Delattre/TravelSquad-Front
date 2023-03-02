@@ -1,7 +1,6 @@
 import "./App.scss";
-import { Routes, Route, Link } from "react-router-dom";
-import React, { useState } from 'react'
-
+import { Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
 
 import Countries from "../../pages/Countries";
 import Home from "../../pages/Home";
@@ -12,38 +11,48 @@ import Login from "../../pages/Login";
 import SignUp from "../../pages/SignUp";
 import Profile from "../../pages/Profile";
 import Team from "../../pages/Team";
+import NavBar from "../NavBar";
+import Footer from "../Footer";
+import NotFound from "../../pages/NotFound";
 
 const App = () => {
-  
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-  const test = "si on a ce message en console le props drilling marche";
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-
-  
-  
   return (
-    
     <div className="App">
+      <NavBar isLoggedIn={isLoggedIn} />
 
       <Routes>
-        {/* <Route path="/">
-          <Home isLoggedIn={isLoggedIn}/>
-        </Route>  */}
-        <Route path="/" element={<Home test={test}/>} />
-        <Route path="/countries" element={<Countries />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/countries/groups" element={<Groups />} />
-        <Route path="/countries/group" element={<Group />} />
-        <Route path="/create-group" element={<CreateGroup />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/countries"
+          element={<Countries />}
+        />
+        <Route path="/login" element={<Login isLoggedIn={isLoggedIn} />} />
+        <Route
+          path="/countries/groups"
+          element={<Groups isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/countries/group"
+          element={<Group isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/create-group"
+          element={<CreateGroup isLoggedIn={isLoggedIn} />}
+        />
+        <Route path="/profile" element={<Profile isLoggedIn={isLoggedIn} />} />
+        <Route path="/team" element={<Team isLoggedIn={isLoggedIn} />} />
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
         <Route path="/signup" element={<SignUp />} />
-      </Routes> : 
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+
+      <Footer isLoggedIn={isLoggedIn} />
     </div>
-  
   );
 };
 

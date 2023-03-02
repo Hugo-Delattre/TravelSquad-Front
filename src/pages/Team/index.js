@@ -1,17 +1,11 @@
 import React from "react";
 
-import NavBar from "../../components/NavBar";
-import Footer from "../../components/Footer";
 import TeamCard from "../../components/TeamCard";
 import { Card, Feed } from "semantic-ui-react";
 
 import "./style.scss";
 
 const Team = () => {
-
-
-
-
   const teamInfo = {
     julianInfo: {
       name: "Julian",
@@ -42,8 +36,6 @@ const Team = () => {
 
   return (
     <div>
-      <NavBar />
-
       <div className="Team--Title">
         <h1>L'équipe derrière TravelSquad</h1>
         <p>
@@ -150,8 +142,6 @@ const Team = () => {
           <TeamCard teamInfo={teamInfo.mathisInfo} />
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

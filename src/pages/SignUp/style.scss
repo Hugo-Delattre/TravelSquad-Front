@@ -21,10 +21,10 @@
 .signup--right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   overflow: hidden;
   height: 600px;
-  width: 700px;
+  width: 563px;
   align-items: center;
   border-radius: 0px 13px 13px 0px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -67,14 +67,6 @@
   }
 }
 
-.field--bottom {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
- 
-  overflow: hidden;
-  margin-bottom: -10px;
-}
 .fields--container {
   display: flex;
   justify-content: space-between;
@@ -84,7 +76,7 @@
  
 }
 .btn--right {
-  margin-top: 13px;
+  margin-top: 23px;
   transition: transform 0.2s;
   border-radius: 8px;
   border: none;
@@ -93,6 +85,8 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
   background-color: RGB(222, 222, 223);
 
@@ -125,6 +119,24 @@
   border-radius: 0.28571429rem;
   transition: box-shadow 0.1s ease, width 0.1s ease;
 }
+
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.fields{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.required.field{
+  margin: 8px;
+}
+.ui.textarea {
+  width: 100%;
+}
 .deja--membre {
   text-align: right;
   font-size: 13px;
@@ -133,11 +145,4 @@
     cursor: pointer;
     color: vars.$colorPrimaryHover;
   }
-}
-
-.required.field{
-  margin: 8px;
-}
-.ui.textarea {
-  width: 100%;
 }
