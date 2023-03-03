@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import "./style.scss";
 import React, { useState } from "react";
 import axios from "axios";
-
 import { Form, TextArea } from "semantic-ui-react";
 const Signup = () => {
   const countryOptions = [
@@ -23,7 +22,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosInstance
-      .post("/profile/", data)
+      .post("/profile", data)
       .then((response) => {
         console.log(response.data);
       })
@@ -45,7 +44,7 @@ const Signup = () => {
     spoken_language:'',
     content: "",
   });
-   const handleChange = (e, { value }) => {
+   const handleChangeCountry = (e, { value }) => {
     setData({ ...data, country_of_origin: value });
     console.log(value); // Afficher la valeur sélectionnée dans la console
   };
@@ -66,7 +65,7 @@ const Signup = () => {
           <div className="welcome--content">
             <p>au plaisir de vous voir</p>
             <h1>BIENVENUE</h1>
-            <i class="window minimize icon" size="big"></i>
+            <i className="window minimize icon" size="big"></i>
             <p>
               Partez à la découverte des plus belles destinations <br />
               du monde et créez des souvenirs inoubliables
@@ -163,10 +162,10 @@ const Signup = () => {
                 placeholder="Pays"
                 required
                 value={data.country_of_origin}
-                onChange={handleChange}
+                onChange={handleChangeCountry}
                
               />
-                    <select class="ui dropdown"  value={data.sex}
+                    <select className="ui dropdown"  value={data.sex}
                     onChange={(e)=>setData({...data, sex:e.target.value})}>
         <option value="">Gender</option>
         <option value="homme">homme</option>
@@ -186,7 +185,7 @@ const Signup = () => {
               <button type="submit" className="btn--right">
                 Click Here
               </button>
-              <NavLink to="/login"></NavLink>
+              <NavLink to="/login">dddddd</NavLink>
             </form>
           </div>
         </div>

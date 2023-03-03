@@ -15,6 +15,7 @@ import NavBar from "../NavBar";
 import Footer from "../Footer";
 import NotFound from "../../pages/NotFound";
 
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -30,7 +31,7 @@ const App = () => {
         />
         <Route path="/login" element={<Login isLoggedIn={isLoggedIn} />} />
         <Route
-          path="/countries/groups"
+          path="/countries/:countryName"
           element={<Groups isLoggedIn={isLoggedIn} />}
         />
         <Route

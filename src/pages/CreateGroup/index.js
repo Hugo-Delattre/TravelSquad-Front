@@ -5,11 +5,8 @@ import "./style.scss";
 import { Form, Input, Select, Button, TextArea } from "semantic-ui-react";
 
 import axios from "axios";
-// import axiosInstance from "axios";
 
-// const axiosInstance = axios.create({
-//   baseURL: "https://travelsquadb.up.railway.app",
-// });
+
 
 const CreateGroup = ({ isLoggedIn }) => {
   const ageOptions = [
@@ -267,7 +264,7 @@ const CreateGroup = ({ isLoggedIn }) => {
               name="story"
               rows="5"
               cols="33"
-              min="10"
+              minLength={10}
               value={content}
               onChange={handleContentChange}
               required

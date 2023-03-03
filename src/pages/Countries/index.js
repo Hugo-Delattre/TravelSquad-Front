@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 import CountryCard from "../../components/CountryCard";
 import GroupCard from "../../components/GroupCard";
 
 import "./style.scss";
 
-import axios from "axios";
-// import axiosInstance from "../../api/axiosInstance";
 
 const axiosInstance = axios.create({
   baseURL: "https://travelsquadb.up.railway.app/",
@@ -41,10 +41,12 @@ const Countries = () => {
 
         <div className="grid">
           {countriesData.map((country) => (
-            <Link to="/countries/groups">
+            // <Link to="/countries/groups">
+            <Link to={`/countries/${country.name}`}>
               <CountryCard
                 // key={country.id}
                 countryData={country}
+         
               />
             </Link>
           ))}

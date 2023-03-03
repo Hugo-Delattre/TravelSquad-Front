@@ -1,7 +1,7 @@
 import React from "react";
 
 import TeamCard from "../../components/TeamCard";
-import { Card, Feed } from "semantic-ui-react";
+import { Card, Feed, Image} from "semantic-ui-react";
 
 import "./style.scss";
 
@@ -135,11 +135,25 @@ const Team = () => {
         </Card>
 
         <div className="Team--Info-flex">
-          <TeamCard teamInfo={teamInfo.badreInfo} />
+          <div className="teamCard">
+            <Image
+              className="shadow"
+              src="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg"
+              size="small"
+              circular
+            />
+            <h2>Mathis Guitton</h2>
+            <p>
+              Référent-technologique / Dev-Front
+              Contact: 
+            </p>
+          </div>
+
           <TeamCard teamInfo={teamInfo.julianInfo} />
           <TeamCard teamInfo={teamInfo.ilhamInfo} />
           <TeamCard teamInfo={teamInfo.hugoInfo} />
           <TeamCard teamInfo={teamInfo.mathisInfo} />
+          <TeamCard teamInfo={teamInfo.badreInfo} />
         </div>
       </div>
     </div>
