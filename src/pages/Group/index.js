@@ -1,19 +1,11 @@
 import React from "react";
-import NavBar from "../../components/NavBar";
-import Footer from "../../components/Footer";
 
 import { Icon, Checkbox } from "semantic-ui-react";
 import "./style.scss";
-const Group = () => {
+const Group = ({ isLoggedIn }) => {
   return (
     <div>
-      <NavBar />
       <section id="section--container">
-        {/* <div className="main--title">
-          <h1>Titre du groupe</h1>
-          <p>langues parlées</p>
-        </div> */}
-
         <div id="border--main">
           <h1>Titre du groupe</h1>
           <p>langues parlées</p>
@@ -48,24 +40,24 @@ const Group = () => {
             <div className="membres--left">
               <div className="membre">
                 <Icon name="user circle" size="big"></Icon>
-                <p className="membre--name">Nom de la personne</p>{" "}
-                <Checkbox toggle />{" "}
+                <p className="membre--name">Nom de la personne</p>
+                <Checkbox toggle />
               </div>
               <div className="membre">
                 <Icon name="user circle" size="big"></Icon>
-                <p className="membre--name">Nom de la personne</p>{" "}
+                <p className="membre--name">Nom de la personne</p>
                 <Checkbox toggle />
               </div>
             </div>
             <div className="membres--right">
               <div className="membre">
                 <Icon name="user circle" size="big"></Icon>
-                <p className="membre--name">Nom de la personne</p>{" "}
+                <p className="membre--name">Nom de la personne</p>
                 <Checkbox toggle />
               </div>
               <div className="membre">
                 <Icon name="user circle" size="big"></Icon>
-                <p className="membre--name">Nom de la personne</p>{" "}
+                <p className="membre--name">Nom de la personne</p>
                 <Checkbox toggle />
               </div>
             </div>
@@ -75,7 +67,6 @@ const Group = () => {
           <h3>JE M'INSCRIS A CE GROUPE</h3>
         </button>
       </section>
-      <Footer />
     </div>
   );
 };

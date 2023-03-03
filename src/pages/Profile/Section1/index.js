@@ -1,6 +1,5 @@
-import React from 'react'
+import React from "react";
 import { Image, Flag } from "semantic-ui-react";
-
 
 const ProfileSection1 = () => {
   return (
@@ -43,6 +42,6 @@ const ProfileSection1 = () => {
       <div></div>
     </section>
   );
-}
+};
 
-export default ProfileSection1
+export default ProfileSection1;

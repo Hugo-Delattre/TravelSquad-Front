@@ -20,20 +20,24 @@
   margin: 4rem 15% 0 15%;
   box-shadow: 0px 8px 20px rgba(119, 119, 119, 0.4);
   padding: 6% 8%;
-  border-radius: 12px 12px 0 0;
+  border-radius: 12px;
 }
 
 .btn--createGroup {
   //   margin-top: 70px;
   //   width: 30%;
   //   align-self: center;
-  border-radius: 0 0 12px 12px;
+  border-radius: 12px;
   border: solid 1px #d6d6d6;
   margin: 0rem 15% 4rem 15%;
   margin-bottom: 80px;
   padding: 30px;
   //   background-color: vars.$colorPrimary;
   color: vars.$colorBackground;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  font-size: 1.28rem;
+  font-family: vars.$fontHeadersMontserrat;
   background-color: #1678c2;
   box-shadow: 0px 8px 20px rgba(119, 119, 119, 0.4);
   transition: all 0.2s;
@@ -67,5 +71,7 @@ label {
 }
 
 #CreateGroup--section2 {
-  margin-top: 1.5rem;
+  margin: 1.5rem 0;
+  
+  button {margin: 1.5rem 0;}
 }

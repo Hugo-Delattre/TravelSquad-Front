@@ -1,8 +1,49 @@
+// import React, { useEffect, useState } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
-
 import "./style.scss";
 
-const GroupCard = ({ item }) => {
+import axios from "axios";
+import { useState } from "react";
+
+const axiosInstance = axios.create({
+  baseURL: "https://travelsquadb.up.railway.app/",
+});
+
+const GroupCard = ({ groupData }) => {
+  const capitalizeFirstLetter = (countryName) => {
+    return countryName.charAt(0).toUpperCase() + countryName.slice(1);
+  };
+
+  const formatDate = (unformattedDate) => {
+    return unformattedDate.slice(0, 10);
+  };
+
+  console.log("groupData", groupData);
+
+  const turnThemeIDintoThemeName = (theme_id) => {
+    if (theme_id === 1) {
+      return "Farniente";
+    }
+    if (theme_id === 2) {
+      return "Culturel";
+    }
+    if (theme_id === 3) {
+      return "Festif";
+    }
+    if (theme_id === 4) {
+      return "Sportif";
+    }
+  };
+  
+  const [createInfo, setUserInfo] = useState("");
+  
+  const turnCreatorIdintoUserName = (creator_id) => {
+    // faire une requête paramétrée vers l'utilisateur creator_id
+    axiosInstance.get(`/profile/${creator_id}`).then();
+    
+  }
+  
+  
 
   return (
     <div className="groupCard--hoverEffect">
@@ -13,14 +54,20 @@ const GroupCard = ({ item }) => {
           ui={false}
         />
         <Card.Content className="groupCard">
-          <Card.Header>Intitulé du voyage ({item.id})</Card.Header>
+          <Card.Header>{capitalizeFirstLetter(groupData.name)}</Card.Header>
           <Card.Meta>
-            <span className="date">Période de voyage</span>
+            <span className="date">
+              du {formatDate(groupData.start)} au {formatDate(groupData.end)}
+            </span>
           </Card.Meta>
           <Card.Description className="groupCard--description">
-            <p>• Ville de destination</p>
-            <p>• Langue du groupe</p>
-            <p>• Thème</p>
+            <p>
+              • <strong>Ville :</strong> {capitalizeFirstLetter(groupData.city)}{" "}
+            </p>
+            <p>
+              • <strong>Langue :</strong> {capitalizeFirstLetter(groupData.language)}{" "}
+            </p>
+            <p>• <strong>Thème :</strong> {turnThemeIDintoThemeName(groupData.theme_id)}</p>
           </Card.Description>
         </Card.Content>
         <Card.Content>
@@ -29,7 +76,7 @@ const GroupCard = ({ item }) => {
               <Icon name="user circle" />
               Créateur du groupe
             </p>
-            <p>3/4</p>
+            <p>?/{groupData.max_members}</p>
           </div>
         </Card.Content>
       </Card>

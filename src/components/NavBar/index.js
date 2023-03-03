@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Divider } from "semantic-ui-react";
+import { Button, Divider, Icon } from "semantic-ui-react";
 
 // import TravelSquad from "../../img/TravelSquad.svg";
 
 import "./style.scss";
 
-const NavBar = () => {
+const NavBar = ({ isLoggedIn }) => {
   return (
     <header>
       <nav id="header--nav">
@@ -22,13 +22,31 @@ const NavBar = () => {
             </li> */}
             <li className="list">
               <NavLink to="/countries">Découvrir les destinations</NavLink>
-            </li  >
+            </li>
             <NavLink to="/create-group">
               <li className="list">Créer une escouade</li>
             </NavLink>
           </ul>
         </div>
         <div className="log--btn">
+          {isLoggedIn ? (
+            // <Image
+            //   src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+            //   size="mini"
+            //   circular
+            // />
+            <Icon name="user circle" className="tata" size="huge" />
+          ) : (
+            <div>
+              <NavLink to="/login">
+                <Button>Se connecter</Button>
+              </NavLink>
+              <NavLink to="/signup">
+                <Button primary>S'inscrire</Button>
+              </NavLink>
+            </div>
+          )}
+
           <NavLink to="/login">
             <Button>Se connecter</Button>
           </NavLink>

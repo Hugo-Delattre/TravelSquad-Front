@@ -13,9 +13,7 @@ const Section1 = () => {
           voyages.
         </p>
         <Link to="/countries">
-          <Button color="blue">
-            Découvrir les destinations
-          </Button>
+          <Button color="blue">Découvrir les destinations</Button>
         </Link>
       </div>
       <div className="section1--flex_right">

@@ -6,29 +6,24 @@ import CountryCard from "../../../components/CountryCard";
 
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "https://travelsquad.up.railway.app/"
-})
-
+  baseURL: "https://travelsquad.up.railway.app/",
+});
 
 const Section3 = () => {
-  
   const [countriesData, setCountriesData] = useState([]);
-  
+
   useEffect(() => {
-  
-      axiosInstance
-       .get("/countries")
-       .then((response) => {
-         setCountriesData(response.data);
+    axiosInstance
+      .get("/countries")
+      .then((response) => {
+        setCountriesData(response.data);
         //  console.log("countriesData", countriesData);
-       })
-       .catch((error) => {
-         console.log(error);
-       });
-    
-   }, []);
-  
-  
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <section id="home--section3">
@@ -39,15 +34,14 @@ const Section3 = () => {
             partenaires de voyage.
           </p>
           <div className="carrousel">
-            
-            {countriesData.map(country => 
-             <Link to="/countries/groups">
-             <CountryCard 
-             // key={}
-             countryData={country} />
-             </Link>
-        )
-        }
+            {countriesData.map((country) => (
+              <Link to="/countries/groups">
+                <CountryCard
+                  // key={}
+                  countryData={country}
+                />
+              </Link>
+            ))}
             {/* <CountryCard />
             <CountryCard />
             <CountryCard /> */}

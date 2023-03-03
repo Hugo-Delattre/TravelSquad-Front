@@ -107,7 +107,11 @@ i.icon.user.circle:before {
     background-color: rgb(216, 216, 216);
   }
 }
-
+.ui.form {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+}
 
 .tata:hover {
   -webkit-animation: spin 0.8s linear infinite;

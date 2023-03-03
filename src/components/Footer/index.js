@@ -3,7 +3,7 @@ import "./style.scss";
 import { NavLink } from "react-router-dom";
 import { Divider } from "semantic-ui-react";
 
-const Footer = () => {
+const Footer = ({ isLoggedIn }) => {
   return (
     <>
       <Divider />
