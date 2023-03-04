@@ -1,5 +1,13 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
+
+const axiosInstance = axios.create({
+  baseURL: "https://travelsquadb.up.railway.app/",
+});
+
+
+
 
 const CountryCard = ({ countryData }) => {
   const countryName = countryData.name;

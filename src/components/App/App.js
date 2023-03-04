@@ -35,7 +35,7 @@ const App = () => {
           element={<Groups isLoggedIn={isLoggedIn} />}
         />
         <Route
-          path="/countries/group"
+          path="/countries/group/:id"
           element={<Group isLoggedIn={isLoggedIn} />}
         />
         <Route

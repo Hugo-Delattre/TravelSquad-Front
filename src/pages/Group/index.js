@@ -1,66 +1,144 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import {
+  Icon,
+  Checkbox,
+  Divider,
+  Image,
+  Container,
+  Header,
+} from "semantic-ui-react";
 
-import { Icon, Checkbox } from "semantic-ui-react";
+
 import "./style.scss";
+
+const axiosInstance = axios.create({
+  baseURL: "https://travelsquadb.up.railway.app/",
+});
+
 const Group = ({ isLoggedIn }) => {
+  const params = useParams();
+  console.log(params);
+
+  const [groupInfo, setGroupInfo] = useState([]);
+
+  useEffect(() => {
+    axiosInstance
+      .get(`/countries/groups/${params.id}`)
+      .then((response) => {
+        setGroupInfo(response.data);
+        console.log("setGroupInfo", response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  
+  // const capitalizeFirstLetter = (countryName) => {
+  //   return countryName.charAt(0).toUpperCase() + countryName.slice(1);
+  // };
+
   return (
     <div>
       <section id="section--container">
         <div id="border--main">
-          <h1>Titre du groupe</h1>
-          <p>langues parlées</p>
-          <div id="details--container">
-            <div className="details-part-left">
-              <p>Destination du groupe</p>
-              <p>
-                <Icon name="user" size="big"></Icon> Créateur du groupe
-              </p>
-              <div className="date--depart">
-                <p>Date de départ--Date de fin</p>
-              </div>
-            </div>
-
-            <div className="details-part-right">
-              <p>Ville de destination</p>
-              <p>Nombre max de personnes</p>
-              <p>Tranche d'âge des membres voulu</p>
-            </div>
-          </div>
+          <h1>{groupInfo.name}</h1>
           <div id="desc--container">
             <div className="desc--voyage">
-              <h2>Description du voyage :</h2>
-              <textarea rows="5" cols="82"></textarea>
+              <h3 className="membres--title">Présentation du voyage :</h3>
+              <p>{groupInfo.content}</p>
             </div>
           </div>
+          <Divider />
+          <ul className="details--grid">
+            <h3 className="membres--title">Les détails du groupe :</h3>
+            <li>
+              <Icon name="plane" />
+              {groupInfo.city} ({groupInfo.country})
+            </li>
+            <li>
+              <Icon name="calendar alternate outline" /> Du {groupInfo.start} au{" "}
+              {groupInfo.end}
+            </li>
+            <li>
+              <Icon name="users" /> 2 à {groupInfo.max_members} membres
+            </li>
+            <li>
+              <Icon name="conversation" /> {groupInfo.language}
+            </li>
+            <li>
+              <Icon name="clipboard list" /> Sportif
+            </li>
+
+            {/* <li>Groupe créé le</li> */}
+          </ul>
+          <Divider />
           <div className="membres--container">
             <div className="membres--title">
               <h3>Les membres du groupe :</h3>
             </div>
 
-            <div className="membres--left">
+            {/* <div className="membres--left"> */}
+            <div className="membres--grid">
               <div className="membre">
-                <Icon name="user circle" size="big"></Icon>
-                <p className="membre--name">Nom de la personne</p>
-                <Checkbox toggle />
+                <Image
+                  src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+                  size="mini"
+                  circular
+                />
+                <p className="membre--name">Prénom (icône couronne)</p>
+                <Icon link name="close" size="large" />
               </div>
               <div className="membre">
-                <Icon name="user circle" size="big"></Icon>
-                <p className="membre--name">Nom de la personne</p>
-                <Checkbox toggle />
+                <Image
+                  src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+                  size="mini"
+                  circular
+                />
+                <p className="membre--name">Prénom</p>
+                <Icon link name="close" size="large" />
+              </div>
+              <div className="membre">
+                <Image
+                  src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+                  size="mini"
+                  circular
+                />
+                <p className="membre--name">Prénom</p>
+                <Icon link name="close" size="large" />
               </div>
             </div>
-            <div className="membres--right">
+            {/* <div className="membre">
+                <Image
+                  src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+                  size="mini"
+                  circular
+                />
+                <p className="membre--name">Prénom</p>
+                <Icon link name="close" size="large" />
+              </div> */}
+            {/* </div> */}
+            {/* <div className="membres--right">
               <div className="membre">
-                <Icon name="user circle" size="big"></Icon>
-                <p className="membre--name">Nom de la personne</p>
-                <Checkbox toggle />
+                <Image
+                  src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+                  size="mini"
+                  circular
+                />
+                <p className="membre--name">Prénom</p>
+                <Icon link name="close" size="large" />
               </div>
               <div className="membre">
-                <Icon name="user circle" size="big"></Icon>
-                <p className="membre--name">Nom de la personne</p>
-                <Checkbox toggle />
+                <Image
+                  src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+                  size="mini"
+                  circular
+                />
+                <p className="membre--name">Prénom</p>
+                <Icon link name="close" size="large" />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <button className="btn--register">

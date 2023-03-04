@@ -1,24 +1,27 @@
 // import React, { useEffect, useState } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
+import { useParams } from "react-router-dom";
 
 import axios from "axios";
-import { useState } from "react";
 
 const axiosInstance = axios.create({
   baseURL: "https://travelsquadb.up.railway.app/",
 });
 
-const GroupCard = ({ groupData }) => {
+const GroupCard = ({ groupData, imgURL }) => {
   const capitalizeFirstLetter = (countryName) => {
     return countryName.charAt(0).toUpperCase() + countryName.slice(1);
   };
 
   const formatDate = (unformattedDate) => {
-    return unformattedDate.slice(0, 10);
+    const dateStr = unformattedDate;
+    const dateObj = new Date(dateStr);
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    const formattedDate = dateObj.toLocaleDateString("fr-FR", options);
+    return formattedDate;
   };
-
-  console.log("groupData", groupData);
 
   const turnThemeIDintoThemeName = (theme_id) => {
     if (theme_id === 1) {
@@ -34,25 +37,18 @@ const GroupCard = ({ groupData }) => {
       return "Sportif";
     }
   };
-  
+
   const [createInfo, setUserInfo] = useState("");
-  
+
   const turnCreatorIdintoUserName = (creator_id) => {
     // faire une requête paramétrée vers l'utilisateur creator_id
     axiosInstance.get(`/profile/${creator_id}`).then();
-    
-  }
-  
-  
+  };
 
   return (
     <div className="groupCard--hoverEffect">
       <Card>
-        <Image
-          src="https://cdn.getyourguide.com/img/location/5ffeb392eb81e.jpeg/68.jpg"
-          wrapped
-          ui={false}
-        />
+        <Image src={imgURL} wrapped ui={false} />
         <Card.Content className="groupCard">
           <Card.Header>{capitalizeFirstLetter(groupData.name)}</Card.Header>
           <Card.Meta>
@@ -65,9 +61,13 @@ const GroupCard = ({ groupData }) => {
               • <strong>Ville :</strong> {capitalizeFirstLetter(groupData.city)}{" "}
             </p>
             <p>
-              • <strong>Langue :</strong> {capitalizeFirstLetter(groupData.language)}{" "}
+              • <strong>Langue :</strong>{" "}
+              {capitalizeFirstLetter(groupData.language)}{" "}
             </p>
-            <p>• <strong>Thème :</strong> {turnThemeIDintoThemeName(groupData.theme_id)}</p>
+            <p>
+              • <strong>Thème :</strong>{" "}
+              {turnThemeIDintoThemeName(groupData.theme_id)}
+            </p>
           </Card.Description>
         </Card.Content>
         <Card.Content>
@@ -76,7 +76,8 @@ const GroupCard = ({ groupData }) => {
               <Icon name="user circle" />
               Créateur du groupe
             </p>
-            <p>?/{groupData.max_members}</p>
+            {/* <p>? / {groupData.max_members}</p> */}
+             <p>De 2 à {groupData.max_members} Pers.</p>
           </div>
         </Card.Content>
       </Card>

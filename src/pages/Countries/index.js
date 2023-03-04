@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Loader } from "semantic-ui-react";
 
 import CountryCard from "../../components/CountryCard";
 import GroupCard from "../../components/GroupCard";
 
 import "./style.scss";
 
-
 const axiosInstance = axios.create({
   baseURL: "https://travelsquadb.up.railway.app/",
 });
-
 
 const Countries = () => {
   const [countriesData, setCountriesData] = useState([]);
@@ -21,13 +20,12 @@ const Countries = () => {
       .get("/countries")
       .then((response) => {
         setCountriesData(response.data);
-         console.log("countriesData", countriesData);
+        console.log("countriesData", countriesData);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
 
   return (
     <div>
@@ -38,19 +36,23 @@ const Countries = () => {
             Découvrez de nouveaux horizons, rencontrez de nouvelles cultures.
           </p>
         </div>
-
-        <div className="grid">
-          {countriesData.map((country) => (
-            // <Link to="/countries/groups">
-            <Link to={`/countries/${country.name}`}>
-              <CountryCard
-                // key={country.id}
-                countryData={country}
-         
-              />
-            </Link>
-          ))}
-        </div>
+        {countriesData[6] ? (
+          <div className="grid">
+            {countriesData.map((country) => (
+              // <Link to="/countries/groups">
+              <Link to={`/countries/${country.name}`}>
+                <CountryCard
+                  // key={country.id}
+                  countryData={country}
+                />
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="countries--loader">
+            <Loader active inline="centered" />
+          </div>
+        )}
       </section>
     </div>
   );

@@ -6,8 +6,6 @@ import { Form, Input, Select, Button, TextArea } from "semantic-ui-react";
 
 import axios from "axios";
 
-
-
 const CreateGroup = ({ isLoggedIn }) => {
   const ageOptions = [
     { key: "ax", value: "ax", text: "18-25" },
@@ -52,7 +50,6 @@ const CreateGroup = ({ isLoggedIn }) => {
   //   { key: "af", value: "af", text: "♂" },
   //   { key: "ax", value: "ax", text: "♀️" },
   // ];
-
 
   //contact cf phone/mail : je l'ai mis en commentaire, à voir à voir si on met l'email de l'utilisateur depuis le front ou si on ajoute le champ
 
@@ -166,7 +163,7 @@ const CreateGroup = ({ isLoggedIn }) => {
     setContact(event.target.value);
     console.log("contact", contact);
   };
-  
+
   // Variable de la date minimale pour l'input date de départ
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
