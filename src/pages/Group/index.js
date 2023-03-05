@@ -62,11 +62,11 @@ const Group = ({ isLoggedIn }) => {
     <div>
       <section id="section--container">
         <div id="border--main">
-          <h1>{capitalizeFirstLetter(groupInfo.name)}</h1>
+          <h1>{groupInfo.name}</h1>
           <div id="desc--container">
             <div className="desc--voyage">
               <h3 className="membres--title">Présentation du voyage :</h3>
-              <p>{capitalizeFirstLetter(groupInfo.content)}</p>
+              <p>{groupInfo.content}</p>
             </div>
           </div>
           <Divider />
@@ -74,11 +74,12 @@ const Group = ({ isLoggedIn }) => {
             <h3 className="membres--title">Les détails du groupe :</h3>
             <li>
               <Icon name="plane" />
-              {groupInfo.city} ({capitalizeFirstLetter(groupInfo.country)})
+              {groupInfo.city} ({groupInfo.country})
+              {/* Erreur quand on fait ({capitalizeFirstLetter(groupInfo.country)}) -> cannot read properties of undefined (reading charAt) */}
             </li>
             <li>
-              <Icon name="calendar alternate outline" /> Du {formatDate(groupInfo.start)} au
-              {formatDate(groupInfo.end)}
+              <Icon name="calendar alternate outline" /> 
+              Du {formatDate(groupInfo.start)} au {formatDate(groupInfo.end)}
             </li>
             <li>
               <Icon name="users" /> 2 à {groupInfo.max_members} membres
@@ -106,8 +107,9 @@ const Group = ({ isLoggedIn }) => {
                   size="mini"
                   circular
                 />
-                <p className="membre--name">Prénom 
-                {/* (icône couronne) */}
+                <p className="membre--name">
+                  Prénom
+                  {/* (icône couronne) */}
                 </p>
                 <Icon link name="close" size="large" />
               </div>
