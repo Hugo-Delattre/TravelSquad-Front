@@ -1,12 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Divider, Icon } from "semantic-ui-react";
-
+import { useNavigate } from "react-router-dom";
+import { accountService } from "../../_services/account.service";
 // import TravelSquad from "../../img/TravelSquad.svg";
 
 import "./style.scss";
 
-const NavBar = ({ isLoggedIn }) => {
+const NavBar = () => {
+  let navigate = useNavigate();
+  const logout = () => {
+    accountService.logout();
+    navigate("/");
+  };
   return (
     <header>
       <nav id="header--nav">
@@ -29,13 +35,14 @@ const NavBar = ({ isLoggedIn }) => {
           </ul>
         </div>
         <div className="log--btn">
-          {isLoggedIn ? (
-            // <Image
-            //   src="https://react.semantic-ui.com/images/wireframe/square-image.png"
-            //   size="mini"
-            //   circular
-            // />
-            <Icon name="user circle" className="tata" size="huge" />
+          {accountService.isLogged() ? (
+            <div>
+              <Icon name="user circle " className="profile" size="huge" />
+
+              <Button primary onClick={logout}>
+                log out
+              </Button>
+            </div>
           ) : (
             <div>
               <NavLink to="/login">
@@ -43,16 +50,9 @@ const NavBar = ({ isLoggedIn }) => {
               </NavLink>
               <NavLink to="/signup">
                 <Button primary>S'inscrire</Button>
-              </NavLink>
+              </NavLink>{" "}
             </div>
           )}
-
-          <NavLink to="/login">
-            <Button>Se connecter</Button>
-          </NavLink>
-          <NavLink to="/signup">
-            <Button primary>S'inscrire</Button>
-          </NavLink>
         </div>
       </nav>
       <Divider />

@@ -7,6 +7,8 @@ import GroupCard from "../../components/GroupCard";
 
 import "./style.scss";
 
+import { capitalizeFirstLetter, formatDate } from "../../_services/textFormat.service";
+
 const axiosInstance = axios.create({
   baseURL: "https://travelsquadb.up.railway.app/",
 });
@@ -17,9 +19,9 @@ const Groups = (props) => {
 
   const [data, setData] = useState([]);
 
-  const capitalizeFirstLetter = (countryName) => {
-    return countryName.charAt(0).toUpperCase() + countryName.slice(1);
-  };
+  // const capitalizeFirstLetter = (countryName) => {
+  //   return countryName.charAt(0).toUpperCase() + countryName.slice(1);
+  // };
 
   // const countryOptions = [
   //   { key: 'af', value: 'af', text: 'Japon' },
@@ -93,7 +95,8 @@ const Groups = (props) => {
       <section id="groups--section1">
         <div className="groups--title">
           <h1>
-            Liste des escouades - {capitalizeFirstLetter(params.countryName)}
+            Liste des escouades -
+            {capitalizeFirstLetter(params.countryName)}
           </h1>
         </div>
       </section>

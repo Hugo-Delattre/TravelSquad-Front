@@ -9,7 +9,7 @@ import {
   Container,
   Header,
 } from "semantic-ui-react";
-
+import { capitalizeFirstLetter, formatDate } from "../../_services/textFormat.service";
 
 import "./style.scss";
 
@@ -19,7 +19,7 @@ const axiosInstance = axios.create({
 
 const Group = ({ isLoggedIn }) => {
   const params = useParams();
-  console.log(params);
+  console.log("params", params);
 
   const [groupInfo, setGroupInfo] = useState([]);
 
@@ -34,7 +34,26 @@ const Group = ({ isLoggedIn }) => {
         console.log(error);
       });
   }, []);
-  
+
+  const handleSubscribeButton = () => {
+    //à voir si data est requis ou si le jwt est suffisant
+    const data = { groupId: params.id, userId: 1 };
+    const url = `/countries/groups/${params.id}/add`;
+    const jwt = localStorage.getItem("token");
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    };
+    
+    console.log("jwt", jwt);
+
+    axiosInstance
+      .post(url, data, headers)
+      .then((res) => console.log(res.data))
+      .catch((error) => console.error(error));
+  };
+
   // const capitalizeFirstLetter = (countryName) => {
   //   return countryName.charAt(0).toUpperCase() + countryName.slice(1);
   // };
@@ -43,11 +62,11 @@ const Group = ({ isLoggedIn }) => {
     <div>
       <section id="section--container">
         <div id="border--main">
-          <h1>{groupInfo.name}</h1>
+          <h1>{capitalizeFirstLetter(groupInfo.name)}</h1>
           <div id="desc--container">
             <div className="desc--voyage">
               <h3 className="membres--title">Présentation du voyage :</h3>
-              <p>{groupInfo.content}</p>
+              <p>{capitalizeFirstLetter(groupInfo.content)}</p>
             </div>
           </div>
           <Divider />
@@ -55,11 +74,11 @@ const Group = ({ isLoggedIn }) => {
             <h3 className="membres--title">Les détails du groupe :</h3>
             <li>
               <Icon name="plane" />
-              {groupInfo.city} ({groupInfo.country})
+              {groupInfo.city} ({capitalizeFirstLetter(groupInfo.country)})
             </li>
             <li>
-              <Icon name="calendar alternate outline" /> Du {groupInfo.start} au{" "}
-              {groupInfo.end}
+              <Icon name="calendar alternate outline" /> Du {formatDate(groupInfo.start)} au
+              {formatDate(groupInfo.end)}
             </li>
             <li>
               <Icon name="users" /> 2 à {groupInfo.max_members} membres
@@ -87,7 +106,9 @@ const Group = ({ isLoggedIn }) => {
                   size="mini"
                   circular
                 />
-                <p className="membre--name">Prénom (icône couronne)</p>
+                <p className="membre--name">Prénom 
+                {/* (icône couronne) */}
+                </p>
                 <Icon link name="close" size="large" />
               </div>
               <div className="membre">
@@ -142,7 +163,7 @@ const Group = ({ isLoggedIn }) => {
           </div>
         </div>
         <button className="btn--register">
-          <h3>JE M'INSCRIS A CE GROUPE</h3>
+          <h3 onClick={handleSubscribeButton}>JE M'INSCRIS A CE GROUPE</h3>
         </button>
       </section>
     </div>

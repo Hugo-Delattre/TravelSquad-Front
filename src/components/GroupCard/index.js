@@ -3,6 +3,10 @@ import { Card, Icon, Image } from "semantic-ui-react";
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 import { useParams } from "react-router-dom";
+import {
+  capitalizeFirstLetter,
+  formatDate,
+} from "../../_services/textFormat.service";
 
 import axios from "axios";
 
@@ -11,18 +15,6 @@ const axiosInstance = axios.create({
 });
 
 const GroupCard = ({ groupData, imgURL }) => {
-  const capitalizeFirstLetter = (countryName) => {
-    return countryName.charAt(0).toUpperCase() + countryName.slice(1);
-  };
-
-  const formatDate = (unformattedDate) => {
-    const dateStr = unformattedDate;
-    const dateObj = new Date(dateStr);
-    const options = { day: "numeric", month: "long", year: "numeric" };
-    const formattedDate = dateObj.toLocaleDateString("fr-FR", options);
-    return formattedDate;
-  };
-
   const turnThemeIDintoThemeName = (theme_id) => {
     if (theme_id === 1) {
       return "Farniente";
@@ -41,7 +33,6 @@ const GroupCard = ({ groupData, imgURL }) => {
   const [createInfo, setUserInfo] = useState("");
 
   const turnCreatorIdintoUserName = (creator_id) => {
-    // faire une requête paramétrée vers l'utilisateur creator_id
     axiosInstance.get(`/profile/${creator_id}`).then();
   };
 
@@ -77,7 +68,7 @@ const GroupCard = ({ groupData, imgURL }) => {
               Créateur du groupe
             </p>
             {/* <p>? / {groupData.max_members}</p> */}
-             <p>De 2 à {groupData.max_members} Pers.</p>
+            <p>De 2 à {groupData.max_members} Pers.</p>
           </div>
         </Card.Content>
       </Card>
