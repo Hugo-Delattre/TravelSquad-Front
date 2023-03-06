@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 
 import { accountService } from "../../_services/account.service";
-import { useEffect, useState } from "react";
-import Profile from "../Profile";
+import {  useState } from "react";
+
 
 const Login = () => {
 

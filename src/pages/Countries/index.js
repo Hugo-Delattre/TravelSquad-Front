@@ -14,13 +14,15 @@ const axiosInstance = axios.create({
 
 const Countries = () => {
   const [countriesData, setCountriesData] = useState([]);
+  const [groupMembersCount, setGroupMembersCount] = useState(0);
 
   useEffect(() => {
     axiosInstance
       .get("/countries")
       .then((response) => {
-        setCountriesData(response.data);
-        console.log("countriesData", countriesData);
+        setCountriesData(response.data.countries);
+        setGroupMembersCount(response.data.numberOfGroups);
+        // console.log("countriesData", response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -39,11 +41,11 @@ const Countries = () => {
         {countriesData[6] ? (
           <div className="grid">
             {countriesData.map((country) => (
-              // <Link to="/countries/groups">
               <Link to={`/countries/${country.name}`}>
                 <CountryCard
-                  // key={country.id}
+                  key={country.id}
                   countryData={country}
+                  groupMembersCount={groupMembersCount}
                 />
               </Link>
             ))}

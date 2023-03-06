@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+
+import { getToken } from "../../_services/account.service"
 import {
   Icon,
   Checkbox,
@@ -9,7 +11,12 @@ import {
   Container,
   Header,
 } from "semantic-ui-react";
-import { capitalizeFirstLetter, formatDate } from "../../_services/textFormat.service";
+
+import {
+  capitalizeFirstLetter,
+  formatDate,
+  turnThemeIDintoThemeName,
+} from "../../_services/textFormat.service";
 
 import "./style.scss";
 
@@ -19,33 +26,60 @@ const axiosInstance = axios.create({
 
 const Group = ({ isLoggedIn }) => {
   const params = useParams();
-  console.log("params", params);
+  // console.log("params", params);
 
   const [groupInfo, setGroupInfo] = useState([]);
+  const [membersCount, setMembersCount] = useState(1);
 
   useEffect(() => {
     axiosInstance
       .get(`/countries/groups/${params.id}`)
       .then((response) => {
-        setGroupInfo(response.data);
-        console.log("setGroupInfo", response.data);
+        setGroupInfo(response.data.oneGroup);
+        setMembersCount(response.data.numberOfMembers);
+        console.log("response.data", response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
+  const [creatorInfo, setCreatorInfo] = useState("");
+
+  // const turnCreatorIdintoUserName = (creator_id) => {
+  //   axiosInstance.get(`/profile/${creator_id}`).then((response) => {
+  //     setCreatorInfo(response.data);
+  //     console.log("creatorInfo", response.data);
+  //   });
+  // };
+  
+  // creatorInfo;
+  
+  useEffect(()=> {
+    
+     const jwt = localStorage.getItem("token");
+     const headers = {
+       headers: {
+         Authorization: `Bearer ${jwt}`,
+       },
+     };
+    axiosInstance
+      .get(`/profile/${groupInfo.creator_id}`, headers )
+      .then((response) => {
+      // setCreatorInfo(response.data);
+      console.log("creatorInfo", response.data);}, [])});
+
   const handleSubscribeButton = () => {
-    //à voir si data est requis ou si le jwt est suffisant
-    const data = { groupId: params.id, userId: 1 };
+    const data = {}; //pas besoin de userId puisque c'est dans le JWT
     const url = `/countries/groups/${params.id}/add`;
+    
     const jwt = localStorage.getItem("token");
     const headers = {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
     };
-    
+
     console.log("jwt", jwt);
 
     axiosInstance
@@ -78,17 +112,23 @@ const Group = ({ isLoggedIn }) => {
               {/* Erreur quand on fait ({capitalizeFirstLetter(groupInfo.country)}) -> cannot read properties of undefined (reading charAt) */}
             </li>
             <li>
-              <Icon name="calendar alternate outline" /> 
+              <Icon name="calendar alternate outline" />
               Du {formatDate(groupInfo.start)} au {formatDate(groupInfo.end)}
             </li>
             <li>
-              <Icon name="users" /> 2 à {groupInfo.max_members} membres
+              <Icon name="users" /> {membersCount.length} membre(s) sur{" "}
+              {groupInfo.max_members} places
             </li>
             <li>
               <Icon name="conversation" /> {groupInfo.language}
             </li>
             <li>
-              <Icon name="clipboard list" /> Sportif
+              <Icon name="clipboard list" />{" "}
+              {turnThemeIDintoThemeName(groupInfo.theme_id)}
+            </li>
+            <li>
+              <Icon name="mail" /> mail de contact (à dynamiser){" "}
+              {(creatorInfo)}
             </li>
 
             {/* <li>Groupe créé le</li> */}
@@ -111,7 +151,7 @@ const Group = ({ isLoggedIn }) => {
                   Prénom
                   {/* (icône couronne) */}
                 </p>
-                <Icon link name="close" size="large" />
+                {/* <Icon link name="close" size="large" /> */}
               </div>
               <div className="membre">
                 <Image
@@ -120,7 +160,7 @@ const Group = ({ isLoggedIn }) => {
                   circular
                 />
                 <p className="membre--name">Prénom</p>
-                <Icon link name="close" size="large" />
+                {/* <Icon link name="close" size="large" /> */}
               </div>
               <div className="membre">
                 <Image
@@ -129,7 +169,7 @@ const Group = ({ isLoggedIn }) => {
                   circular
                 />
                 <p className="membre--name">Prénom</p>
-                <Icon link name="close" size="large" />
+                {/* <Icon link name="close" size="large" /> */}
               </div>
             </div>
             {/* <div className="membre">

@@ -37,10 +37,13 @@ const NavBar = () => {
         <div className="log--btn">
           {accountService.isLogged() ? (
             <div>
+              <NavLink to="/profile">
+               
+             
               <Icon name="user circle " className="profile" size="huge" />
-
+               </NavLink>
               <Button primary onClick={logout}>
-                log out
+              déconnexion 
               </Button>
             </div>
           ) : (

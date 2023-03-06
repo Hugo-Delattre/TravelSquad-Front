@@ -7,7 +7,10 @@ import GroupCard from "../../components/GroupCard";
 
 import "./style.scss";
 
-import { capitalizeFirstLetter, formatDate } from "../../_services/textFormat.service";
+import {
+  capitalizeFirstLetter,
+  formatDate,
+} from "../../_services/textFormat.service";
 
 const axiosInstance = axios.create({
   baseURL: "https://travelsquadb.up.railway.app/",
@@ -78,7 +81,8 @@ const Groups = (props) => {
     axiosInstance
       .get("/countries")
       .then((response) => {
-        const countryInfo = response.data.filter((element) => {
+        console.log(response);
+        const countryInfo = response.data.countries.filter((element) => {
           return element.name === params.countryName;
         });
         setImgURL(countryInfo[0].img_url);
@@ -95,8 +99,7 @@ const Groups = (props) => {
       <section id="groups--section1">
         <div className="groups--title">
           <h1>
-            Liste des escouades -
-            {capitalizeFirstLetter(params.countryName)}
+            Liste des escouades - {capitalizeFirstLetter(params.countryName)}
           </h1>
         </div>
       </section>

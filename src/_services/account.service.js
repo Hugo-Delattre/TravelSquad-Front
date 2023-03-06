@@ -1,11 +1,18 @@
 import axios from "axios"
 const axiosInstance = axios.create({
-    baseURL: "https://travelsquadb.up.railway.app/",
+    baseURL: "https://travelsquadb.up.railway.app",
   });
 let login = (dataLogin) => {
     return axiosInstance.post('/login', dataLogin) //requete post vers le back 
-  
-
+}
+let profile = ( ) => {
+    const jwt = localStorage.getItem("token");  
+    return axiosInstance.get('/profile',{
+        headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+    }) //requete post vers le back 
+                                                
 }
 
 let saveToken = (token) => {
@@ -16,6 +23,7 @@ let saveToken = (token) => {
 let logout = () => {
     localStorage.removeItem('token') // va servir a suprrimer le token ce qui va faire en sorte de deconecter 
 }
+
 
 let isLogged = () => {
     let token = localStorage.getItem('token') //permet de savoir si on est logged ou pas, il recupere le token qui est dans le localstorage
@@ -28,5 +36,5 @@ let getToken=()=>{
 }
 
 export const accountService = {
-    login, saveToken, logout, isLogged,getToken
+    login, saveToken, logout, isLogged, getToken, profile
 }

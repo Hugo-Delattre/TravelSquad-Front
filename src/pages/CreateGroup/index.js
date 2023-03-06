@@ -22,13 +22,14 @@ const CreateGroup = ({ isLoggedIn }) => {
   // ];
   const countryOptions = [
     { key: "fr", value: "france", text: "France" },
-    { key: "es", value: "espagne", text: "Espagne" },
-    { key: "us", value: "états-unis", text: "États-Unis" },
     { key: "ja", value: "japon", text: "Japon" },
-    { key: "me", value: "mexique", text: "Mexique" },
     { key: "th", value: "thaïlande", text: "Thaïlande" },
-    { key: "ma", value: "maroc", text: "Maroc" },
+    { key: "it", value: "italie", text: "Italie" },
     { key: "tu", value: "turquie", text: "Turquie" },
+    { key: "ma", value: "maroc", text: "Maroc" },
+    { key: "us", value: "états-unis", text: "États-Unis" },
+    { key: "es", value: "espagne", text: "Espagne" },
+    { key: "me", value: "mexique", text: "Mexique" },
     { key: "ch", value: "chine", text: "Chine" },
   ];
   const themeOptions = [
@@ -181,7 +182,7 @@ const CreateGroup = ({ isLoggedIn }) => {
         </div>
 
         <section id="CreateGroup--section1">
-          <h2>Informations principales concernant le voyage :</h2>
+          {/* <h2>Informations principales concernant le voyage :</h2> */}
           <Form onSubmit={handleSubmit} className="CreateGroup--Title">
             <Form.Group widths="equal">
               <Form.Field required>
@@ -213,59 +214,83 @@ const CreateGroup = ({ isLoggedIn }) => {
                   onChange={handlemaxMembersChange}
                   required
                 />
+
+                {/* <Select placeholder="Pays" options={CreateGroupePaysOptions} /> */}
+                <Form.Select
+                  // fluid
+                  label="Pays de destination"
+                  placeholder="France, Japon, Mexique, ..."
+                  options={countryOptions}
+                  value={country}
+                  onChange={handleCountryChange}
+                  required
+                />
+                <Form.Input
+                  fluid
+                  label="Ville de destination"
+                  // options={CreateGroupeCityOptions}
+                  placeholder="Paris, Tokyo, Cancún, ..."
+                  value={city}
+                  onChange={handleCityChange}
+                  min="2"
+                  max="64"
+                  required
+                />
+                <Form.Select
+                  label="Thème du voyage"
+                  placeholder="Culturel, sportif, ..."
+                  options={themeOptions}
+                  value={themeID}
+                  onChange={handleThemeIDChange}
+                  required
+                />
+                <Form.Input
+                  label="Langue(s) principale(s) du groupe"
+                  placeholder="Français, Anglais, ..."
+                  options={languageOptions}
+                  value={language}
+                  onChange={handleLanguageChange}
+                  min="3"
+                  max="64"
+                  required
+                />
+                <div>
+                  <Form.Input
+                    type="date"
+                    label="Date de début"
+                    id="date-departure-input"
+                    name="date"
+                    value={start}
+                    onChange={handleStartChange}
+                    min={tomorrowString} // minimal date is today date. toISOString() to convert date to ISO format then split() to extract the date without the hour.
+                    required
+                  />
+                  <Form.Input
+                    type="date"
+                    label="Date de fin"
+                    id="date-arrival-input"
+                    name="date"
+                    value={end}
+                    onChange={handleEndChange}
+                    min={tomorrowString}
+                    required
+                  />
+                </div>
+                <Form.TextArea
+                  className="end"
+                  label="Décrivez votre voyage"
+                  placeholder="Décrivez votre voyage, envies, idées d'activités, le profil des gens avec qui vous aimeriez voyager, etc"
+                  id="story"
+                  name="story"
+                  rows="5"
+                  cols="33"
+                  minLength={10}
+                  value={content}
+                  onChange={handleContentChange}
+                  required
+                ></Form.TextArea>
               </Form.Field>
-              {/* <Select placeholder="Pays" options={CreateGroupePaysOptions} /> */}
-              <Form.Select
-                // fluid
-                label="Pays de destination"
-                placeholder="France, Japon, Mexique, ..."
-                options={countryOptions}
-                value={country}
-                onChange={handleCountryChange}
-                required
-              />
-              <Form.Input
-                fluid
-                label="Ville de destination"
-                // options={CreateGroupeCityOptions}
-                placeholder="Paris, Tokyo, Cancún, ..."
-                value={city}
-                onChange={handleCityChange}
-                min="2"
-                max="64"
-                required
-              />
-              <Form.Select
-                label="Thème du voyage"
-                placeholder="Culturel, sportif, ..."
-                options={themeOptions}
-                value={themeID}
-                onChange={handleThemeIDChange}
-                required
-              />
-              <Form.Input
-                label="Langue(s) principale(s) du groupe"
-                placeholder="Français, Anglais, ..."
-                options={languageOptions}
-                value={language}
-                onChange={handleLanguageChange}
-                min="3"
-                max="64"
-                required
-              />
             </Form.Group>
-            <Form.TextArea
-              label="Décrivez votre voyage"
-              placeholder="Décrivez votre voyage, envies, idées d'activités, le profil des gens avec qui vous aimeriez voyager, etc"
-              id="story"
-              name="story"
-              rows="5"
-              cols="33"
-              minLength={10}
-              value={content}
-              onChange={handleContentChange}
-              required
-            ></Form.TextArea>
             {/* <textarea
               label="Décrivez votre voyage, idées d'activité, ambiance, etc"
               placeholder="Décrivez votre voyage, idées d'activité, ambiance, etc :"
@@ -292,32 +317,15 @@ const CreateGroup = ({ isLoggedIn }) => {
               options={GenderOptions}
             /> */}
 
-            <div id="CreateGroup--section2">
-              {/* <h2>Sélectionnez votre date prévue de départ et d'arrivée :</h2> */}
-              <Form.Input
-                type="date"
-                label="Date de début"
-                id="date-departure-input"
-                name="date"
-                value={start}
-                onChange={handleStartChange}
-                min={tomorrowString} // minimal date is today date. toISOString() to convert date to ISO format then split() to extract the date without the hour.
-                required
-              />
-              <Form.Input
-                type="date"
-                label="Date de fin"
-                id="date-arrival-input"
-                name="date"
-                value={end}
-                onChange={handleEndChange}
-                min={tomorrowString}
-                required
-              />
-            </div>
+            {/* <div id="CreateGroup--section2"> */}
+            {/* <h2>Sélectionnez votre date prévue de départ et d'arrivée :</h2> */}
+            {/* </div> */}
             <button type="submit" color="blue" className="btn--createGroup">
               CRÉER LE GROUPE
             </button>
+            {/* <Button type="submit" color="blue" className="btn--createGroup">
+              CRÉER LE GROUPE
+            </Button> */}
             {/* Remplacer Button par button pour récup l'autre style de bouton */}
           </Form>
         </section>

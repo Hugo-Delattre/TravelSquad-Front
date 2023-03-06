@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import {
   capitalizeFirstLetter,
   formatDate,
+  turnThemeIDintoThemeName,
 } from "../../_services/textFormat.service";
 
 import axios from "axios";
@@ -15,21 +16,6 @@ const axiosInstance = axios.create({
 });
 
 const GroupCard = ({ groupData, imgURL }) => {
-  const turnThemeIDintoThemeName = (theme_id) => {
-    if (theme_id === 1) {
-      return "Farniente";
-    }
-    if (theme_id === 2) {
-      return "Culturel";
-    }
-    if (theme_id === 3) {
-      return "Festif";
-    }
-    if (theme_id === 4) {
-      return "Sportif";
-    }
-  };
-
   const [createInfo, setUserInfo] = useState("");
 
   const turnCreatorIdintoUserName = (creator_id) => {
@@ -49,7 +35,7 @@ const GroupCard = ({ groupData, imgURL }) => {
           </Card.Meta>
           <Card.Description className="groupCard--description">
             <p>
-              • <strong>Ville :</strong> {capitalizeFirstLetter(groupData.city)}{" "}
+              • <strong>Ville :</strong> {capitalizeFirstLetter(groupData.city)}
             </p>
             <p>
               • <strong>Langue :</strong>{" "}
@@ -63,12 +49,14 @@ const GroupCard = ({ groupData, imgURL }) => {
         </Card.Content>
         <Card.Content>
           <div className="groupCard--bottomLine">
-            <p>
+            {/* <p>
               <Icon name="user circle" />
               Créateur du groupe
-            </p>
+            </p> */}
             {/* <p>? / {groupData.max_members}</p> */}
-            <p>De 2 à {groupData.max_members} Pers.</p>
+            <p className="date">
+              De 2 à {groupData.max_members} Pers. - X places restantes
+            </p>
           </div>
         </Card.Content>
       </Card>

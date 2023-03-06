@@ -6,7 +6,7 @@
   margin-top: 3rem;
   // gap: 10px 20px;
   //gap: 3rem;
-  
+
   h1 {
     font-family: vars.$fontHeadersTiempos;
   }
@@ -14,24 +14,46 @@
 
 #CreateGroup--section1 {
   display: flex;
+  text-align: left;
   flex-direction: column;
   //gap: 3rem;
   gap: 10px 20px;
-  margin: 4rem 15% 0 15%;
+  margin: 4rem 15% 6rem 15%;
   box-shadow: 0px 8px 20px rgba(119, 119, 119, 0.4);
-  padding: 6% 8%;
+  padding: 2% 8% 0% 8%;
   border-radius: 12px;
+  font-family: vars.$fontParagraph;
+
+  label {
+    display: inline;
+    text-align: left;
+    font-weight: 500;
+  }
+
+  .required {
+    margin: 1.5rem 0;
+
+    .end {
+      margin-bottom: 0;
+    }
+  }
+
+  .flex--date {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .btn--createGroup {
   //   margin-top: 70px;
   //   width: 30%;
   //   align-self: center;
-  border-radius: 12px;
+  border-radius: 7px;
   border: solid 1px #d6d6d6;
-  margin: 0rem 15% 4rem 15%;
-  margin-bottom: 80px;
+  // margin: 0rem 15% 4rem 15%;
+  margin-bottom: 5.5rem;
   padding: 30px;
+  width: 100%;
   //   background-color: vars.$colorPrimary;
   color: vars.$colorBackground;
   font-weight: 500;
@@ -52,8 +74,8 @@
 
 label,
 textarea {
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+  // font-size: 0.8rem;
+  letter-spacing: 0.5px;
 }
 
 textarea {
@@ -72,6 +94,8 @@ label {
 
 #CreateGroup--section2 {
   margin: 1.5rem 0;
-  
-  button {margin: 1.5rem 0;}
+
+  button {
+    margin: 1.5rem 0;
+  }
 }
