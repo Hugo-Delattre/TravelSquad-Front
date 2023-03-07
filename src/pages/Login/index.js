@@ -2,34 +2,33 @@ import { Form, Icon } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import "./style.scss";
-import jwt_decode from 'jwt-decode'
-import { accountService } from "../../_services/account.service";
+import { useNavigate } from "react-router-dom";
+import { userService } from "../../_services/user.service";
 
-import axios from "axios";
-import { useState } from "react";
+import { accountService } from "../../_services/account.service";
+import { useEffect, useState } from "react";
+import Profile from "../Profile";
 
 const Login = () => {
-  const axiosInstance = axios.create({
-    baseURL: "https://travelsquadb.up.railway.app/",
-  });
+
+
+  let navigate = useNavigate();
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosInstance
-      .post("/login/", dataLogin)
-      .then((res) => {
-        accountService.saveToken(res.data.access_token)
-        // console.log(response.data);
-        // const token = res.data.token;
-        // const decodedToken = jwt.decode(token);
-        // localStorage.setItem("token", token);
-        // localStorage.setItem("user", JSON.stringify(decodedToken.user));
-        // window.location.href = "/";
+
+    accountService.login(dataLogin)
+      .then(res => {
+        accountService.saveToken(res.data.token)  // Sauvegarde du token et envoi vers page d'accueil
+        navigate('/', {replace: true} )
+     console.log(res)
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
-    console.log(dataLogin);
+
   };
 
   const [dataLogin, setdataLogin] = useState({

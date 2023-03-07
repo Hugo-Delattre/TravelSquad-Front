@@ -17,11 +17,11 @@ import NotFound from "../../pages/NotFound";
 
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
 
   return (
     <div className="App">
-      <NavBar isLoggedIn={isLoggedIn} />
+      <NavBar  />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -29,30 +29,30 @@ const App = () => {
           path="/countries"
           element={<Countries />}
         />
-        <Route path="/login" element={<Login isLoggedIn={isLoggedIn} />} />
+        <Route path="/login" element={<Login  />} />
         <Route
           path="/countries/:countryName"
-          element={<Groups isLoggedIn={isLoggedIn} />}
+          element={<Groups  />}
         />
         <Route
           path="/countries/group"
-          element={<Group isLoggedIn={isLoggedIn} />}
+          element={<Group  />}
         />
         <Route
           path="/create-group"
-          element={<CreateGroup isLoggedIn={isLoggedIn} />}
+          element={<CreateGroup  />}
         />
-        <Route path="/profile" element={<Profile isLoggedIn={isLoggedIn} />} />
-        <Route path="/team" element={<Team isLoggedIn={isLoggedIn} />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/team" element={<Team  />} />
         <Route
           path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+          element={<Login  />}
         />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      <Footer isLoggedIn={isLoggedIn} />
+      <Footer />
     </div>
   );
 };
