@@ -1,0 +1,40 @@
+.membres--grid {
+  display: flex;
+  flex-wrap: wrap;
+  // grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  .membre {
+    display: flex;
+    // grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    border: solid 1px #d6d6d6;
+    padding: 5px;
+    display: flex;
+    border-radius: 12px;
+    align-items: center;
+    // align-items: center;
+    width: 33%;
+    height: 4rem;
+    // justify-content: space-around;
+    // gap: 10%;
+  }
+  .membres--left {
+    display: flex;
+    gap: 10%;
+    margin-bottom: 21px;
+  }
+
+  .membres--right {
+    display: flex;
+    gap: 10%;
+  }
+
+  .membre--name {
+    font-size: 17px;
+    margin: 8px;
+    padding: 20%;
+  }
+}

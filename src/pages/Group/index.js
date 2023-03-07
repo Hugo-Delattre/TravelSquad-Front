@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { getToken } from "../../_services/account.service"
 import {
@@ -17,6 +17,8 @@ import {
   formatDate,
   turnThemeIDintoThemeName,
 } from "../../_services/textFormat.service";
+
+import MemberCard from "../../components/MemberCard";
 
 import "./style.scss";
 
@@ -44,16 +46,9 @@ const Group = ({ isLoggedIn }) => {
       });
   }, []);
 
-  const [creatorInfo, setCreatorInfo] = useState("");
+  const [creatorMail, setCreatorMail] = useState("");
+  const [creatorName, setCreatorName] = useState("");
 
-  // const turnCreatorIdintoUserName = (creator_id) => {
-  //   axiosInstance.get(`/profile/${creator_id}`).then((response) => {
-  //     setCreatorInfo(response.data);
-  //     console.log("creatorInfo", response.data);
-  //   });
-  // };
-  
-  // creatorInfo;
   
   useEffect(()=> {
     
@@ -66,7 +61,8 @@ const Group = ({ isLoggedIn }) => {
     axiosInstance
       .get(`/profile/${groupInfo.creator_id}`, headers )
       .then((response) => {
-      // setCreatorInfo(response.data);
+      setCreatorMail(response.data.email);
+      setCreatorName(response.data.firstName);
       console.log("creatorInfo", response.data);}, [])});
 
   const handleSubscribeButton = () => {
@@ -88,9 +84,6 @@ const Group = ({ isLoggedIn }) => {
       .catch((error) => console.error(error));
   };
 
-  // const capitalizeFirstLetter = (countryName) => {
-  //   return countryName.charAt(0).toUpperCase() + countryName.slice(1);
-  // };
 
   return (
     <div>
@@ -127,8 +120,7 @@ const Group = ({ isLoggedIn }) => {
               {turnThemeIDintoThemeName(groupInfo.theme_id)}
             </li>
             <li>
-              <Icon name="mail" /> mail de contact (à dynamiser){" "}
-              {(creatorInfo)}
+              <Icon name="mail" /> {creatorMail}
             </li>
 
             {/* <li>Groupe créé le</li> */}
@@ -141,6 +133,14 @@ const Group = ({ isLoggedIn }) => {
 
             {/* <div className="membres--left"> */}
             <div className="membres--grid">
+              {/* {membersCount.map((member) => (
+                <Link to="">
+                  <MemberCard name={creatorName} isCreator={true} />
+                </Link>
+              ))} */}
+
+            
+              {/* <MemberCard />  */}
               <div className="membre">
                 <Image
                   src="https://react.semantic-ui.com/images/wireframe/square-image.png"
