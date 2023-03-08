@@ -12,8 +12,9 @@ let profile = () => {
         headers: {
             Authorization: `Bearer ${jwt}`,
           },
-    }) //requete post vers le back                                               
+    })                                               
 }
+
 
 
 let saveToken = (token) => {

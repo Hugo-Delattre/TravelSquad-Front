@@ -1,9 +1,10 @@
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./style.scss";
 import React, { useState } from "react";
 import { accountService } from "../../_services/account.service";
 import axiosInstance from "../../api/axiosInstance";
-import { Form, TextArea,Select,Input } from "semantic-ui-react";
+import { Form, TextArea, Select, Input } from "semantic-ui-react";
+
 const Signup = () => {
   const countryOptions = [
     { key: "fr", value: "Chinois Mandarin", text: "Chinois Mandarin" },
@@ -24,10 +25,12 @@ const Signup = () => {
     { key: 'a', text: 'autre', value: 'autre' },
   ]
   let navigate = useNavigate();
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    axiosInstance.post("/myprofile",data)
+    axiosInstance.post("/profile", data)
       .then((res) => {
         accountService.saveToken(res.data.token)
         navigate('/login', {replace: true} )

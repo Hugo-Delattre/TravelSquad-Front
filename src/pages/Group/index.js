@@ -11,6 +11,7 @@ import {
   turnThemeIDintoThemeName,
 } from "../../utils/textFormat";
 import axiosInstance from "../../api/axiosInstance";
+import jwt_decode from "jwt-decode";
 import MemberCard from "../../components/MemberCard";
 import "./style.scss";
 
@@ -27,9 +28,15 @@ const Group = () => {
       Authorization: `Bearer ${jwt}`,
     },
   };
+  const decodedToken = jwt_decode(jwt);
+  console.log("decodedToken", decodedToken);
+  const id = decodedToken.userId;
+  console.log("userId", id);
 
   //Déclaration des états.
   const [isLoading, setIsLoading] = useState(true);
+  const [amIAMember, setAmIAMember] = useState(true);
+  const [amITheCreator, setAmITheCreator] = useState(true);
   
   const [groupInfo, setGroupInfo] = useState([]);
   const [membersData, setMembersData] = useState([]); 
@@ -64,6 +71,11 @@ const Group = () => {
         setContent(capitalizeFirstLetter(response.data.oneGroup.content));
         setDescription(capitalizeFirstLetter(response.data.oneGroup.content));
         setTitle(capitalizeFirstLetter(response.data.oneGroup.name))
+        
+        console.log("membersData", membersData);
+        // setAmIAMember()
+        
+        
         setIsLoading(false);
       })
       .catch((error) => {
@@ -84,73 +96,87 @@ const Group = () => {
       .catch((error) => console.error(error));
   };
 
+  const handleDeleteGroupButton = () => {
+    const url = `/countries/groups/${params.id}/add`;
+    axiosInstance.post
+  }
 
   return (
     <>
-    {jwt && !isLoading ? (<section id="section--container">
-        <div id="border--main">
-          <h1>{title}</h1>
-          <div id="desc--container">
-            <div className="desc--voyage">
-              <h3 className="membres--title">Présentation du voyage :</h3>
-              <p>{content}</p>
+      {jwt && !isLoading ? (
+        <section id="section--container">
+          <div id="border--main">
+            <h1>{title}</h1>
+            <div id="desc--container">
+              <div className="desc--voyage">
+                <h3 className="membres--title">Présentation du voyage :</h3>
+                <p>{content}</p>
+              </div>
             </div>
-          </div>
-          <Divider />
-          <ul className="details--grid">
-            <h3 className="membres--title">Les détails du groupe :</h3>
-            <li>
-              <Icon name="plane" />
-               {cityName} ({countryName})
-            </li>
-            <li>
-              <Icon name="calendar alternate outline" />
-               Du {formatDate(groupInfo.start)} au {formatDate(groupInfo.end)}
-            </li>
-            <li>
-              <Icon name="users" /> 
-               {membersCount} membre{membersCount > 1 && "s"} sur {groupInfo.max_members} places
-            </li>
-            <li>
-              <Icon name="conversation" />{spokenLanguage}
-            </li>
-            <li>
-              <Icon name="clipboard list" />
-               {theme}
-            </li>
-            <li>
-              <Icon name="mail" />
+            <Divider />
+            <ul className="details--grid">
+              <h3 className="membres--title">Les détails du groupe :</h3>
+              <li>
+                <Icon name="plane" />
+                {cityName} ({countryName})
+              </li>
+              <li>
+                <Icon name="calendar alternate outline" />
+                Du {formatDate(groupInfo.start)} au {formatDate(groupInfo.end)}
+              </li>
+              <li>
+                <Icon name="users" />
+                {membersCount} membre{membersCount > 1 && "s"} sur{" "}
+                {groupInfo.max_members} places
+              </li>
+              <li>
+                <Icon name="conversation" />
+                {spokenLanguage}
+              </li>
+              <li>
+                <Icon name="clipboard list" />
+                {theme}
+              </li>
+              <li>
+                <Icon name="mail" />
                 {creatorEmail}
-            </li>
-          </ul>
-          <Divider />
-          
-          
-          
-          
-          <div className="membres--container">
-            <div className="membres--title">
-              <h3>Les membres du groupe :</h3>
-            </div>
-            {/* <div className="membres--left"> */}
-            <div className="membres--grid">
-              {membersData.map((member) => (
-              
-              <Link to={`/profile/${member.user_id}`}>
-                <MemberCard memberName={member.first_name} />
-              </Link>
-              )
-              )}
+              </li>
+            </ul>
+            <Divider />
+
+            <div className="membres--container">
+              <div className="membres--title">
+                <h3>Les membres du groupe :</h3>
+              </div>
+              {/* <div className="membres--left"> */}
+              <div className="membres--grid">
+                {membersData.map((member) => (
+                  <Link to={`/profile/${member.user_id}`}>
+                    <MemberCard
+                      memberName={member.first_name}
+                      memberImage={member.image}
+                    />
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-        <button className="btn--register">
-          <h3 onClick={handleSubscribeButton}>JE M'INSCRIS A CE GROUPE</h3>
-        </button>
-      </section>) : ( <div className="countries--loader">
+
+          {amITheCreator ? (
+            <button className="btn--delete">
+              <h3 onClick={handleDeleteGroupButton}>SUPPRIMER LE GROUPE</h3>
+            </button>
+          ) : (
+            <button className="btn--register">
+              <h3 onClick={handleSubscribeButton}>JE M'INSCRIS A CE GROUPE</h3>
+            </button>
+          )}
+        </section>
+      ) : (
+        <div className="countries--loader">
           <Loader active inline="centered" />
-        </div>)}
-      
+        </div>
+      )}
     </>
   );
 };
