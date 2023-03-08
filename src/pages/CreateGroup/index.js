@@ -1,60 +1,17 @@
 import React, { useState, useEffect } from "react";
-
-import "./style.scss";
-
 import { Form, Loader, Message } from "semantic-ui-react";
 import { useNavigate, Link } from "react-router-dom";
+
 import axiosInstance from "../../api/axiosInstance";
-import axios from "axios";
+import {
+  countryOptions,
+  themeOptions,
+  languageOptions,
+} from "../../data/options";
+import "./style.scss";
 
 const CreateGroup = () => {
-  
   const [isGroupCreated, setIsGroupCreated] = useState(false);
-  
-  const ageOptions = [
-    { key: "ax", value: "ax", text: "18-25" },
-    { key: "ax", value: "ax", text: "25-40" },
-    { key: "al", value: "al", text: "40-60" },
-    { key: "al", value: "al", text: "60-80" },
-    { key: "al", value: "al", text: "(Aucune préférence)" },
-  ];
-  // const cityOptions = [
-  //   { key: "pa", value: "paris", text: "Paris" },
-  //   { key: "to", value: "tokyo", text: "Tokyo" },
-  //   { key: "sh", value: "shangai", text: "Shangai" },
-  //   { key: "ne", value: "newyork", text: "New York" },
-  // ];
-  const countryOptions = [
-    { key: "fr", value: "france", text: "France" },
-    { key: "ja", value: "japon", text: "Japon" },
-    { key: "th", value: "thaïlande", text: "Thaïlande" },
-    { key: "it", value: "italie", text: "Italie" },
-    { key: "tu", value: "turquie", text: "Turquie" },
-    { key: "ma", value: "maroc", text: "Maroc" },
-    { key: "us", value: "états-unis", text: "États-Unis" },
-    { key: "es", value: "espagne", text: "Espagne" },
-    { key: "me", value: "mexique", text: "Mexique" },
-    { key: "ch", value: "chine", text: "Chine" },
-  ];
-  const themeOptions = [
-    { key: "cu", value: "2", text: "Culturel" },
-    { key: "fe", value: "3", text: "Festif" },
-    { key: "sp", value: "4", text: "Sportif" },
-    { key: "fa", value: "1", text: "Farniente" },
-  ];
-  const languageOptions = [
-    { key: "fr", value: "af", text: "FR" },
-    { key: "en", value: "ax", text: "EN" },
-    { key: "es", value: "al", text: "Langue X" },
-    { key: "ax", value: "ax", text: "Langue X" },
-    { key: "al", value: "al", text: "Langue X" },
-    { key: "al", value: "al", text: "(sans préférence)" },
-  ];
-  // const genderOptions = [
-  //   { key: "al", value: "al", text: "Mixte" },
-  //   { key: "af", value: "af", text: "♂" },
-  //   { key: "ax", value: "ax", text: "♀️" },
-  // ];
 
   //contact cf phone/mail : je l'ai mis en commentaire, à voir à voir si on met l'email de l'utilisateur depuis le front ou si on ajoute le champ
 
@@ -73,7 +30,6 @@ const CreateGroup = () => {
     }
   }, []);
 
-
   const handleSubmit = (event) => {
     console.log(
       "submit",
@@ -89,9 +45,9 @@ const CreateGroup = () => {
       contact
     );
     event.preventDefault();
-    axios
+    axiosInstance
       .post(
-        "https://travelsquadb.up.railway.app/countries/groups",
+        "/countries/groups",
         {
           name: name,
           start: start,
@@ -107,8 +63,8 @@ const CreateGroup = () => {
       )
       .then((response) => {
         console.log(response);
-        if(response.status === 200) {
-        setIsGroupCreated(true);
+        if (response.status === 200) {
+          setIsGroupCreated(true);
         }
       })
       .catch((error) => {
@@ -116,17 +72,22 @@ const CreateGroup = () => {
       });
   };
 
-  // NAME : OK
   const [name, setName] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [language, setLanguage] = useState("");
+  const [content, setContent] = useState("");
+  const [maxMembers, setMaxMembers] = useState();
+  const [country, setCountry] = useState([]);
+  const [city, setCity] = useState("");
+  const [themeID, setThemeID] = useState();
+  const [contact, setContact] = useState("");
+  // CONTACT : OK mais ce n'est pas renseigné en back-end, à voir si on met simplement l'email de l'utilisateur depuis le front ou si on ajoute le champ
 
   const handleNameChange = (event) => {
     setName(event.target.value);
     console.log("name", name);
   };
-
-  // DEPARTURE & ARRIVAL DATES : OK
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
 
   const handleStartChange = (event, { value }) => {
     setStart(value);
@@ -138,53 +99,35 @@ const CreateGroup = () => {
     console.log("end", end);
   };
 
-  // LANGUAGE : OK (actuellement en input et pas en select)
-  const [language, setLanguage] = useState("");
-
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
     console.log("language", language);
   };
 
-  // CONTENT : OK
-  const [content, setContent] = useState("");
   const handleContentChange = (event) => {
     setContent(event.target.value);
     console.log("content", content);
   };
 
-  // MAX_MEMBERS : OK
-  const [maxMembers, setMaxMembers] = useState();
   const handlemaxMembersChange = (event) => {
     setMaxMembers(event.target.value);
     console.log("maxMembers", maxMembers);
   };
 
-  // COUNTRY : OK
-  const [country, setCountry] = useState([]);
   const handleCountryChange = (event, { value }) => {
     setCountry(value);
     console.log("country", country);
   };
-
-  // CITY : OK mais reste à voir si input libre ou si select, auquel cas il faudrait trouver comment afficher la ville uniquement
-  const [city, setCity] = useState("");
 
   const handleCityChange = (event, { value }) => {
     setCity(value);
     console.log("city", city);
   };
 
-  //THEME_ID : OK
-  const [themeID, setThemeID] = useState();
   const handleThemeIDChange = (event, { value }) => {
     setThemeID(value);
     console.log("themeID", themeID);
   };
-
-  // CONTACT : OK mais ce n'est pas renseigné en back-end, à voir si on met simplement l'email de l'utilisateur depuis le front ou si on ajoute le champ
-
-  const [contact, setContact] = useState("");
 
   const handleContactChange = (event) => {
     setContact(event.target.value);
@@ -259,8 +202,10 @@ const CreateGroup = () => {
                     placeholder="Paris, Tokyo, Cancún, ..."
                     value={city}
                     onChange={handleCityChange}
-                    min="2"
-                    max="64"
+                    minLength={2}
+                    maxLength={64}
+                    // min="2"
+                    // max="64"
                     required
                   />
                   <Form.Select
@@ -277,8 +222,10 @@ const CreateGroup = () => {
                     options={languageOptions}
                     value={language}
                     onChange={handleLanguageChange}
-                    min="3"
-                    max="64"
+                    // min="3"
+                    // max="64"
+                    minLength={3}
+                    maxLength={64}
                     required
                   />
                   <div>
@@ -302,20 +249,21 @@ const CreateGroup = () => {
                       min={tomorrowString}
                       required
                     />
+                    <Form.TextArea
+                      className="end"
+                      label="Décrivez votre voyage"
+                      placeholder="Décrivez votre voyage, envies, idées d'activités, le profil des gens avec qui vous aimeriez voyager, etc"
+                      id="story"
+                      name="story"
+                      rows="5"
+                      cols="33"
+                      // min="2"
+                      // max="1000"
+                      value={content}
+                      onChange={handleContentChange}
+                      required
+                    />
                   </div>
-                  <Form.TextArea
-                    className="end"
-                    label="Décrivez votre voyage"
-                    placeholder="Décrivez votre voyage, envies, idées d'activités, le profil des gens avec qui vous aimeriez voyager, etc"
-                    id="story"
-                    name="story"
-                    rows="5"
-                    cols="33"
-                    minLength={10}
-                    value={content}
-                    onChange={handleContentChange}
-                    required
-                  ></Form.TextArea>
                 </Form.Field>
               </Form.Group>
               {/* <textarea
@@ -355,7 +303,7 @@ const CreateGroup = () => {
                       <Message
                         success
                         header="Escouade créée avec succès !"
-                        content="Elle est désormais accessible dans la liste des escouades."
+                        content="Elle est désormais accessible dans la liste des escouades, cliquez ici pour y accéder."
                       />
                     </Link>
                   </Form>

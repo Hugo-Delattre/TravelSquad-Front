@@ -39,13 +39,8 @@ const Login = () => {
   return (
     <div id="log--container">
       <div id="left--side">
-        <div className="left--logo--side">
-          <NavLink to="/">
-            <h1>TravelSquad</h1>
-          </NavLink>
-        </div>
+       
         <div className="content--welcome--left">
-          <p>Au plaisir de vous revoir</p>
           <h1>BIENVENUE</h1>
           <i class="window minimize icon" size="big"></i>
           <p>

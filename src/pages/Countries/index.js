@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { Loader } from "semantic-ui-react";
 
 import CountryCard from "../../components/CountryCard";
-import GroupCard from "../../components/GroupCard";
 
 import "./style.scss";
 

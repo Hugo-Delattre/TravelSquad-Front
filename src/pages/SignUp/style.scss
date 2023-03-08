@@ -2,11 +2,10 @@
 
 .signup--container {
   display: flex;
-  margin-top: 150px;
+  // margin-top: 150px;
+  margin: 85px 0;
 }
 .signup--left {
-  
-  
   height: 600px;
   width: 900px;
   background-size: cover;
@@ -23,8 +22,9 @@
   flex-direction: column;
 
   overflow: scroll;
+  padding: 3.25rem 0;
   height: 600px;
-  width:700px;
+  width: 700px;
   align-items: center;
   border-radius: 0px 13px 13px 0px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -32,12 +32,6 @@
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.logo--left h1 {
-  text-align: left;
-  padding: 50px;
-  color: white;
-  
-}
 .left--content {
   padding: 25px;
 
@@ -50,20 +44,31 @@
     font-family: vars.$fontHeadersMontserrat;
   }
 }
-
+.signup--left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.left--content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .left--side h1 {
   padding: 50px;
   color: white;
 }
 .welcome--content {
-  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .title--right {
   align-items: center;
- 
 
   h1 {
     font-family: vars.$fontHeadersTiempos;
+    margin-bottom: 2rem;
   }
 }
 
@@ -73,7 +78,6 @@
   overflow: visible;
   text-align: center;
   align-self: center;
- 
 }
 .btn--right {
   margin-top: 23px;
@@ -98,7 +102,8 @@
 
 .window.minimize.icon {
   color: white;
-  font-size: 30px;
+  font-size: 20px;
+  margin-bottom: 2rem;
 }
 
 .ui.selection.dropdown {
@@ -120,18 +125,17 @@
   transition: box-shadow 0.1s ease, width 0.1s ease;
 }
 
-form{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-}
-.fields{
+form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.required.field{
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.required.field {
   margin: 8px;
 }
 .ui.textarea {
@@ -146,7 +150,6 @@ form{
     color: vars.$colorPrimaryHover;
   }
 }
-
 
 @media screen and (max-width: 1600px) {
   /* Ajouter le flex-wrap ici */

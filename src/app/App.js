@@ -1,6 +1,6 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 
 import Countries from "../pages/Countries";
 import Home from "../pages/Home";

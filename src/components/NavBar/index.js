@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Divider, Icon } from "semantic-ui-react";
+import { Button, Divider, Image } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import { accountService } from "../../_services/account.service";
+import "./style.scss";
 // import TravelSquad from "../../img/TravelSquad.svg";
 
-import "./style.scss";
-
 const NavBar = () => {
+  const [ProfileInfo, setProfileInfo] = useState("");
   let navigate = useNavigate();
   const logout = () => {
     accountService.logout();
     navigate("/");
   };
+  useEffect(() => {
+    accountService
+      .profile(ProfileInfo)
+      .then((res) => {
+        setProfileInfo(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <header>
       <nav id="header--nav">
@@ -38,12 +50,17 @@ const NavBar = () => {
           {accountService.isLogged() ? (
             <div>
               <NavLink to="/profile">
-               
-             
-              <Icon name="user circle " className="profile" size="huge" />
-               </NavLink>
+                {/* <img src={ProfileInfo.image} height="50px" alt="" /> */}
+                <Image
+                  className="nav--img"
+                  src={ProfileInfo.image}
+                  floated="left"
+                  size="tiny"
+                  circular
+                />
+              </NavLink>
               <Button primary onClick={logout}>
-              déconnexion 
+                déconnexion
               </Button>
             </div>
           ) : (

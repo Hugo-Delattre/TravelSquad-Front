@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams, Link } from "react-router-dom";
-import { getToken } from "../../_services/account.service";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import { Icon, Divider, Loader } from "semantic-ui-react";
-import { useNavigate } from "react-router-dom";
+
+import { getToken } from "../../_services/account.service";
 import {
   capitalizeFirstLetter,
   capitalizeFirstLetters,
   formatDate,
-  turnThemeIDintoThemeName,
+  lowerCaseFirstLetter,
 } from "../../utils/textFormat";
 import axiosInstance from "../../api/axiosInstance";
-import jwt_decode from "jwt-decode";
 import MemberCard from "../../components/MemberCard";
 import "./style.scss";
 
@@ -27,21 +26,18 @@ const Group = () => {
       Authorization: `Bearer ${jwt}`,
     },
   };
-  const decodedToken = jwt_decode(jwt);
-  console.log("decodedToken", decodedToken);
-  const id = decodedToken.userId;
-  console.log("userId", id);
 
   //Déclaration des états.
   const [isLoading, setIsLoading] = useState(true);
-  const [amIAMember, setAmIAMember] = useState(true);
-  const [amITheCreator, setAmITheCreator] = useState(true);
+  const [amIAMember, setAmIAMember] = useState(false);
+  const [amITheCreator, setAmITheCreator] = useState(false);
 
   const [groupInfo, setGroupInfo] = useState([]);
   const [membersData, setMembersData] = useState([]);
   const [membersCount, setMembersCount] = useState(1);
 
   const [creatorEmail, setCreatorEmail] = useState("");
+  const [creatorFirstName, setCreatorFirstName] = useState("");
   const [countryName, setCountryName] = useState("");
   const [content, setContent] = useState("");
   const [theme, setTheme] = useState("");
@@ -56,9 +52,16 @@ const Group = () => {
       axiosInstance
         .get(`/countries/groups/${params.id}`, headers)
         .then((response) => {
-          setGroupInfo(response.data.oneGroup);
+          //Récupération de notre userID.
+          const decodedToken = jwt_decode(jwt);
+          const myID = decodedToken.userId;
+          console.log("userId", myID);
+
           setMembersCount(response.data.numberOfMembers[0].row_count);
           setCreatorEmail(response.data.oneGroup.creator_email);
+          setCreatorFirstName(
+            response.data.oneGroup.creator_name.split(" ")[0]
+          );
           setMembersData(response.data.oneGroup.members);
           console.log("membersData", response.data.oneGroup.members);
           console.log("response.data", response.data);
@@ -75,9 +78,24 @@ const Group = () => {
           setContent(capitalizeFirstLetter(response.data.oneGroup.content));
           setDescription(capitalizeFirstLetter(response.data.oneGroup.content));
           setTitle(capitalizeFirstLetter(response.data.oneGroup.name));
+          setGroupInfo(response.data.oneGroup);
 
-          console.log("membersData", membersData);
-          // setAmIAMember()
+          //setAmIAMember
+          const idMemberComparison = response.data.oneGroup.members.some(
+            (member) => member.user_id === myID
+          );
+          if (idMemberComparison === true) {
+            setAmIAMember(true);
+          }
+
+          // setAmITheCreator
+          const idCreatorComparison =
+            response.data.oneGroup.members[0].user_id === myID;
+          if (idCreatorComparison) {
+            setAmITheCreator(true);
+          } else if (!idCreatorComparison) {
+            setAmITheCreator(false);
+          }
 
           setIsLoading(false);
         })
@@ -96,25 +114,30 @@ const Group = () => {
     console.log("jwt", jwt);
     axiosInstance
       .post(url, data, headers)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+        window.location.reload();
+      })
       .catch((error) => console.error(error));
   };
 
   const handleDeleteGroupButton = () => {
     console.log("début de suppression", params.id);
-    const jwt = localStorage.getItem("token");
-    const headers = {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    };
     axiosInstance
-    .delete(`/countries/groups/${params.id}`, headers)
-    .then((res) => console.log(res.data))
-    .catch((error) => console.error(error));
-    // const url = ;
-      // .get("/countries")
-      // .delete(`/countries/groups/${params.id}`, headers)
+      .delete(`/countries/groups/${params.id}`, headers)
+      .then((res) =>
+        navigate(`/countries/${lowerCaseFirstLetter(countryName)}`)
+      )
+      .catch((error) => console.error(error));
+  };
+
+  const handleSendMail = () => {
+    const email = creatorEmail;
+    const object = "Je souhaite rejoindre votre escouade"
+    // const body = `Bonjour ${creatorFirstName}, (Renseignez ici votre message)`;
+    const body = "";
+    window.location.href =
+      "mailto:" + email + "?subject=" + object + "&body=" + body;
   };
 
   return (
@@ -178,15 +201,38 @@ const Group = () => {
             </div>
           </div>
 
-          {amITheCreator ? (
+          {amITheCreator && (
             <button className="btn--delete">
-              <h3 onClick={handleDeleteGroupButton}>SUPPRIMER LE GROUPE</h3>
+              <h3 onClick={handleDeleteGroupButton}>
+                <Icon name="trash alternate outline" />
+                {/* SUPPRIMER LE GROUPE */}
+              </h3>
             </button>
-          ) : (
+          )}
+
+          {!amIAMember && !amITheCreator && (
             <button className="btn--register">
               <h3 onClick={handleSubscribeButton}>JE M'INSCRIS A CE GROUPE</h3>
             </button>
           )}
+
+          {amIAMember && !amITheCreator && (
+            <button onClick={handleSendMail} className="btn--joined">
+              <h3>
+                Vous faites partie de cette escouade <span>&#128293;</span>{" "}
+                <br /> Cliquez ici pour contacter {creatorFirstName}, qui a créé
+                ce groupe.
+              </h3>
+            </button>
+          )}
+
+          {/* {amITheCreator ? (
+            <button className="btn--delete">
+              <h3 onClick={handleDeleteGroupButton}>
+                SUPPRIMER LE GROUPE
+              </h3>
+            </button>
+          )} */}
         </section>
       ) : (
         <div className="countries--loader">
