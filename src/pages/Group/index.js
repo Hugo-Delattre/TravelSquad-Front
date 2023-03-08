@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
-import { getToken } from "../../_services/account.service"
+import { getToken } from "../../_services/account.service";
 import { Icon, Divider, Loader } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,12 +15,11 @@ import jwt_decode from "jwt-decode";
 import MemberCard from "../../components/MemberCard";
 import "./style.scss";
 
-
 const Group = () => {
   //Déclaration des hooks permettant la redirection et la récupération de l'id en URL.
   const navigate = useNavigate();
   const params = useParams();
-  
+
   //Récupération du jeton d'authentification.
   const jwt = localStorage.getItem("token");
   const headers = {
@@ -37,12 +36,12 @@ const Group = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [amIAMember, setAmIAMember] = useState(true);
   const [amITheCreator, setAmITheCreator] = useState(true);
-  
+
   const [groupInfo, setGroupInfo] = useState([]);
-  const [membersData, setMembersData] = useState([]); 
+  const [membersData, setMembersData] = useState([]);
   const [membersCount, setMembersCount] = useState(1);
-   
-  const [creatorEmail, setCreatorEmail] = useState(""); 
+
+  const [creatorEmail, setCreatorEmail] = useState("");
   const [countryName, setCountryName] = useState("");
   const [content, setContent] = useState("");
   const [theme, setTheme] = useState("");
@@ -50,41 +49,46 @@ const Group = () => {
   const [spokenLanguage, setSpokenLanguage] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
-  
-  
-   // Accéder aux infos du groupe si le jwt est truthy. Sinon, rediriger vers la page de login. 
+
+  // Accéder aux infos du groupe si le jwt est truthy. Sinon, rediriger vers la page de login.
   useEffect(() => {
     if (jwt) {
-    axiosInstance
-      .get(`/countries/groups/${params.id}`, headers)
-      .then((response) => {
-        setGroupInfo(response.data.oneGroup);
-        setMembersCount(response.data.numberOfMembers[0].row_count); 
-        setCreatorEmail(response.data.oneGroup.creator_email);
-        setMembersData(response.data.oneGroup.members);
-        console.log("membersData", response.data.oneGroup.members);
-        console.log("response.data", response.data);
-        setCountryName(capitalizeFirstLetter(capitalizeFirstLetters(response.data.oneGroup.country)));
-        setTheme(capitalizeFirstLetter(response.data.oneGroup.theme));
-        setCityName(capitalizeFirstLetter(response.data.oneGroup.city));
-        setSpokenLanguage(capitalizeFirstLetter(response.data.oneGroup.language));
-        setContent(capitalizeFirstLetter(response.data.oneGroup.content));
-        setDescription(capitalizeFirstLetter(response.data.oneGroup.content));
-        setTitle(capitalizeFirstLetter(response.data.oneGroup.name))
-        
-        console.log("membersData", membersData);
-        // setAmIAMember()
-        
-        
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    } else { navigate("/login") }
+      axiosInstance
+        .get(`/countries/groups/${params.id}`, headers)
+        .then((response) => {
+          setGroupInfo(response.data.oneGroup);
+          setMembersCount(response.data.numberOfMembers[0].row_count);
+          setCreatorEmail(response.data.oneGroup.creator_email);
+          setMembersData(response.data.oneGroup.members);
+          console.log("membersData", response.data.oneGroup.members);
+          console.log("response.data", response.data);
+          setCountryName(
+            capitalizeFirstLetter(
+              capitalizeFirstLetters(response.data.oneGroup.country)
+            )
+          );
+          setTheme(capitalizeFirstLetter(response.data.oneGroup.theme));
+          setCityName(capitalizeFirstLetter(response.data.oneGroup.city));
+          setSpokenLanguage(
+            capitalizeFirstLetter(response.data.oneGroup.language)
+          );
+          setContent(capitalizeFirstLetter(response.data.oneGroup.content));
+          setDescription(capitalizeFirstLetter(response.data.oneGroup.content));
+          setTitle(capitalizeFirstLetter(response.data.oneGroup.name));
+
+          console.log("membersData", membersData);
+          // setAmIAMember()
+
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      navigate("/login");
+    }
   }, []);
 
-  
   // Inscription du membre au groupe (à empêcher si le groupe est plein)
   const handleSubscribeButton = () => {
     const data = {}; //userId non requis en data car présent dans le JWT
@@ -97,9 +101,21 @@ const Group = () => {
   };
 
   const handleDeleteGroupButton = () => {
-    const url = `/countries/groups/${params.id}/add`;
-    axiosInstance.post
-  }
+    console.log("début de suppression", params.id);
+    const jwt = localStorage.getItem("token");
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    };
+    axiosInstance
+    .delete(`/countries/groups/${params.id}`, headers)
+    .then((res) => console.log(res.data))
+    .catch((error) => console.error(error));
+    // const url = ;
+      // .get("/countries")
+      // .delete(`/countries/groups/${params.id}`, headers)
+  };
 
   return (
     <>

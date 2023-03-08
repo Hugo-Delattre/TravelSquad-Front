@@ -5,7 +5,10 @@ import { accountService } from "../../_services/account.service";
 import axiosInstance from "../../api/axiosInstance";
 
 const Profile = () => {
-  const [profileData, setprofileData] = useState({});
+  const [profileData, setprofileData] = useState({
+    firstName:"",
+  });
+  const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -21,17 +24,12 @@ const Profile = () => {
       });
   }, []);
 
-
-
-const handleUsernameChange=(e)=>{
-  e.preventDefault()
-  setprofileData({
-    ...profileData,
-    firstName: e.target.value
-  });
-}
-
-
+  const handleUsernameChange = event => {
+    setprofileData({
+      ...profileData,
+      firstName: event.target.value
+    });
+  };
 
   const handleProfileUpdate = (e) => {
   e.preventDefault()
@@ -43,7 +41,8 @@ const handleUsernameChange=(e)=>{
         },
       })
       .then((res) => {
-       
+        
+       console.log("modification reussi")
         console.log(res.data)
       })
       .catch((error) => {
@@ -63,17 +62,15 @@ const handleUsernameChange=(e)=>{
             className="shadow"
           />
           <div>
-            <form onSubmit={handleProfileUpdate}>
-            <input
-              type="text"
-              placeholder="changer de nom"
-              value={profileData.firstName}
-          onChange={handleUsernameChange}
-            />
-            <button type="submit">
-              Edit
-            </button>
-            </form>
+            
+          <form onSubmit={handleProfileUpdate}>
+        <label>
+          Nom d'utilisateur :
+          <input type="text" value={profileData.firstName} onChange={handleUsernameChange} />
+        </label>
+        <button type="submit" >Enregistrer</button>
+      </form>
+      
 
 
             <h1>{profileData.firstName}</h1>
