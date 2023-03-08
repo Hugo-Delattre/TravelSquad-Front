@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileGroupCard from "../../../components/ProfileGroupCard";
 
-const ProfileSection2 = () => {
+const GroupsProfile = () => {
   return (
     <section id="profile--section2">
       <h1>Groupes</h1>
@@ -11,4 +11,4 @@ const ProfileSection2 = () => {
   );
 };
 
-export default ProfileSection2;
+export default GroupsProfile;

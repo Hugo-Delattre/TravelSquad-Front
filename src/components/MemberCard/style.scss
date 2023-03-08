@@ -1,0 +1,36 @@
+.membres--grid {
+  display: flex;
+  flex-wrap: wrap;
+  // grid-template-columns: repeat(3, 1fr);
+  // flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 2%;
+
+  .membre {
+    display: flex;
+    justify-content: center;
+    border: solid 1px #d6d6d6;
+    padding: 10px;
+    display: flex;
+    border-radius: 12px;
+    align-items: center;
+    // align-items: center;
+    width: 100%;
+    height: 4rem;
+    // justify-content: space-around;
+    transition: all 0.2s;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+ 
+
+  .membre--name {
+    font-size: 17px;
+    margin: 8px;
+    // padding: 20%;
+  }
+}

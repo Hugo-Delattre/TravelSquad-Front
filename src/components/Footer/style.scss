@@ -15,10 +15,23 @@
   animation: myAnim 1s ease 0s 1 normal forwards;
   flex-direction: column;
   text-align: left;
+  
+  p {
+    
+  }
 }
 
 .footer--list {
   display: flex;
   flex-direction: column;
   text-align: end;
+}
+
+@media (max-width: 1000px) {
+.footer--title__slogan {
+
+  p {
+    display: none;
+  }
+}
 }

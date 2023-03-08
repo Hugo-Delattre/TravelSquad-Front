@@ -1,58 +1,31 @@
 // import React, { useEffect, useState } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
+import { useParams } from "react-router-dom";
+import {
+  capitalizeFirstLetter,
+  formatDate,
+  turnThemeIDintoThemeName,
+} from "../../utils/textFormat";
 
 import axios from "axios";
-import { useState } from "react";
 
 const axiosInstance = axios.create({
   baseURL: "https://travelsquadb.up.railway.app/",
 });
 
-const GroupCard = ({ groupData }) => {
-  const capitalizeFirstLetter = (countryName) => {
-    return countryName.charAt(0).toUpperCase() + countryName.slice(1);
-  };
-
-  const formatDate = (unformattedDate) => {
-    return unformattedDate.slice(0, 10);
-  };
-
-  console.log("groupData", groupData);
-
-  const turnThemeIDintoThemeName = (theme_id) => {
-    if (theme_id === 1) {
-      return "Farniente";
-    }
-    if (theme_id === 2) {
-      return "Culturel";
-    }
-    if (theme_id === 3) {
-      return "Festif";
-    }
-    if (theme_id === 4) {
-      return "Sportif";
-    }
-  };
-  
+const GroupCard = ({ groupData, imgURL }) => {
   const [createInfo, setUserInfo] = useState("");
-  
+
   const turnCreatorIdintoUserName = (creator_id) => {
-    // faire une requête paramétrée vers l'utilisateur creator_id
     axiosInstance.get(`/profile/${creator_id}`).then();
-    
-  }
-  
-  
+  };
 
   return (
     <div className="groupCard--hoverEffect">
       <Card>
-        <Image
-          src="https://cdn.getyourguide.com/img/location/5ffeb392eb81e.jpeg/68.jpg"
-          wrapped
-          ui={false}
-        />
+        <Image src={imgURL} wrapped ui={false} />
         <Card.Content className="groupCard">
           <Card.Header>{capitalizeFirstLetter(groupData.name)}</Card.Header>
           <Card.Meta>
@@ -62,21 +35,28 @@ const GroupCard = ({ groupData }) => {
           </Card.Meta>
           <Card.Description className="groupCard--description">
             <p>
-              • <strong>Ville :</strong> {capitalizeFirstLetter(groupData.city)}{" "}
+              • <strong>Ville :</strong> {capitalizeFirstLetter(groupData.city)}
             </p>
             <p>
-              • <strong>Langue :</strong> {capitalizeFirstLetter(groupData.language)}{" "}
+              • <strong>Langue :</strong>{" "}
+              {capitalizeFirstLetter(groupData.language)}{" "}
             </p>
-            <p>• <strong>Thème :</strong> {turnThemeIDintoThemeName(groupData.theme_id)}</p>
+            <p>
+              • <strong>Thème :</strong>{" "}
+              {turnThemeIDintoThemeName(groupData.theme_id)}
+            </p>
           </Card.Description>
         </Card.Content>
         <Card.Content>
           <div className="groupCard--bottomLine">
-            <p>
+            {/* <p>
               <Icon name="user circle" />
               Créateur du groupe
+            </p> */}
+            {/* <p>? / {groupData.max_members}</p> */}
+            <p className="date">
+              De 2 à {groupData.max_members} Pers. - X places restantes
             </p>
-            <p>?/{groupData.max_members}</p>
           </div>
         </Card.Content>
       </Card>

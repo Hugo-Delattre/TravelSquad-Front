@@ -8,11 +8,11 @@ import { accountService } from "../../_services/account.service";
 import "./style.scss";
 
 const NavBar = () => {
-let navigate=useNavigate()
-  const logout=()=>{
-    accountService.logout()
-    navigate('/')
-  }
+  let navigate = useNavigate();
+  const logout = () => {
+    accountService.logout();
+    navigate("/");
+  };
   return (
     <header>
       <nav id="header--nav">
@@ -35,22 +35,27 @@ let navigate=useNavigate()
           </ul>
         </div>
         <div className="log--btn">
-
-          {accountService.isLogged() ?
-          <div>
-           <Icon name="user circle " className="profile" size="huge" />
-          
-              <Button primary onClick={logout}>déconnexion</Button>
-           </div>:
+          {accountService.isLogged() ? (
             <div>
-            <NavLink to="/login">
-            <Button>Se connecter</Button>
-          </NavLink>
-          <NavLink to="/signup">
-            <Button primary>S'inscrire</Button>
-          </NavLink> </div>}
-
-          
+              <NavLink to="/profile">
+               
+             
+              <Icon name="user circle " className="profile" size="huge" />
+               </NavLink>
+              <Button primary onClick={logout}>
+              déconnexion 
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <NavLink to="/login">
+                <Button>Se connecter</Button>
+              </NavLink>
+              <NavLink to="/signup">
+                <Button primary>S'inscrire</Button>
+              </NavLink>{" "}
+            </div>
+          )}
         </div>
       </nav>
       <Divider />

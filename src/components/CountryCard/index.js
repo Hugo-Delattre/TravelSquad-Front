@@ -1,38 +1,56 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
 
-const CountryCard = ({ countryData }) => {
+import {
+  capitalizeFirstLetter,
+  capitalizeFirstLetters,
+} from "../../utils/textFormat";
+
+import "./style.scss";
+
+import axiosInstance from "../../api/axiosInstance";
+
+const CountryCard = ({ countryData, groupMembersCount }) => {
+
   const countryName = countryData.name;
+  
+  const [squadsNumber, setSquadsNumber] = useState(0);
+  
+  useEffect(() => {
+    const countryName = countryData.name;
 
-  const capitalizeFirstLetter = (countryName) => {
-    return countryName.charAt(0).toUpperCase() + countryName.slice(1);
-  };
+    const numberData = groupMembersCount.filter((element) => {
+      return element.country === countryData.name;
+    });
 
-  console.log(countryData);
+    setSquadsNumber(numberData[0].row_count);
+    // console.log("members", numberData[0].row_count);
+  }, []);
+  
+
 
   return (
-    <div className="groupCard--hoverEffect">
-      <Card>
-        <Image
-          // src="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg"
-          src={countryData.img_url}
-          wrapped
-          ui={false}
-        />
-        <Card.Content>
-          <Card.Header>{capitalizeFirstLetter(countryName)}</Card.Header>
-          <Card.Meta></Card.Meta>
-
-          <Card.Description>{countryData.description}</Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <a href="*">
-            <Icon name="user" />
-            22 Escouades disponibles
-          </a>
-        </Card.Content>
-      </Card>
-    </div>
+    
+            <div className="groupCard--hoverEffect">
+        <Card>
+          <Image src={countryData.img_url} wrapped ui={false} />
+          <Card.Content>
+            <Card.Header>
+              {capitalizeFirstLetter(capitalizeFirstLetters(countryName))}
+            </Card.Header>
+            <Card.Meta></Card.Meta>
+            <Card.Description>{countryData.description}</Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <a href="*">
+              <Icon name="user" />
+              { squadsNumber > 1 ? `${squadsNumber} escouades disponibles` : `${squadsNumber} escouade disponible` }
+            </a>
+          </Card.Content>
+        </Card>
+            </div>
+  
   );
 };
 

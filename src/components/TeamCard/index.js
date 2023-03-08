@@ -8,7 +8,7 @@ const TeamCard = ({teamInfo}) => {
   return (
     <div className="teamCard">
       <Image className="shadow"
-        src="https://i.pinimg.com/564x/f8/c5/d0/f8c5d06275fdc056a2b2f97a962c3dad.jpg"
+        src={teamInfo.url}
         size="small"
         circular
       />

@@ -1,19 +1,13 @@
-import axios from "axios"
-
+import axios from "axios";
 const axiosInstance = axios.create({
     baseURL: "https://travelsquadb.up.railway.app/",
   });
 
-let getAllUsers = (token) => {
-   return axiosInstance.get("/login")
+let getAllUsers=()=>{
+    return  axiosInstance("/myprofile")
 }
 
 
-
-
-
-
-// Déclaration des serivces pour import
-export const userService = {
-     getAllUsers,
+export const userService={
+    getAllUsers,
 }

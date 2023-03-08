@@ -10,18 +10,17 @@ import CreateGroup from "../../pages/CreateGroup";
 import Login from "../../pages/Login";
 import SignUp from "../../pages/SignUp";
 import Profile from "../../pages/Profile";
+import OtherUserProfile from "../../pages/otherUserProfile";
 import Team from "../../pages/Team";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 import NotFound from "../../pages/NotFound";
-
-
+ 
 const App = () => {
-
 
   return (
     <div className="App">
-      <NavBar  />
+      <NavBar />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -29,24 +28,25 @@ const App = () => {
           path="/countries"
           element={<Countries />}
         />
-        <Route path="/login" element={<Login  />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/countries/:countryName"
-          element={<Groups  />}
+          element={<Groups />}
         />
         <Route
-          path="/countries/group"
-          element={<Group  />}
+          path="/countries/group/:id"
+          element={<Group />}
         />
         <Route
           path="/create-group"
-          element={<CreateGroup  />}
+          element={<CreateGroup />}
         />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/team" element={<Team  />} />
+        <Route path="/profile/:id" element={<OtherUserProfile />} />
+        <Route path="/team" element={<Team />} />
         <Route
           path="/login"
-          element={<Login  />}
+          element={<Login />}
         />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />

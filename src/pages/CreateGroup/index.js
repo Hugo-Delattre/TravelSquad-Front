@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./style.scss";
 
-import { Form, Input, Select, Button, TextArea } from "semantic-ui-react";
-
+import { Form, Input, Select, Button, TextArea, Loader} from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-
 
 const CreateGroup = ({ isLoggedIn }) => {
   const ageOptions = [
@@ -24,13 +22,14 @@ const CreateGroup = ({ isLoggedIn }) => {
   // ];
   const countryOptions = [
     { key: "fr", value: "france", text: "France" },
-    { key: "es", value: "espagne", text: "Espagne" },
-    { key: "us", value: "états-unis", text: "États-Unis" },
     { key: "ja", value: "japon", text: "Japon" },
-    { key: "me", value: "mexique", text: "Mexique" },
     { key: "th", value: "thaïlande", text: "Thaïlande" },
-    { key: "ma", value: "maroc", text: "Maroc" },
+    { key: "it", value: "italie", text: "Italie" },
     { key: "tu", value: "turquie", text: "Turquie" },
+    { key: "ma", value: "maroc", text: "Maroc" },
+    { key: "us", value: "états-unis", text: "États-Unis" },
+    { key: "es", value: "espagne", text: "Espagne" },
+    { key: "me", value: "mexique", text: "Mexique" },
     { key: "ch", value: "chine", text: "Chine" },
   ];
   const themeOptions = [
@@ -53,9 +52,25 @@ const CreateGroup = ({ isLoggedIn }) => {
   //   { key: "ax", value: "ax", text: "♀️" },
   // ];
 
-
   //contact cf phone/mail : je l'ai mis en commentaire, à voir à voir si on met l'email de l'utilisateur depuis le front ou si on ajoute le champ
 
+  
+  
+  //Récupérer le jeton d'authentification
+  const jwt = localStorage.getItem("token");
+  const headers = {
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  };
+  const navigate = useNavigate();
+    useEffect(() => {if (!jwt) {
+    navigate("/login");
+  } }, []);
+  
+  
+  
+  
   const handleSubmit = (event) => {
     console.log(
       "submit",
@@ -82,8 +97,7 @@ const CreateGroup = ({ isLoggedIn }) => {
         country: country,
         city: city,
         theme_id: themeID,
-        creator_id: 1,
-      })
+      }, headers)
       .then((response) => {
         console.log(response);
       })
@@ -92,7 +106,7 @@ const CreateGroup = ({ isLoggedIn }) => {
       });
   };
 
-  // NAME : OK
+  // NAME
   const [name, setName] = useState("");
 
   const handleNameChange = (event) => {
@@ -100,7 +114,7 @@ const CreateGroup = ({ isLoggedIn }) => {
     console.log("name", name);
   };
 
-  // DEPARTURE & ARRIVAL DATES : OK
+  // DEPARTURE & ARRIVAL DATES 
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
 
@@ -114,7 +128,7 @@ const CreateGroup = ({ isLoggedIn }) => {
     console.log("end", end);
   };
 
-  // LANGUAGE : OK (actuellement en input et pas en select)
+  // LANGUAGE : OK
   const [language, setLanguage] = useState("");
 
   const handleLanguageChange = (event) => {
@@ -122,28 +136,28 @@ const CreateGroup = ({ isLoggedIn }) => {
     console.log("language", language);
   };
 
-  // CONTENT : OK
+  // CONTENT 
   const [content, setContent] = useState("");
   const handleContentChange = (event) => {
     setContent(event.target.value);
     console.log("content", content);
   };
 
-  // MAX_MEMBERS : OK
+  // MAX_MEMBERS 
   const [maxMembers, setMaxMembers] = useState();
   const handlemaxMembersChange = (event) => {
     setMaxMembers(event.target.value);
     console.log("maxMembers", maxMembers);
   };
 
-  // COUNTRY : OK
+  // COUNTRY 
   const [country, setCountry] = useState([]);
   const handleCountryChange = (event, { value }) => {
     setCountry(value);
     console.log("country", country);
   };
 
-  // CITY : OK mais reste à voir si input libre ou si select, auquel cas il faudrait trouver comment afficher la ville uniquement
+  // CITY
   const [city, setCity] = useState("");
 
   const handleCityChange = (event, { value }) => {
@@ -151,29 +165,28 @@ const CreateGroup = ({ isLoggedIn }) => {
     console.log("city", city);
   };
 
-  //THEME_ID : OK
+  //THEME_ID 
   const [themeID, setThemeID] = useState();
   const handleThemeIDChange = (event, { value }) => {
     setThemeID(value);
     console.log("themeID", themeID);
   };
 
-  // CONTACT : OK mais ce n'est pas renseigné en back-end, à voir si on met simplement l'email de l'utilisateur depuis le front ou si on ajoute le champ
-
+  // CONTACT
   const [contact, setContact] = useState("");
 
   const handleContactChange = (event) => {
     setContact(event.target.value);
     console.log("contact", contact);
   };
-  
+
   // Variable de la date minimale pour l'input date de départ
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const tomorrowString = tomorrow.toISOString().split("T")[0];
 
   return (
-    <>
+    <>{jwt ? (
       <div className="createGroup--pageContainer">
         <div>
           <h1>Envie de former votre propre équipe ?</h1>
@@ -184,7 +197,7 @@ const CreateGroup = ({ isLoggedIn }) => {
         </div>
 
         <section id="CreateGroup--section1">
-          <h2>Informations principales concernant le voyage :</h2>
+          {/* <h2>Informations principales concernant le voyage :</h2> */}
           <Form onSubmit={handleSubmit} className="CreateGroup--Title">
             <Form.Group widths="equal">
               <Form.Field required>
@@ -216,59 +229,83 @@ const CreateGroup = ({ isLoggedIn }) => {
                   onChange={handlemaxMembersChange}
                   required
                 />
+
+                {/* <Select placeholder="Pays" options={CreateGroupePaysOptions} /> */}
+                <Form.Select
+                  // fluid
+                  label="Pays de destination"
+                  placeholder="France, Japon, Mexique, ..."
+                  options={countryOptions}
+                  value={country}
+                  onChange={handleCountryChange}
+                  required
+                />
+                <Form.Input
+                  fluid
+                  label="Ville de destination"
+                  // options={CreateGroupeCityOptions}
+                  placeholder="Paris, Tokyo, Cancún, ..."
+                  value={city}
+                  onChange={handleCityChange}
+                  min="2"
+                  max="64"
+                  required
+                />
+                <Form.Select
+                  label="Thème du voyage"
+                  placeholder="Culturel, sportif, ..."
+                  options={themeOptions}
+                  value={themeID}
+                  onChange={handleThemeIDChange}
+                  required
+                />
+                <Form.Input
+                  label="Langue(s) principale(s) du groupe"
+                  placeholder="Français, Anglais, ..."
+                  options={languageOptions}
+                  value={language}
+                  onChange={handleLanguageChange}
+                  min="3"
+                  max="64"
+                  required
+                />
+                <div>
+                  <Form.Input
+                    type="date"
+                    label="Date de début"
+                    id="date-departure-input"
+                    name="date"
+                    value={start}
+                    onChange={handleStartChange}
+                    min={tomorrowString} // minimal date is today date. toISOString() to convert date to ISO format then split() to extract the date without the hour.
+                    required
+                  />
+                  <Form.Input
+                    type="date"
+                    label="Date de fin"
+                    id="date-arrival-input"
+                    name="date"
+                    value={end}
+                    onChange={handleEndChange}
+                    min={tomorrowString}
+                    required
+                  />
+                </div>
+                <Form.TextArea
+                  className="end"
+                  label="Décrivez votre voyage"
+                  placeholder="Décrivez votre voyage, envies, idées d'activités, le profil des gens avec qui vous aimeriez voyager, etc"
+                  id="story"
+                  name="story"
+                  rows="5"
+                  cols="33"
+                  minLength={10}
+                  value={content}
+                  onChange={handleContentChange}
+                  required
+                ></Form.TextArea>
               </Form.Field>
-              {/* <Select placeholder="Pays" options={CreateGroupePaysOptions} /> */}
-              <Form.Select
-                // fluid
-                label="Pays de destination"
-                placeholder="France, Japon, Mexique, ..."
-                options={countryOptions}
-                value={country}
-                onChange={handleCountryChange}
-                required
-              />
-              <Form.Input
-                fluid
-                label="Ville de destination"
-                // options={CreateGroupeCityOptions}
-                placeholder="Paris, Tokyo, Cancún, ..."
-                value={city}
-                onChange={handleCityChange}
-                min="2"
-                max="64"
-                required
-              />
-              <Form.Select
-                label="Thème du voyage"
-                placeholder="Culturel, sportif, ..."
-                options={themeOptions}
-                value={themeID}
-                onChange={handleThemeIDChange}
-                required
-              />
-              <Form.Input
-                label="Langue(s) principale(s) du groupe"
-                placeholder="Français, Anglais, ..."
-                options={languageOptions}
-                value={language}
-                onChange={handleLanguageChange}
-                min="3"
-                max="64"
-                required
-              />
             </Form.Group>
-            <Form.TextArea
-              label="Décrivez votre voyage"
-              placeholder="Décrivez votre voyage, envies, idées d'activités, le profil des gens avec qui vous aimeriez voyager, etc"
-              id="story"
-              name="story"
-              rows="5"
-              cols="33"
-              minLength={10}
-              value={content}
-              onChange={handleContentChange}
-              required
-            ></Form.TextArea>
             {/* <textarea
               label="Décrivez votre voyage, idées d'activité, ambiance, etc"
               placeholder="Décrivez votre voyage, idées d'activité, ambiance, etc :"
@@ -295,36 +332,21 @@ const CreateGroup = ({ isLoggedIn }) => {
               options={GenderOptions}
             /> */}
 
-            <div id="CreateGroup--section2">
-              {/* <h2>Sélectionnez votre date prévue de départ et d'arrivée :</h2> */}
-              <Form.Input
-                type="date"
-                label="Date de début"
-                id="date-departure-input"
-                name="date"
-                value={start}
-                onChange={handleStartChange}
-                min={tomorrowString} // minimal date is today date. toISOString() to convert date to ISO format then split() to extract the date without the hour.
-                required
-              />
-              <Form.Input
-                type="date"
-                label="Date de fin"
-                id="date-arrival-input"
-                name="date"
-                value={end}
-                onChange={handleEndChange}
-                min={tomorrowString}
-                required
-              />
-            </div>
+            {/* <div id="CreateGroup--section2"> */}
+            {/* <h2>Sélectionnez votre date prévue de départ et d'arrivée :</h2> */}
+            {/* </div> */}
             <button type="submit" color="blue" className="btn--createGroup">
               CRÉER LE GROUPE
             </button>
+            {/* <Button type="submit" color="blue" className="btn--createGroup">
+              CRÉER LE GROUPE
+            </Button> */}
             {/* Remplacer Button par button pour récup l'autre style de bouton */}
           </Form>
         </section>
-      </div>
+      </div>) : <div className="countries--loader">
+          <Loader active inline="centered" />
+        </div> }
     </>
   );
 };

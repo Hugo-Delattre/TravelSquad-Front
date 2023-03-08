@@ -1,42 +1,44 @@
-import "semantic-ui-css/semantic.min.css";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import "./style.scss";
 import React, { useState } from "react";
-import axios from "axios";
-
-import { Form, TextArea,Select } from "semantic-ui-react";
+import { accountService } from "../../_services/account.service";
+import axiosInstance from "../../api/axiosInstance";
+import { Form, TextArea,Select,Input } from "semantic-ui-react";
 const Signup = () => {
   const countryOptions = [
-    { key: "fr", value: "france", text: "France" },
-    { key: "es", value: "espagne", text: "Espagne" },
-    { key: "us", value: "états-unis", text: "États-Unis" },
-    { key: "ja", value: "japon", text: "Japon" },
-    { key: "me", value: "mexique", text: "Mexique" },
-    { key: "th", value: "thaïlande", text: "Thaïlande" },
-    { key: "ma", value: "maroc", text: "Maroc" },
-    { key: "tu", value: "turquie", text: "Turquie" },
-    { key: "ch", value: "chine", text: "Chine" },
+    { key: "fr", value: "Chinois Mandarin", text: "Chinois Mandarin" },
+    { key: "es", value: "L'espagnol", text: "L'espagnol" },
+    { key: "us", value: "L'anglais", text: "L'anglais" },
+    { key: "ja", value: "L'hindi", text: "L'hindi" },
+    { key: "me", value: "L'arabe", text: "L'arabe" },
+    { key: "th", value: " bengali", text: " bengali" },
+    { key: "ma", value: "portugais", text: " portugais" },
+    { key: "tu", value: " russe ", text: " russe" },
+    { key: "ch", value: "japonais ", text: "japonais " },
+    { key: "ch", value: " français ", text: "français" },
   ];
+
   const Gender = [
     { key: 'h', text: 'homme', value: 'homme' },
     { key: 'f', text: 'femme', value: 'femme' },
     { key: 'a', text: 'autre', value: 'autre' },
   ]
-  const axiosInstance = axios.create({
-    baseURL: "https://travelsquadb.up.railway.app/",
-  });
+  let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-   axiosInstance.post('/profile',data)
+    
+    axiosInstance.post("/myprofile",data)
       .then((res) => {
-   
-        console.log(res.token);
+        accountService.saveToken(res.data.token)
+        navigate('/login', {replace: true} )
+         console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
-      },[data]);
-    console.log(data);
+      });
+       console.log(data);
   };
+
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -45,23 +47,28 @@ const Signup = () => {
     password: "",
     passwordConfirm: "",
     age: "",
+    image:"",
     country_of_origin:'',
     sex:'',
     spoken_language:'',
     content: "",
   });
-   const handleChangeCountry = (e, { value }) => {
+
+  const handleChangeCountry = (e, { value }) => {
     setData({ ...data, country_of_origin: value });
     console.log(value); // Afficher la valeur sélectionnée dans la console
   };
+
   const handleLanguageChange = (e, { value }) => {
     setData({ ...data, spoken_language: value });
     console.log(value); // Afficher la valeur sélectionnée dans la console
   };
+  
   const handleSexChange = (e, { value }) => {
     setData({ ...data, sex: value });
     console.log(value); // Afficher la valeur sélectionnée dans la console
   };
+
   return (
     <div className="signup--container">
       <div className="signup--left">
@@ -155,6 +162,7 @@ const Signup = () => {
                 required
                 onChange={(e) => setData({ ...data, age: e.target.value })}
               />
+    
               <Form.Select
                 options={countryOptions}
                 label="langue parler"
@@ -164,24 +172,37 @@ const Signup = () => {
                 onChange={handleLanguageChange}
                
               />
-
-               
-       <Form.Select label="Pays" required placeholder='Select your country' value={data.country_of_origin} options={countryOptions} onChange={handleChangeCountry} />
-              <TextArea
-                name="text"
-                value={data.content}
-                placeholder="Tell us more"
-                style={{ minWidth: 386 }}
-                onChange={(e) =>
-                  setData({ ...data, content: e.target.value })
-                }/>
-                <Form.Field
+              <Form.Field
             control={Select}
             label='sex'
             value={data.sex}
             options={Gender}
             placeholder='sex'
             onChange={handleSexChange}/>
+
+
+            <Form.Input type="url"
+            placeholder="https://"
+              label="Photo de profile"
+            value={data.image}
+            pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)(.jpg|.png|.gif)"
+            onChange={(e) => setData({ ...data, image: e.target.value })}
+       placeholder="https://example.com"
+       pattern="https://.*" size="30"
+       required />
+             
+               
+       <Form.Select label="Pays" required placeholder='Select your country' value={data.country_of_origin} options={countryOptions} onChange={handleChangeCountry} />
+              <Form.TextArea
+                name="text"
+                label="A propos de vous"
+                value={data.content}
+                placeholder="...."
+                style={{ minWidth: 386 }}
+                onChange={(e) =>
+                  setData({ ...data, content: e.target.value })
+                }/>
+                
           
    
               

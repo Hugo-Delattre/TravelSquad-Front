@@ -1,49 +1,42 @@
-// import React from "react";
 import { Divider } from "semantic-ui-react";
 import { ActionFunction } from "react-router-dom";
-import axios from "axios";
-// import ProfileSection1 from "./Section1";
 import React, { useState, useEffect } from "react";
-import { Image, Flag, } from "semantic-ui-react";
-import { useParams } from "react-router-dom";
+import { Image, Flag } from "semantic-ui-react";
+import { useParams, Link } from "react-router-dom";
 import { accountService } from "../../_services/account.service";
-import "./style.scss";
-import GroupsProfile from "./groups";
-import ExperienceProfile from "./profile";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
+// import GroupsProfile from "./groups";
+// import ExperienceProfile from "./profile";
+// import "./style.scss";
 
-const Profile = () => {
+const OtherUserProfile = () => {
+  
+  const navigate = useNavigate();
+  const params = useParams();
+  console.log("params.id", params.id);
+  
+   //Récupération du jeton d'authentification.
+  const jwt = localStorage.getItem("token");
+  const headers = {
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  };
 
-const [profileData, setprofileData] = useState([]);
-const [newValue, setnewValue] = useState({
-  caca:"",
-});
-
+const [profileData, setprofileData] = useState("");
 
   useEffect(() => {
-    accountService
-      .profile()
+    axiosInstance
+      .get(`/profile/${params.id}`, headers) //10 à remplacer ici par le userID qu'on va pouvoir décoder à partir du JWT.
       .then((res) => {
-        setprofileData(res.data.firstName);
-        console.log(res.data)
+        console.log(res.data);
+        setprofileData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
-const {id}=useParams()
-
-  const updateValue = ( id,newValue) => {
-    axiosInstance
-      .patch(`/myprofile/${id}`, newValue )
-      .then((res) => {
-      
-        setprofileData(newValue.caca);
-      })
-      .catch((error) => console.error(error));
-  };
-
 
 
   return (
@@ -52,9 +45,9 @@ const {id}=useParams()
     {/* sortir des composants ou renommer en + explicite */}
       {/* <ProfileSection1/> */}
       
-     
       
-      { <section id="profile--section1">
+      
+      <section id="profile--section1">
       <div className="profile--flex">
         <Image
           src={profileData.image}
@@ -63,12 +56,6 @@ const {id}=useParams()
           className="shadow"
         />
         <div>
-          
-        
-          <input type="text" value={newValue.caca} onChange={(e) => setnewValue({ ...newValue, caca: e.target.value })} />
-          
-          <button type="submit" onClick={updateValue}>edit</button>
-
           <h1>{profileData.firstName}</h1>
           <p>{profileData.content}</p>
           <ul className="profile--tag">
@@ -84,7 +71,7 @@ const {id}=useParams()
         </div>
       </div>
     </section>
-   }
+  
       
       
       {/* <Divider />
@@ -96,4 +83,4 @@ const {id}=useParams()
   );
 };
 
-export default Profile;
+export default OtherUserProfile;

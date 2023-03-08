@@ -40,6 +40,29 @@ img {
   max-width: 100%;
 }
 
-// @media (max-width: 500px) {
+@media (max-width: 1670px) {
+}
 
-// }
+@media (max-width: 1355px) {
+}
+
+@media (max-width: 1000px) {
+  html {
+    margin: 0 2rem;
+    font-size: 62.5%;
+  }
+
+  
+  body {
+    font-size: 1.6rem;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  
+  img {
+    max-width: 150%;
+  }
+}

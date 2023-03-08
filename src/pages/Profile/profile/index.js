@@ -1,7 +1,7 @@
 import React from "react";
 import ExperiencesCard from "../../../components/ExperienceCard";
 
-const ProfileSection3 = () => {
+const ExperienceProfile = () => {
   return (
     <section id="profile--section3">
       <h1>Expériences</h1>
@@ -12,4 +12,4 @@ const ProfileSection3 = () => {
   );
 };
 
-export default ProfileSection3;
+export default ExperienceProfile;

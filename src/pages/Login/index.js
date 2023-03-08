@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
-import { userService } from "../../_services/user.service";
+
 
 import { accountService } from "../../_services/account.service";
-import { useEffect, useState } from "react";
-import Profile from "../Profile";
+import {  useState } from "react";
+
 
 const Login = () => {
 
