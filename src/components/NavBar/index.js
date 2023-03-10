@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect  } from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Divider, Image } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import { accountService } from "../../_services/account.service";
+
 import "./style.scss";
 // import TravelSquad from "../../img/TravelSquad.svg";
 
 const NavBar = () => {
-  const [ProfileInfo, setProfileInfo] = useState("");
+  
+  const [ProfileInfo, setProfileInfo] = useState({});
+
+
   let navigate = useNavigate();
   const logout = () => {
     accountService.logout();
@@ -24,7 +28,7 @@ const NavBar = () => {
         console.log(err);
       });
   }, []);
-
+ 
   return (
     <header>
       <nav id="header--nav">
@@ -51,17 +55,15 @@ const NavBar = () => {
             <div>
               <NavLink to="/profile">
                 {/* <img src={ProfileInfo.image} height="50px" alt="" /> */}
-                <Image
-                  className="nav--img"
-                  src={ProfileInfo.image}
-                  floated="left"
-                  size="tiny"
-                  circular
-                />
+                <Image src={ProfileInfo.image} height="50px" alt="Profile" />
+                
+
+      
               </NavLink>
               <Button primary onClick={logout}>
                 déconnexion
               </Button>
+              
             </div>
           ) : (
             <div>

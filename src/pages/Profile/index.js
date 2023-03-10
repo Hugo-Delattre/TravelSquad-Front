@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "semantic-ui-react";
 import { Image, Form, Button } from "semantic-ui-react";
-
 import "./style.scss";
 import { accountService } from "../../_services/account.service";
 import axiosInstance from "../../api/axiosInstance";
 import { genderOptions } from "../../data/options";
+import { capitalizeFirstLetter } from "../../utils/textFormat";
 
-const Profile = () => {
+
+
+const Profile = ({ onProfileImageChange }) => {
+
+    
 
   const [profileData, setprofileData] = useState({
     firstName: "",
@@ -32,6 +36,7 @@ const Profile = () => {
       .profile()
       .then((res) => {
         setprofileData(res.data);
+      
         console.log(res.data);
       })
       .catch((err) => {
@@ -39,11 +44,11 @@ const Profile = () => {
       });
   
   }, []);
-
+ 
   const handleSexChange = (e, { value }) => {
     setprofileData({ ...profileData, sex: value });
   };
-
+ 
   const handleProfileUpdate = (e) => {
     e.preventDefault();
     const jwt = localStorage.getItem("token");
@@ -56,13 +61,14 @@ const Profile = () => {
       .then((res) => {
         console.log("Modification réussie");
         setIsEditing(false);
-  
-     
+      
       })
       .catch((error) => {
         setError(error);
       });
   };
+  
+
 
   return (
     <>
@@ -139,19 +145,19 @@ const Profile = () => {
                 </Button>
                 {/* <Button basic color="blue" onClick={() => setIsEditing(false)} >Annuler</Button> */}
                 {/* <Button basic onClick={() => setIsEditing(false)} >Annuler</Button> */}
-                <Button onClick={() => setIsEditing(false)} >Annuler</Button>
-               
+                <Button onClick={() => setIsEditing(false)}>Annuler</Button>
               </Form>
             ) : (
               <>
                 <h1>{profileData.firstName}</h1>
-                <p  className="edit-icon">
-                  <strong>
-                  <Icon
-                  onClick={() => setIsEditing(true)}
-                  name="paint brush"
-                />Modifier</strong></p>
-        
+                <p className="edit-icon">
+                  <strong onClick={() => setIsEditing(true)}>
+                    {/* <Icon name="paint brush" /> */}
+                    <Icon name="edit" />
+                    Modifier
+                  </strong>
+                </p>
+
                 <p>{profileData.content}</p>
                 <ul className="profile--tag">
                   <li>{profileData.age} ans</li>
@@ -161,7 +167,7 @@ const Profile = () => {
                   </li>
                   <li>
                     <Icon name="user" />
-                    {profileData.sex}
+                    {capitalizeFirstLetter(profileData.sex)}
                   </li>
                   <li> Langue(s) parlée(s) : {profileData.spoken_language}</li>
                   <li>

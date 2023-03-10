@@ -1,4 +1,4 @@
-import { Form, Icon } from "semantic-ui-react";
+import { Form, Icon, Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import "./style.scss";
@@ -22,7 +22,7 @@ const Login = () => {
     accountService.login(dataLogin)
       .then(res => {
         accountService.saveToken(res.data.token)  // Sauvegarde du token et envoi vers page d'accueil
-        navigate('/', {replace: true} )
+        navigate('/countries', {replace: true} )
      console.log(res)
       })
       .catch(err => {
@@ -83,7 +83,7 @@ const Login = () => {
               <p className="redirect--login">Pas encore membre ?</p>
             </NavLink>
 
-            <button className="log--submit" type="submit">
+            <button color="blue" className="log--submit" type="submit">
               Se connecter
             </button>
           </Form>

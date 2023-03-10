@@ -28,3 +28,15 @@ export const turnThemeIDintoThemeName = (theme_id) => {
     return "Sportif";
   }
 };
+
+export const turnThemeNameIntoThemeID = (theme) => {
+  if (theme === "farniente") {
+    return 1;
+  } else if (theme === "culturel") {
+    return 2;
+  } else if (theme === "festif") {
+    return 3;
+  } else if (theme === "sportif") {
+    return 4;
+  }
+};

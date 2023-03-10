@@ -29,7 +29,8 @@ const Footer = ({ isLoggedIn }) => {
           </NavLink>
 
           <NavLink className="animation--underline" to="/team">
-            Equipe & Contact
+            Equipe 
+            {/* & Contact */}
           </NavLink>
         </div>
       </footer>

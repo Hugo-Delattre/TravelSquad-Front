@@ -203,7 +203,6 @@ const CreateGroup = () => {
                     />
                     {/* <Select placeholder="Pays" options={CreateGroupePaysOptions} /> */}
                     <Form.Select
-                      // fluid
                       label="Pays de destination"
                       placeholder="France, Japon, Mexique, ..."
                       options={countryOptions}

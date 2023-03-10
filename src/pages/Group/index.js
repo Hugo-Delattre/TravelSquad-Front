@@ -9,6 +9,7 @@ import {
   capitalizeFirstLetters,
   formatDate,
   lowerCaseFirstLetter,
+  turnThemeNameIntoThemeID
 } from "../../utils/textFormat";
 import axiosInstance from "../../api/axiosInstance";
 import MemberCard from "../../components/MemberCard";
@@ -41,10 +42,14 @@ const Group = () => {
   const [countryName, setCountryName] = useState("");
   const [content, setContent] = useState("");
   const [theme, setTheme] = useState("");
+  const [themeID, setThemeID] = useState("");
   const [cityName, setCityName] = useState("");
   const [spokenLanguage, setSpokenLanguage] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+
+  const [myID, setMyID] = useState("");
+  const [groupID, setGroupID] = useState("");
 
   // Accéder aux infos du groupe si le jwt est truthy. Sinon, rediriger vers la page de login.
   useEffect(() => {
@@ -55,6 +60,7 @@ const Group = () => {
           //Récupération de notre userID.
           const decodedToken = jwt_decode(jwt);
           const myID = decodedToken.userId;
+          setMyID(myID);
           console.log("userId", myID);
 
           setMembersCount(response.data.numberOfMembers[0].row_count);
@@ -71,6 +77,7 @@ const Group = () => {
             )
           );
           setTheme(capitalizeFirstLetter(response.data.oneGroup.theme));
+          setThemeID(response.data.oneGroup.theme);
           setCityName(capitalizeFirstLetter(response.data.oneGroup.city));
           setSpokenLanguage(
             capitalizeFirstLetter(response.data.oneGroup.language)
@@ -79,6 +86,8 @@ const Group = () => {
           setDescription(capitalizeFirstLetter(response.data.oneGroup.content));
           setTitle(capitalizeFirstLetter(response.data.oneGroup.name));
           setGroupInfo(response.data.oneGroup);
+          setGroupID(response.data.oneGroup.id);
+          console.log("groupID", response.data.oneGroup.id);
 
           //setAmIAMember
           const idMemberComparison = response.data.oneGroup.members.some(
@@ -125,11 +134,32 @@ const Group = () => {
 
   const handleGroupUpdate = (e) => {
     e.preventDefault();
-    console.log(content);
+    console.log("tentative d'update");
+    console.log("groupInfoNew", {
+      city: groupInfo.city,
+      content: content,
+      country: groupInfo.country,
+      end: groupInfo.end,
+      language: groupInfo.language,
+      max_members: groupInfo.max_members,
+      name: title,
+      start: groupInfo.start,
+      theme_id: themeID,
+    });
     axiosInstance
       .patch(
         `countries/groups/${params.id}`,
-        { title: title, content: content },
+        {
+          city: groupInfo.city,
+          content: content,
+          country: groupInfo.country,
+          end: groupInfo.end,
+          language: groupInfo.language,
+          max_members: groupInfo.max_members,
+          name: title,
+          start: groupInfo.start,
+          theme_id: turnThemeNameIntoThemeID(themeID),
+        },
         headers
       )
       .then((res) => {
@@ -260,22 +290,22 @@ const Group = () => {
                   <Form onSubmit={handleGroupUpdate}>
                     {/* <h1>{title} </h1> */}
                     <Form.Input
-                      // label="Intitulé du voyage"
+                      label="Intitulé du voyage"
                       placeholder="Ex: Séjour à Tokyo, Escape Game à Paris, Springbreak à Cancún, ..."
                       value={title}
                       onChange={handleTitleChange}
                       minLength={2}
                       maxLength={64}
-                      required
                     />
 
                     <div id="desc--container">
                       <div className="desc--voyage">
-                        <h3 className="membres--title">
+                        {/* <h3 className="membres--title">
                           Présentation du voyage :
-                        </h3>
+                        </h3> */}
                         <Form.TextArea
                           className="end"
+                          label="Présentation du voyage"
                           placeholder="Décrivez votre voyage, envies, idées d'activités, le profil des gens avec qui vous aimeriez voyager, etc"
                           id="story"
                           name="story"
@@ -318,6 +348,7 @@ const Group = () => {
                           <li>
                             <Icon name="mail" />
                             {creatorEmail}
+                            {/* Votre email est modifiable depuis votre page de profil. */}
                           </li>
                         </>
                       </div>
@@ -330,18 +361,25 @@ const Group = () => {
                     <Divider />
                     <div className="membres--container">
                       <div className="membres--title">
-                        <h3>Les membres du groupe :</h3>
+                        <h3>Retirer un membre ?</h3>
                       </div>
                       {/* <div className="membres--left"> */}
                       <div className="membres--grid">
-                        {membersData.map((member) => (
-                          <Link to={`/profile/${member.user_id}`}>
-                            <MemberCard
-                              memberName={member.first_name}
-                              memberImage={member.image}
-                            />
-                          </Link>
-                        ))}
+                        {membersData.map((member) =>
+                          member.user_id !== myID ? (
+                            <div className="flex--delete">
+                              <MemberCard
+                                memberName={member.first_name}
+                                memberImage={member.image}
+                                user_id={member.user_id}
+                                isDeletable={true}
+                                groupID={groupID}
+                                jwt={jwt}
+                                headers={headers}
+                              />
+                            </div>
+                          ) : null
+                        )}
                       </div>
                     </div>
                   </Form>

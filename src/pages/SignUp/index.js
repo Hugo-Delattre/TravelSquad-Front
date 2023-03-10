@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Select } from "semantic-ui-react";
+import { Form, Select, Button } from "semantic-ui-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { accountService } from "../../_services/account.service";
@@ -34,7 +34,7 @@ const Signup = () => {
     firstName: "",
     lastName: "",
     email: "",
-    phone: "",
+    phone: " ",
     password: "",
     passwordConfirm: "",
     age: "",
@@ -108,16 +108,16 @@ const Signup = () => {
                 required
                 onChange={(e) => setData({ ...data, email: e.target.value })}
               />
-              <Form.Input
+               {/* <Form.Input
                 name="tel"
                 value={data.phone}
                 type="tel"
                 pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
                 label="Numéro de téléphone"
                 placeholder="0653768987"
-                required
+                // required
                 onChange={(e) => setData({ ...data, phone: e.target.value })}
-              />
+              />  */}
 
               <Form.Input
                 name="password"
@@ -149,7 +149,7 @@ const Signup = () => {
                 onChange={(e) => setData({ ...data, age: e.target.value })}
               />
               <Form.Input
-                label="Pays"
+                label="Pays de résidence"
                 required
                 placeholder="Pays de résidence"
                 value={data.country_of_origin}
@@ -164,8 +164,8 @@ const Signup = () => {
                 onChange={handleLanguageChange}
               /> */}
               <Form.Input
-                label="Langue(s) parlée(s)"
-                placeholder="Principale(s) langue(s) parlée(s)"
+                label="Langue principale"
+                placeholder="Principale langue parlée"
                 required
                 value={data.spoken_language}
                 onChange={handleLanguageChange}
@@ -179,7 +179,7 @@ const Signup = () => {
                 onChange={handleSexChange}
               />
 
-              <Form.Input
+              {/* <Form.Input
                 type="url"
                 // placeholder="https://"
                 label="Photo de profil"
@@ -189,7 +189,7 @@ const Signup = () => {
                 placeholder="https://example.jpg"
                 pattern="https://.*"
                 size="30"
-              />
+              /> */}
 
               {/* <Form.Select
                 label="Pays"
@@ -206,15 +206,16 @@ const Signup = () => {
                 value={data.content}
                 placeholder="Une description pour vous présenter auprès des autres utilisateurs."
                 style={{ minWidth: 386 }}
+                required
                 onChange={(e) => setData({ ...data, content: e.target.value })}
               />
 
               <NavLink to="/login">
-                <p className="deja--membre">Deja membre?</p>
+                <p className="deja--membre">Déja membre?</p>
               </NavLink>
-              <button type="submit" className="btn--right">
-                Click Here
-              </button>
+              <Button color="blue" type="submit" className="btn--right">
+                S'inscrire
+              </Button>
             </Form>
           </div>
         </div>

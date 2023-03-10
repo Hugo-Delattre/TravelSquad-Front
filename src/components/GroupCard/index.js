@@ -45,18 +45,21 @@ const GroupCard = ({ groupData, imgURL }) => {
               • <strong>Thème :</strong>{" "}
               {turnThemeIDintoThemeName(groupData.theme_id)}
             </p>
+            {/* <p>
+              • <strong>Capacité :</strong> De 2 à {groupData.max_members}
+            </p> */}
           </Card.Description>
         </Card.Content>
-        <Card.Content>
+        <Card.Content extra>
           <div className="groupCard--bottomLine">
-            {/* <p>
-              <Icon name="user circle" />
-              Créateur du groupe
-            </p> */}
+          
+            
+              {/* Créateur du groupe */}
+           
             {/* <p>? / {groupData.max_members}</p> */}
-            <p className="date">
-              De 2 à {groupData.max_members} Pers. - X places restantes
-            </p>
+            <a> 
+            <Icon name="group" /> Jusqu'à {groupData.max_members} membres</a>
+            {/* <Icon name="group" /> {groupData.max_members} membres max.</a> */}
           </div>
         </Card.Content>
       </Card>

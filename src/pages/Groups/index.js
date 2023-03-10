@@ -24,7 +24,7 @@ const Groups = (props) => {
       .get(`/countries/${params.countryName}`)
       .then((response) => {
         setData(response.data);
-        console.log("data", response.data);
+        console.log("groupCard", response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -38,7 +38,7 @@ const Groups = (props) => {
     axiosInstance
       .get("/countries")
       .then((response) => {
-        console.log(response);
+        console.log("countries", response.data);
         const countryInfo = response.data.countries.filter((element) => {
           return element.name === params.countryName;
         });
@@ -61,20 +61,23 @@ const Groups = (props) => {
       <>
         {data[0] ? (
           <>
-            <p>
+            {/* <p>
               Vous pouvez filtrer pour trouver les groupes qui vous
               correspondent le mieux.
+            </p> */}
+            <p>
+              Sélectionnez un groupe avec qui vous correspond, avec qui vous pourriez avoir envie de voyager.
             </p>
 
-            <section id="groups--section2-filter">
+            {/* <section id="groups--section2-filter"> */}
 
-              {/* <Select placeholder="Période du voyage" options={dateOptions} /> */}
-              {/* <Select placeholder="Langue du groupe" options={languageOptions} /> */}
-              {/* <Select placeholder="Ville" options={cityOptions} /> */}
-              <Select placeholder="Thème" options={themeOptions} />
-              <Button primary> Valider </Button>
+            {/* <Select placeholder="Période du voyage" options={dateOptions} /> */}
+            {/* <Select placeholder="Langue du groupe" options={languageOptions} /> */}
+            {/* <Select placeholder="Ville" options={cityOptions} /> */}
+            {/* <Select placeholder="Thème" options={themeOptions} /> */}
+            {/* <Button primary> Valider </Button> */}
 
-            </section>
+            {/* </section> */}
 
             <section id="groups--section3-groups" className="GroupCard">
               {data.map((groupData) => (

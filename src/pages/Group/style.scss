@@ -27,6 +27,10 @@
   box-shadow: 0px 8px 20px rgba(119, 119, 119, 0.4);
   padding: 4rem 6rem 3rem 6rem;
   border-radius: 12px 12px 0 0;
+  
+  .ui.form {
+    text-align: left;
+  }
 }
 
 #title--container {
@@ -104,12 +108,28 @@ textarea {
   align-self: center;
   // width: 100%;
   // display: inline-block;
+  
+  .flex--delete {
+    display: flex;
+    align-items: baseline;
+  }
 }
 
 .membres--title {
   text-align: left;
   width: 202px;
   margin-bottom: 17px;
+}
+
+.membres--grid {
+  display: flex;
+  flex-wrap: wrap;
+  // grid-template-columns: repeat(3, 1fr);
+  // flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 2%;
 }
 
 .btn--register {
