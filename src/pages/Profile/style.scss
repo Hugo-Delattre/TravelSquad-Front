@@ -28,6 +28,7 @@
     gap: 3rem;
     align-items: center;
     text-align: left;
+    
 
     .shadow {
       box-shadow: 0px 8px 20px rgba(119, 119, 119, 0.4);
@@ -96,3 +97,6 @@
   border-radius: 13px;
 }
 
+.cancel-edit-profile{
+  color: red;
+}

@@ -14,7 +14,8 @@ const TeamCard = ({teamInfo}) => {
       />
       <h2>{teamInfo.name} {teamInfo.lastName}</h2>
       <p>
-        {teamInfo.role} <br />
+        {teamInfo.role1} <br />
+        {teamInfo.role2}
         {/* Contact */}
       </p>
     </div>

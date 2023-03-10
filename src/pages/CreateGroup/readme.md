@@ -1,3 +1,7 @@
+Comme pour Group je remets dans Group mon dernier commit avant de changer le ternary operator. 
+
+Je laisse quand même si dessous au cas où j'en aurais besoin
+
 import React, { useState, useEffect } from "react";
 import { Form, Loader, Message } from "semantic-ui-react";
 import { useNavigate, Link } from "react-router-dom";
@@ -65,7 +69,6 @@ const CreateGroup = () => {
         console.log(response);
         if (response.status === 200) {
           setIsGroupCreated(true);
-          setTimeout(() => {navigate(`/countries/${country}`)}, 4000)
         }
       })
       .catch((error) => {
@@ -142,34 +145,20 @@ const CreateGroup = () => {
 
   return (
     <>
-      {jwt ? (<> {isGroupCreated ? (
-      
-      
-      
-      <div className="createGroup--button">
-        <Form success className="groupCreated">
-                        <Link to={`/countries/${country}`}>
-                          <Message
-                            success
-                            header="Escouade créée avec succès !"
-                            content="Elle est désormais accessible dans la liste des escouades, cliquez ici pour y accéder ou patientez quelques secondes."
-                          />
-                        </Link>
-                      </Form>
-      </div>) 
-                    
-                    : 
-                    
-                    (<div className="createGroup--pageContainer">
-            <div>
-              <h1>Envie de former votre propre équipe ?</h1>
-              <p>
-                Renseignez les champs de façon à être contacté(e) par les
-                utilisateurs qui correspondent le mieux à vos critères.
-              </p>
-            </div>
-            <section id="CreateGroup--section1">
-              {/* <h2>Informations principales concernant le voyage :</h2> */}
+      {jwt ? (
+        <div className="createGroup--pageContainer">
+          <div>
+            <h1>Envie de former votre propre équipe ?</h1>
+            <p>
+              Renseignez les champs de façon à être contacté(e) par les
+              utilisateurs qui correspondent le mieux à vos critères.
+            </p>
+          </div>
+
+          <section id="CreateGroup--section1">
+            {/* <h2>Informations principales concernant le voyage :</h2> */}
+            <> 
+            <>{ isGroupCreated ? (<p>groupe pas encore créé</p>) : (<p>groupe créé</p>) } </>
               <Form onSubmit={handleSubmit} className="CreateGroup--Title">
                 <Form.Group widths="equal">
                   <Form.Field required>
@@ -235,7 +224,7 @@ const CreateGroup = () => {
                     <Form.Input
                       label="Langue(s) principale(s) du groupe"
                       placeholder="Français, Anglais, ..."
-                      options={languageOptions}
+                      // options={languageOptions}
                       value={language}
                       onChange={handleLanguageChange}
                       // min="3"
@@ -262,7 +251,7 @@ const CreateGroup = () => {
                         name="date"
                         value={end}
                         onChange={handleEndChange}
-                        min={tomorrowString}
+                        min={start}
                         required
                       />
                       <Form.TextArea
@@ -319,19 +308,17 @@ const CreateGroup = () => {
                     >
                       CRÉER LE GROUPE
                     </button>
-                  
+               
                 </div>
                 {/* <Button type="submit" color="blue" className="btn--createGroup">
                 CRÉER LE GROUPE
               </Button> */}
                 {/* Remplacer Button par button pour récup l'autre style de bouton */}
               </Form>
-            </section>
-          </div>)}
-        
-          
-        
-      </>) : (
+            </>
+          </section>
+        </div>
+      ) : (
         <div className="countries--loader">
           <Loader active inline="centered" />
         </div>

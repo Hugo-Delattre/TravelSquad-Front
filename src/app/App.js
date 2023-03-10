@@ -1,7 +1,7 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import React from "react";
-
+import { accountService } from "../_services/account.service";
 import Countries from "../pages/Countries";
 import Home from "../pages/Home";
 import Groups from "../pages/Groups";
@@ -17,6 +17,8 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 const App = () => {
+
+  
   return (
     <div className="App">
       <NavBar />

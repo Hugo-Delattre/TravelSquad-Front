@@ -162,6 +162,42 @@ textarea {
   }
 }
 
+.btn--edit {
+  // margin-top: 70px;
+  width: 100%;
+  // align-self: center;
+  // z-index: 0;
+  border-radius: 12px;
+  border-radius: 4px;
+  border: solid 0px #d6d6d6;
+  // margin-right: 0px;
+
+  .icon {
+    margin-right: 0px;
+  }
+  font-weight: 300;
+  background-color: rgb(255, 255, 255);
+  // border: 1px solid rgb(133, 0, 0);
+  box-shadow: 0px 2px 10px rgba(119, 119, 119, 0.15);
+  transition: all 0.2s;
+
+  h3 {
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    font-size: 16px;
+    transition: all 0.2s;
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+  &:hover {
+    // background-color: rgb(133, 0, 0);
+    color: rgb(255, 255, 255);
+    background-color: vars.$colorPrimary;
+    box-shadow: 0px 4px 10px rgba(119, 119, 119, 0.25);
+  }
+}
+
 .btn--joined {
   // margin-top: 70px;
   // width: 30%;

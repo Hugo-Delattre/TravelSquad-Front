@@ -65,13 +65,17 @@ const Groups = (props) => {
               Vous pouvez filtrer pour trouver les groupes qui vous
               correspondent le mieux.
             </p>
+
             <section id="groups--section2-filter">
+
               {/* <Select placeholder="Période du voyage" options={dateOptions} /> */}
               {/* <Select placeholder="Langue du groupe" options={languageOptions} /> */}
               {/* <Select placeholder="Ville" options={cityOptions} /> */}
               <Select placeholder="Thème" options={themeOptions} />
               <Button primary> Valider </Button>
+
             </section>
+
             <section id="groups--section3-groups" className="GroupCard">
               {data.map((groupData) => (
                 <Link to={`/countries/group/${groupData.id}`}>

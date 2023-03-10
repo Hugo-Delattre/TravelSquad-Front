@@ -164,8 +164,8 @@ const Signup = () => {
                 onChange={handleLanguageChange}
               /> */}
               <Form.Input
-                label="Langues parlées"
-                placeholder="Principales langues parlées"
+                label="Langue(s) parlée(s)"
+                placeholder="Principale(s) langue(s) parlée(s)"
                 required
                 value={data.spoken_language}
                 onChange={handleLanguageChange}

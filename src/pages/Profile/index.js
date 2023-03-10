@@ -27,6 +27,7 @@ const Profile = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+ 
     accountService
       .profile()
       .then((res) => {
@@ -36,6 +37,7 @@ const Profile = () => {
       .catch((err) => {
         setError(err);
       });
+  
   }, []);
 
   const handleSexChange = (e, { value }) => {
@@ -52,9 +54,10 @@ const Profile = () => {
         },
       })
       .then((res) => {
-        console.log("modification reussi");
-        console.log(res.data);
+        console.log("Modification réussie");
         setIsEditing(false);
+  
+     
       })
       .catch((error) => {
         setError(error);
@@ -85,17 +88,6 @@ const Profile = () => {
                       ...profileData,
                       firstName: e.target.value,
                     })
-                  }
-                />
-                <Form.Input
-                  name="tel"
-                  value={profileData.phone}
-                  type="tel"
-                  pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
-                  label="Numéro de téléphone"
-                  placeholder=""
-                  onChange={(e) =>
-                    setprofileData({ ...profileData, phone: e.target.value })
                   }
                 />
                 <label>
@@ -145,21 +137,27 @@ const Profile = () => {
                 <Button primary type="submit">
                   Mettre à jour
                 </Button>
+                {/* <Button basic color="blue" onClick={() => setIsEditing(false)} >Annuler</Button> */}
+                {/* <Button basic onClick={() => setIsEditing(false)} >Annuler</Button> */}
+                <Button onClick={() => setIsEditing(false)} >Annuler</Button>
+               
               </Form>
             ) : (
               <>
                 <h1>{profileData.firstName}</h1>
-                <Icon
-                  className="edit-icon"
+                <p  className="edit-icon">
+                  <strong>
+                  <Icon
                   onClick={() => setIsEditing(true)}
                   name="paint brush"
-                />
+                />Modifier</strong></p>
+        
                 <p>{profileData.content}</p>
                 <ul className="profile--tag">
                   <li>{profileData.age} ans</li>
                   <li>
                     {" "}
-                    <Icon name="phone" /> {profileData.phone}{" "}
+                    <Icon name="mail" /> {profileData.email}{" "}
                   </li>
                   <li>
                     <Icon name="user" />
