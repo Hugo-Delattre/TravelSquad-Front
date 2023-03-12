@@ -108,7 +108,7 @@ const Signup = () => {
                 required
                 onChange={(e) => setData({ ...data, email: e.target.value })}
               />
-              {/* <Form.Input
+              <Form.Input
                 name="tel"
                 value={data.phone}
                 type="tel"
@@ -117,7 +117,7 @@ const Signup = () => {
                 placeholder="0653768987"
                 // required
                 onChange={(e) => setData({ ...data, phone: e.target.value })}
-              />  */}
+              /> 
 
               <Form.Input
                 name="password"
