@@ -252,7 +252,13 @@ textarea {
 }
 
 @media (max-width: 1355px) {
+  #section--container {
+    margin: 4rem 0;
+  }
 }
 
 @media (max-width: 1000px) {
+  #section--container {
+  margin: 1rem 0;
+  }
 }
