@@ -7,7 +7,7 @@ import axiosInstance from "../../api/axiosInstance";
 import { genderOptions } from "../../data/options";
 import { capitalizeFirstLetter } from "../../utils/textFormat";
 
-const Profile = ({ onProfileImageChange }) => {
+const Profile = () => {
   const [profileData, setprofileData] = useState({
     firstName: "",
     lastName: "",
@@ -38,10 +38,7 @@ const Profile = ({ onProfileImageChange }) => {
       });
   }, []);
 
-  const handleSexChange = (e, { value }) => {
-    setprofileData({ ...profileData, sex: value });
-  };
-
+ 
   const handleProfileUpdate = (e) => {
     e.preventDefault();
     const jwt = localStorage.getItem("token");
@@ -129,6 +126,20 @@ const Profile = ({ onProfileImageChange }) => {
                       })
                     }
                   />
+                </label>
+                <label>
+                  <strong>Modifier votre mail</strong>
+                  <input
+                    type="text"
+                    value={profileData.email}
+                    onChange={(e) =>
+                      setprofileData({
+                        ...profileData,
+                        email: e.target.value,
+                      })
+                    }
+                  />
+                  
                 </label>
                 <Button primary type="submit">
                   Mettre à jour

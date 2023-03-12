@@ -130,6 +130,10 @@ textarea {
   text-align: center;
   align-items: center;
   gap: 2%;
+  
+  .flex--delete {
+    cursor: pointer;
+  }
 }
 
 .btn--register {

@@ -112,10 +112,10 @@ const Signup = () => {
                 name="tel"
                 value={data.phone}
                 type="tel"
+                placeholder="0653768987"
                 pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
                 label="Numéro de téléphone"
-                placeholder="0653768987"
-                // required
+                required
                 onChange={(e) => setData({ ...data, phone: e.target.value })}
               /> 
 
@@ -124,7 +124,7 @@ const Signup = () => {
                 value={data.password}
                 type="password"
                 label="Mot de passe"
-                placeholder="mot de passe"
+                placeholder="Mot de passe"
                 required
                 onChange={(e) => setData({ ...data, password: e.target.value })}
               />

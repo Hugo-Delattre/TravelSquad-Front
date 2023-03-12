@@ -261,7 +261,7 @@ const CreateGroup = () => {
                           name="date"
                           value={end}
                           onChange={handleEndChange}
-                          min={tomorrowString}
+                          min={start}
                           required
                         />
                         <Form.TextArea
