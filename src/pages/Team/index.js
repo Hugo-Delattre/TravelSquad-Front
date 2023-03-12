@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 
 import TeamCard from "../../components/TeamCard";
-import { Card, Feed, Image,  Transition, Button, List } from "semantic-ui-react";
+import { Card, Feed, Image, Transition, Button, List } from "semantic-ui-react";
 
 import "./style.scss";
 
 // Info team
 
 const Team = () => {
- 
   const teamInfo = {
     badreInfo: {
       name: "Badre",
@@ -67,25 +66,13 @@ const Team = () => {
       </div>
 
       <div className="Team--Info-flex">
-         <TeamCard teamInfo={teamInfo.badreInfo} />
-         <TeamCard teamInfo={teamInfo.ilhamInfo} />
-         <TeamCard teamInfo={teamInfo.hugoInfo} />
-         <TeamCard teamInfo={teamInfo.mathisInfo} />
-         <TeamCard teamInfo={teamInfo.julianInfo} />
-       </div>
-
+        <TeamCard teamInfo={teamInfo.badreInfo} />
+        <TeamCard teamInfo={teamInfo.ilhamInfo} />
+        <TeamCard teamInfo={teamInfo.hugoInfo} />
+        <TeamCard teamInfo={teamInfo.mathisInfo} />
+        <TeamCard teamInfo={teamInfo.julianInfo} />
+      </div>
     </div>
   );
 };
 export default Team;
-
-
-
-
-
-
-
-
-
-
-

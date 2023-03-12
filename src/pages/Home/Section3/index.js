@@ -4,20 +4,20 @@ import "./style.scss";
 import { Button } from "semantic-ui-react";
 import CountryCard from "../../../components/CountryCard";
 
-import axios from "axios";
-const axiosInstance = axios.create({
-  baseURL: "https://travelsquad.up.railway.app/",
-});
+import axiosInstance from "../../../api/axiosInstance";
 
 const Section3 = () => {
   const [countriesData, setCountriesData] = useState([]);
+   const [groupMembersCount, setGroupMembersCount] = useState(0);
 
   useEffect(() => {
     axiosInstance
       .get("/countries")
       .then((response) => {
-        setCountriesData(response.data);
-        //  console.log("countriesData", countriesData);
+        setCountriesData((response.data.countries).slice(0, 3));
+        setGroupMembersCount(response.data.numberOfGroups);
+        // setCountriesData(...countriesData, response.data.countries[1]);
+         console.log("countriesData", countriesData);
       })
       .catch((error) => {
         console.log(error);
@@ -35,10 +35,11 @@ const Section3 = () => {
           </p>
           <div className="carrousel">
             {countriesData.map((country) => (
-              <Link to="/countries/groups">
+              <Link to={`/countries/${country.name}`}>
                 <CountryCard
-                  // key={}
+                  key={country.id}
                   countryData={country}
+                  groupMembersCount={groupMembersCount}
                 />
               </Link>
             ))}

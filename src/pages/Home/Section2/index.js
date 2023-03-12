@@ -8,7 +8,7 @@ const Section2 = () => {
         <div className="block">
           <img
             src="https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80"
-            alt=""
+            alt="Amis en voyage profitant d'un coucher de soleil"
           />
           <div className="block--title">
             <h2>
@@ -30,7 +30,7 @@ const Section2 = () => {
         </div>
 
         <div className="block">
-          <div className="block--title">
+          <div className="block--title--left">
             <h2>Profitez de la richesse culturelle de chacun</h2>
             <p>
               Voyager est l'un des meilleurs moyens de découvrir de nouvelles
@@ -48,14 +48,14 @@ const Section2 = () => {
           </div>
           <img
             src="https://images.unsplash.com/photo-1444210971048-6130cf0c46cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80"
-            alt=""
+            alt="Amis en vacances profitant d'un feu de camp"
           />
         </div>
 
         <div className="block">
           <img
-            src="https://images.unsplash.com/photo-1525026198548-4baa812f1183?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1334&q=80"
-            alt=""
+            src="https://media.discordapp.net/attachments/1081136403137712150/1084254449511452682/amis_partant_a_l_aventure.webp?width=1358&height=903"
+            alt="Amis partant à l'aventure"
           />
 
           <div className="block--title">

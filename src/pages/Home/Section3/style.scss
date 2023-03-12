@@ -2,8 +2,8 @@
 @import "src/fonts/fonts.scss";
 
 #home--section3 {
-  margin-top: 9rem;
-  margin-bottom: 6rem;
+  margin-top: 13rem;
+  margin-bottom: 13rem;
   
   h1 {
     font-family: vars.$fontHeadersMontserrat;
@@ -12,6 +12,7 @@
 }
 
 .carrousel {
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -21,4 +22,10 @@
 
 .ui.blue.button a {
   color: white;
+}
+
+@media (max-width: 1000px) {
+  .carrousel {
+    display: none;
+}
 }

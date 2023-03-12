@@ -11,12 +11,11 @@ import axiosInstance from "../../api/axiosInstance";
 // import "./style.scss";
 
 const OtherUserProfile = () => {
-  
   const navigate = useNavigate();
   const params = useParams();
   console.log("params.id", params.id);
-  
-   //Récupération du jeton d'authentification.
+
+  //Récupération du jeton d'authentification.
   const jwt = localStorage.getItem("token");
   const headers = {
     headers: {
@@ -24,7 +23,7 @@ const OtherUserProfile = () => {
     },
   };
 
-const [profileData, setprofileData] = useState("");
+  const [profileData, setprofileData] = useState("");
 
   useEffect(() => {
     axiosInstance
@@ -38,42 +37,36 @@ const [profileData, setprofileData] = useState("");
       });
   }, []);
 
-
   return (
     <>
-
-    {/* sortir des composants ou renommer en + explicite */}
+      {/* sortir des composants ou renommer en + explicite */}
       {/* <ProfileSection1/> */}
-      
-      
-      
+
       <section id="profile--section1">
-      <div className="profile--flex">
-        <Image
-          src={profileData.image}
-          size="medium"
-          circular
-          className="shadow"
-        />
-        <div>
-          <h1>{profileData.firstName}</h1>
-          <p>{profileData.content}</p>
-          <ul className="profile--tag">
-            <li>{profileData.age} ans</li>
-            <li> Numéro de  télephone: {profileData.phone}  </li>
-            <li> Sex : {profileData.sex}</li>
-            <li> Langue parler : {profileData.spoken_language}</li>
-            <li>
-            pays de résidence : {profileData.country_of_origin}{" "}
-              <Flag size="large" name="france" />
-            </li>
-          </ul>
+        <div className="profile--flex">
+          <Image
+            src={profileData.image}
+            size="medium"
+            circular
+            className="shadow"
+          />
+          <div>
+            <h1>{profileData.firstName}</h1>
+            <p>{profileData.content}</p>
+            <ul className="profile--tag">
+              <li>{profileData.age} ans</li>
+              <li> Numéro de télephone: {profileData.phone} </li>
+              <li> Sex : {profileData.sex}</li>
+              <li> Langue parler : {profileData.spoken_language}</li>
+              <li>
+                pays de résidence : {profileData.country_of_origin}{" "}
+                <Flag size="large" name="france" />
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
-  
-      
-      
+      </section>
+
       {/* <Divider />
       <div className="section2and3--flexbox">
         <GroupsProfile />

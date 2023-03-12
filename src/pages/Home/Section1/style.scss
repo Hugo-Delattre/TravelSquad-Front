@@ -26,7 +26,7 @@
   p {
     font-size: 2.5rem;
     font-weight: 500;
-    line-height: 3rem;
+    line-height: 3.3rem;
   }
 }
 
@@ -70,17 +70,26 @@
   #home--section1 {
     display: flex;
     flex-wrap: nowrap;
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: center;
     text-align: left;
     align-items: center;
-    padding: 2rem 0;
-    margin: 7rem 0;
+    padding: 0;
+    margin: 0;
+
+    .section1--flex_right {
+      width: 100%;
+
+      img {
+        border-radius: 2rem;
+        margin-top: 0rem;
+      }
+    }
+
     .section1--flex_left {
       width: 100%;
-      margin: 4rem auto;
-      img {
-      }
+      // margin-right: 4rem;
+      margin: 3rem auto;
     }
   }
 }

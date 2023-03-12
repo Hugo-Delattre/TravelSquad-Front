@@ -8,7 +8,6 @@ import {
 import axiosInstance from "../../api/axiosInstance";
 import "./style.scss";
 
-
 const CountryCard = ({ countryData, groupMembersCount }) => {
   const countryName = countryData.name;
 

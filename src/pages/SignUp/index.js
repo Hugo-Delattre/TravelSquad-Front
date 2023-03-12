@@ -108,7 +108,7 @@ const Signup = () => {
                 required
                 onChange={(e) => setData({ ...data, email: e.target.value })}
               />
-               {/* <Form.Input
+              {/* <Form.Input
                 name="tel"
                 value={data.phone}
                 type="tel"
@@ -211,7 +211,7 @@ const Signup = () => {
               />
 
               <NavLink to="/login">
-                <p className="deja--membre">Déja membre?</p>
+                <p className="deja--membre">Déjà membre?</p>
               </NavLink>
               <Button color="blue" type="submit" className="btn--right">
                 S'inscrire

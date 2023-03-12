@@ -4,31 +4,25 @@ import "semantic-ui-css/semantic.min.css";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
 
-
 import { accountService } from "../../_services/account.service";
-import {  useState } from "react";
-
+import { useState } from "react";
 
 const Login = () => {
-
-
   let navigate = useNavigate();
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    accountService.login(dataLogin)
-      .then(res => {
-        accountService.saveToken(res.data.token)  // Sauvegarde du token et envoi vers page d'accueil
-        navigate('/countries', {replace: true} )
-     console.log(res)
+    accountService
+      .login(dataLogin)
+      .then((res) => {
+        accountService.saveToken(res.data.token); // Sauvegarde du token et envoi vers page d'accueil
+        navigate("/countries", { replace: true });
+        console.log(res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-
   };
 
   const [dataLogin, setdataLogin] = useState({
@@ -39,7 +33,6 @@ const Login = () => {
   return (
     <div id="log--container">
       <div id="left--side">
-       
         <div className="content--welcome--left">
           <h1>BIENVENUE</h1>
           <i class="window minimize icon" size="big"></i>
@@ -83,9 +76,12 @@ const Login = () => {
               <p className="redirect--login">Pas encore membre ?</p>
             </NavLink>
 
-            <button color="blue" className="log--submit" type="submit">
+            <button color="blue" className="none" type="submit">
               Se connecter
             </button>
+            <Button color="blue" className="log--submit" type="submit">
+              Se connecter
+            </Button>
           </Form>
         </div>
       </div>

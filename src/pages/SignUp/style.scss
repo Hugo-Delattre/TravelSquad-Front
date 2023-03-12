@@ -20,7 +20,6 @@
 .signup--right {
   display: flex;
   flex-direction: column;
-
   overflow: scroll;
   padding: 3.25rem 0;
   height: 600px;
@@ -156,4 +155,26 @@ form {
   .container {
     flex-wrap: wrap;
   }
+}
+
+
+
+
+@media (max-width: 1355px) {
+  .signup--left {
+    display: none;
+  }
+  .signup--right {
+    width: 100%;
+    border-radius: 13px;
+  }
+  // #log--container {
+  //   justify-content: center;
+  //   margin-right: 0;
+  //   margin-left: 0;
+  //   width: 100%;
+  // }
+  
+  // .right--side {width: 100%;
+  // border-radius: 13px;}
 }

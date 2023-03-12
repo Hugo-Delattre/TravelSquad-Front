@@ -9,7 +9,7 @@ import {
   capitalizeFirstLetters,
   formatDate,
   lowerCaseFirstLetter,
-  turnThemeNameIntoThemeID
+  turnThemeNameIntoThemeID,
 } from "../../utils/textFormat";
 import axiosInstance from "../../api/axiosInstance";
 import MemberCard from "../../components/MemberCard";

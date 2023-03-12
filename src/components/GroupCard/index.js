@@ -52,13 +52,12 @@ const GroupCard = ({ groupData, imgURL }) => {
         </Card.Content>
         <Card.Content extra>
           <div className="groupCard--bottomLine">
-          
-            
-              {/* Créateur du groupe */}
-           
+            {/* Créateur du groupe */}
+
             {/* <p>? / {groupData.max_members}</p> */}
-            <a> 
-            <Icon name="group" /> Jusqu'à {groupData.max_members} membres</a>
+            <a>
+              <Icon name="group" /> Jusqu'à {groupData.max_members} membres
+            </a>
             {/* <Icon name="group" /> {groupData.max_members} membres max.</a> */}
           </div>
         </Card.Content>

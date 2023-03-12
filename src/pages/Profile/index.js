@@ -7,12 +7,7 @@ import axiosInstance from "../../api/axiosInstance";
 import { genderOptions } from "../../data/options";
 import { capitalizeFirstLetter } from "../../utils/textFormat";
 
-
-
 const Profile = ({ onProfileImageChange }) => {
-
-    
-
   const [profileData, setprofileData] = useState({
     firstName: "",
     lastName: "",
@@ -31,24 +26,22 @@ const Profile = ({ onProfileImageChange }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
- 
     accountService
       .profile()
       .then((res) => {
         setprofileData(res.data);
-      
+
         console.log(res.data);
       })
       .catch((err) => {
         setError(err);
       });
-  
   }, []);
- 
+
   const handleSexChange = (e, { value }) => {
     setprofileData({ ...profileData, sex: value });
   };
- 
+
   const handleProfileUpdate = (e) => {
     e.preventDefault();
     const jwt = localStorage.getItem("token");
@@ -61,14 +54,11 @@ const Profile = ({ onProfileImageChange }) => {
       .then((res) => {
         console.log("Modification réussie");
         setIsEditing(false);
-      
       })
       .catch((error) => {
         setError(error);
       });
   };
-  
-
 
   return (
     <>
@@ -160,7 +150,7 @@ const Profile = ({ onProfileImageChange }) => {
 
                 <p>{profileData.content}</p>
                 <ul className="profile--tag">
-                  <li>{profileData.age} ans</li>
+                  {/* <Button basic color="blue">Test</Button> */}
                   <li>
                     {" "}
                     <Icon name="mail" /> {profileData.email}{" "}
@@ -169,7 +159,8 @@ const Profile = ({ onProfileImageChange }) => {
                     <Icon name="user" />
                     {capitalizeFirstLetter(profileData.sex)}
                   </li>
-                  <li> Langue(s) parlée(s) : {profileData.spoken_language}</li>
+                  <li>{profileData.age} ans</li>
+                  <li> Langue principale : {profileData.spoken_language}</li>
                   <li>
                     Pays de résidence : {profileData.country_of_origin}{" "}
                     {/* <Flag size="large" name="france" /> */}

@@ -7,11 +7,7 @@ import GroupCard from "../../components/GroupCard";
 import "./style.scss";
 import { capitalizeFirstLetter, formatDate } from "../../utils/textFormat";
 
-import {
-  ageOptions,
-  themeOptions,
-  languageOptions,
-} from "../../data/options";
+import { ageOptions, themeOptions, languageOptions } from "../../data/options";
 
 const Groups = (props) => {
   const params = useParams();
@@ -66,7 +62,8 @@ const Groups = (props) => {
               correspondent le mieux.
             </p> */}
             <p>
-              Sélectionnez un groupe avec qui vous correspond, avec qui vous pourriez avoir envie de voyager.
+              Sélectionnez un groupe avec qui vous correspond, avec qui vous
+              pourriez avoir envie de voyager.
             </p>
 
             {/* <section id="groups--section2-filter"> */}

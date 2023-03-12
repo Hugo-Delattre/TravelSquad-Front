@@ -7,7 +7,7 @@ const Section1 = () => {
   return (
     <section id="home--section1">
       <div className="section1--flex_left">
-        <h1>Ne voyagez plus jamais seul</h1>
+        <h1>Ne voyagez plus jamais seul(e)</h1>
         <p>
           TravelSquad vous permet de rencontrer vos futurs partenaires de
           voyages.
