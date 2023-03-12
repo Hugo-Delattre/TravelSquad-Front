@@ -179,7 +179,7 @@ const Signup = () => {
                 onChange={handleSexChange}
               />
 
-              {/* <Form.Input
+              <Form.Input
                 type="url"
                 // placeholder="https://"
                 label="Photo de profil"
@@ -189,7 +189,7 @@ const Signup = () => {
                 placeholder="https://example.jpg"
                 pattern="https://.*"
                 size="30"
-              /> */}
+              />
 
               {/* <Form.Select
                 label="Pays"
