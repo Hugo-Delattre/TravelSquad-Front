@@ -1,7 +1,7 @@
 import { Divider } from "semantic-ui-react";
 import { ActionFunction } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { Image, Flag } from "semantic-ui-react";
+import { Image, Flag, Icon } from "semantic-ui-react";
 import { useParams, Link } from "react-router-dom";
 import { accountService } from "../../_services/account.service";
 import { useNavigate } from "react-router-dom";
@@ -54,13 +54,20 @@ const OtherUserProfile = () => {
             <h1>{profileData.firstName}</h1>
             <p>{profileData.content}</p>
             <ul className="profile--tag">
-              <li>{profileData.age} ans</li>
-              <li> Numéro de télephone: {profileData.phone} </li>
-              <li> Sex : {profileData.sex}</li>
-              <li> Langue parler : {profileData.spoken_language}</li>
               <li>
-                pays de résidence : {profileData.country_of_origin}{" "}
-                <Flag size="large" name="france" />
+                {" "}
+                <Icon name="mail" /> {profileData.email}{" "}
+              </li>
+              <li>
+                {" "}
+                <Icon name="user" />
+                {profileData.sex}
+              </li>
+              <li>{profileData.age} ans</li>
+              <li> Langue principale : {profileData.spoken_language}</li>
+              <li>
+                Pays de résidence : {profileData.country_of_origin}{" "}
+                {/* <Flag size="large" name="france" /> */}
               </li>
             </ul>
           </div>
