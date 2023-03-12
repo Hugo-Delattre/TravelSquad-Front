@@ -135,6 +135,8 @@ const Group = () => {
   const handleGroupUpdate = (e) => {
     e.preventDefault();
     console.log("tentative d'update");
+    console.log("themeID", (themeID));
+    console.log("themeID sent", turnThemeNameIntoThemeID(themeID));
     console.log("groupInfoNew", {
       city: groupInfo.city,
       content: content,

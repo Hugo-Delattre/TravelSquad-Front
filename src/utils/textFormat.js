@@ -34,7 +34,7 @@ export const turnThemeNameIntoThemeID = (theme) => {
     return 1;
   } else if (theme === "culturel") {
     return 2;
-  } else if (theme === "festif") {
+  } else if (theme === "fiesta") {
     return 3;
   } else if (theme === "sportif") {
     return 4;
